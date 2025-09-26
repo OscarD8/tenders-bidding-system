@@ -101,25 +101,25 @@ footer {
 /* Page-specific overrides */
 #html .card { background-color: #ebfffc; }
 #html .card-header { background-color: #00d1b2; color: #363636; }
-#html > h1 { composes: page-title; }
+#html > h1 { /* page-title styles applied via class */ }
 
 #css .card { background-color: #ebf9ff; }
 #css .card-header { background-color: #66d1ff; color: #363636; }
-#css > h1 { composes: page-title; }
+#css > h1 { /* page-title styles applied via class */ }
 
 #js .card { background-color: #fff5e6; }
 #js .card-header { background-color: #ffb366; color: #363636; }
-#js > h1 { composes: page-title; }
+#js > h1 { /* page-title styles applied via class */ }
 
 #http .card { background-color: #fff0f6; }
 #http .card-header { background-color: #ff66a3; color: #363636; }
-#http > h1 { composes: page-title; }
+#http > h1 { /* page-title styles applied via class */ }
 
 #dom .card { background-color: #efe3ed; }
 #dom .card-header { background-color: #cc6bd7; color: #363636; }
-#dom > h1 { composes: page-title; }
+#dom > h1 { /* page-title styles applied via class */ }
 
 #ai .card { background-color: #e7e5e4; }
 #ai .card-header { background-color: #57534d; color: #f1f5f9; font-size: 1rem; }
-#ai > h1 { composes: page-title; }
+#ai > h1 { /* page-title styles applied via class */ }
 
