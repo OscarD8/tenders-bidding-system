@@ -56,6 +56,94 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 3/10/25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        (previously prompted ChatGPT with aethsetic ideas so it could format a prompt for copilot)
+                        Create a semantic HTML page with an external CSS file using Flexbox for layout. The page should have a full-width header, a navigation bar below it, a main section, and a footer. Use a clean retro-futurist bakery café theme: think “the future that never was,” blending 1950s space-race chrome optimism with the warmth of a bakery.
+
+Layout:
+
+Header + nav full width.
+
+Main section = flexible row with 3 columns in a 1:4:1 ratio (sidebars + centerpiece), applying flex.
+
+Footer full width.
+
+Styling:
+
+Retro-futurist color palette: dark navy / deep space blue as base, teal + atomic orange as accents, neon pink/red for highlights.
+
+Add subtle chrome/brushed-metal vibes.
+
+Each section should have its own background color for clarity.
+
+Content concept:
+
+Website is called “Crumble-nauts.”
+
+Kitchen/menu = “The Lab.”
+
+Ordering process = “Order Synthesis.”
+
+Contact = “Contact Control.”
+
+Sample crumbles: Cosmic Berry, Rosemary-Pear Gorgonzola, Mango-Chili Coconut.
+
+Keep the HTML/CSS concise, clean, and responsive.
+                    </span>
+                </p>
+                <p>Date: 03-10-2025</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">This was part of the week 2 lab exercise, using copilot to generate an html file with a linked stylesheet.
+                        The index.html that it generated split out the header, nav, main and footer elements as required. 
+                        To achieve the required segments of 1:4:1 weighting in the main section - it implemented a div with class `main-row`, inside
+                        which it placed two aside elements with `col right` and `col left` classes, as well as a section with class `col center`. 
+                        This structure makes the CSS easy to understand. The `main-row` container has flex applied and all nested elements are referred
+                        to by class and their corresponding flexible length is applied:
+                    </span>
+                </p>
+                <pre>
+/* CSS generated for main content flex application */
+
+.main-row {
+  display: flex;
+  gap: var(--gap);
+  align-items: stretch;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.main-row > .col {
+  padding: 1rem;
+  border-radius: 10px;
+  color: var(--text);
+}
+.left {
+  flex: 1;
+  background: linear-gradient(180deg, #062a36, #08303b);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+.center {
+  flex: 4;
+  background: linear-gradient(180deg, #041926, #06232c);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+.right {
+  flex: 1;
+  background: linear-gradient(180deg, #062a36, #08303b);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+                </pre>
+            </div>
+        </div>
+
 <!-- Card for AI Prompt 1 -->
 
         <div class="card">

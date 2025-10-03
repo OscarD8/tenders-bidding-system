@@ -1,0 +1,173 @@
+/* Retro-futurist bakery — concise stylesheet
+   Layout: header (full width), nav (full width), main row (1:4:1), footer
+   Palette: deep navy / space blue base, teal + atomic orange accents, neon pink highlights
+*/
+:root {
+  --space: #041028; /* deep space navy */
+  --teal: #009ba6; /* vibrant teal */
+  --orange: #ff8c2f; /* atomic orange */
+  --neon: #ff3b8a; /* neon pink */
+  --panel: linear-gradient(
+    135deg,
+    #dfe7ec 0%,
+    #bcc9d4 100%
+  ); /* brushed-metal hint */
+  --muted: #9fb6c3;
+  --text: #f4fbff;
+  --gap: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--space);
+  color: var(--text);
+  padding: 1.25rem;
+}
+
+header {
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.06)
+  );
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+header .site-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header h1 {
+  font-size: 1.6rem;
+  color: var(--teal);
+  margin: 0;
+}
+header .tag {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+nav {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+}
+nav a:hover {
+  background: rgba(0, 155, 166, 0.08);
+  color: var(--teal);
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
+  margin-top: 1rem;
+}
+.main-row {
+  display: flex;
+  gap: var(--gap);
+  align-items: stretch;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.main-row > .col {
+  padding: 1rem;
+  border-radius: 10px;
+  color: var(--text);
+}
+.left {
+  flex: 1;
+  background: linear-gradient(180deg, #062a36, #08303b);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+.center {
+  flex: 4;
+  background: linear-gradient(180deg, #041926, #06232c);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+.right {
+  flex: 1;
+  background: linear-gradient(180deg, #062a36, #08303b);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.col h2 {
+  color: var(--orange);
+  margin-top: 0;
+}
+.col p {
+  color: var(--muted);
+}
+
+/* bubbles for crumbles */
+.card-accent {
+  margin-top: 1rem;
+}
+.card-accent ul {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+.card-accent li {
+  background: linear-gradient(90deg, var(--teal), var(--neon));
+  color: #041018;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  transition: transform 0.16s;
+}
+.card-accent li:hover {
+  transform: translateY(-5px);
+}
+
+footer {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.02)
+  );
+  text-align: center;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .main-row {
+    flex-direction: column;
+  }
+}
