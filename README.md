@@ -1,19 +1,24 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/p2vSntpM)
+
 # WAT-2025
 
-## PLEASE PUT YOUR NAME HERE
+## Oscar Davison
 
 This repository contains two main folders:
 
 ## Portfolio
-A folder for portfolio-related projects and files. 
+
+A folder for portfolio-related projects and files.
 Using the following:
+
 ```bash
    python my_test_web_server.py
 ```
+
 Will run a simple webserver which will set the portfolio directory as root.
 
 ## Django Project
+
 A vanilla Django 5.2.6 starting project ready for development.
 
 ### Quick Start
