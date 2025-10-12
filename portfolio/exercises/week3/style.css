@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Henny+Penny&family=Mouse+Memoirs&display=swap");
+
+* {
+  box-sizing: border-box;
+  --primary-text-color: rgb(70, 44, 44);
+}
+
+/* Basic reset for full viewport height */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensures the body fills the viewport height */
+  font-family: "Fredoka";
+}
+
+/* 1. Set up the main header container */
+header {
+  width: 100%;
+  min-height: 150px; /* Ensures the header has enough height for positioned elements */
+  background-color: #e6de7e; /* Added for visibility */
+}
+
+.header-content {
+  padding-bottom: 2rem;
+  position: relative; /* Establishes a positioning context for its children */
+  padding: 0.5rem;
+}
+
+/* 2. Style and position the logo */
+header .logo {
+  max-width: 150px; /* Prevents the logo from being too large */
+}
+
+/* 3. Position the main heading in the absolute center */
+header h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* The key to true centering */
+  margin: 0; /* Resets default margin */
+  white-space: nowrap; /* Prevents the title from wrapping on smaller screens */
+  font-family: "Mouse Memoirs";
+  font-size: 3rem;
+  color: var(--primary-text-color);
+}
+
+/* 4. Position the paragraph in the bottom right */
+header p {
+  position: absolute;
+  bottom: 0rem; /* Aligns to the bottom with no padding */
+  right: 1rem; /* Aligns to the right with some padding */
+  font-family: "Henny Penny";
+  color: var(--primary-text-color);
+  font-size: smaller;
+}
+
+/* 1. Style the main navigation bar container */
+nav {
+  width: 100%;
+  background-color: #b3b178;
+  padding: 0.5rem 0;
+}
+
+/* 2. Set up the list as a flexible row */
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 3rem; /* Creates a space between each item */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Style the navigation links to look like buttons */
+nav .nav-link {
+  display: inline-block; /* Allows padding to be applied correctly */
+  padding: 0.5rem 2.5rem; /* Minimal vertical, decent horizontal padding */
+  background-color: #11151a; /* Button color */
+  color: #ecf0f1; /* Light text color */
+  text-decoration: none; /* Removes the underline from links */
+  border-radius: 5px; /* Adds slightly rounded corners */
+  transition: background-color 0.2s ease-in-out; /* Smooths the hover effect */
+  font-family: "Fredoka";
+}
+
+/* 4. Define the hover effect */
+nav .nav-link:hover {
+  background-color: #615f4a; /* Lighter color on hover */
+  color: #ffffff;
+}
+
+.main-content {
+  /* 1. Enable Flexbox layout */
+  display: flex;
+
+  /* Optional: Prevents children from shrinking/growing beyond their set width */
+  width: 100%;
+  align-items: center;
+  background-color: #e6de7e;
+  padding: 20px;
+}
+
+.left-column {
+  width: 20%;
+  flex-shrink: 0;
+  display: flex; /* Enable Flexbox on the container */
+  flex-direction: column; /* Stack items vertically (h3, img, p) */
+  justify-content: center;
+  /* 2. Spacing and Border */
+  /* Border */
+  border-radius: 8px; /* Optional: adds slightly rounded corners to the box */
+
+  /* Minor Padding */
+  padding: 15px; /* Add space between the content and the border */
+
+  /* This ensures the centering applies to the full 100% height of the column */
+  box-sizing: border-box; /* Ensures padding/border don't increase the 20% width */
+  height: 100%;
+  font-family: "Henny Penny";
+  background-color: white;
+  color: #2a4360;
+  margin-right: 10px;
+}
+
+.left-column > h3 {
+  text-align: center;
+}
+
+.joke-card-media {
+  /* Set a fixed size for a perfect circle */
+  width: 150px;
+  height: 150px;
+
+  /* Crop the image to fit without distortion */
+  object-fit: cover;
+  align-self: center;
+
+  /* Create the circle shape */
+  border-radius: 50%;
+
+  /* Optional: Add a small margin below the image for separation */
+  margin-bottom: 15px;
+}
+
+.right-column {
+  width: 80%;
+  flex-shrink: 0;
+}
+
+.cards-container {
+  /* 1. Enable CSS Grid Layout */
+  display: grid;
+
+  /* 2. Define the Columns: still two equal columns */
+  grid-template-columns: 1fr 1fr;
+
+  /* 3. Define the Rows (auto creates rows as needed) */
+  grid-template-rows: auto auto auto; /* account for the title row */
+
+  /* 4. Add Spacing between the grid items (cards) */
+  gap: 20px;
+  padding-left: 10px;
+  color: #2a4360;
+  width: 100%;
+}
+
+/* New: Styling the Title to Span the Entire Grid Width */
+.cards-container h2 {
+  /* 1. Force the element to span from the first column line (1) to the last column line (-1) */
+  /* This makes it occupy the full width of the grid container */
+  grid-column: 1 / -1;
+
+  /* 2. Style the title */
+  text-align: start;
+  margin: 0;
+  font-family: "Mouse Memoirs";
+}
+
+/* Styling the Individual Cards */
+.card {
+  /* Enhance the card appearance */
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  /* Optional: Use Flexbox within the card for better vertical spacing */
+  display: flex;
+  flex-direction: column;
+}
+.card > p {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: small;
+}
+.card > ul {
+  font-size: small;
+  align-self: center;
+}
+
+/* Styling the Card Title */
+.card h3 {
+  margin-top: 0px; /* Remove default top margin */
+  text-align: center;
+  font-family: "Mouse Memoirs";
+}
+
+/* --- */
+
+/* Styling the Circular Images (Consistent with the Joke Card) */
+.card-media {
+  /* 1. Set a fixed size for a perfect circle */
+  width: 100px;
+  height: 100px;
+
+  /* 2. Create the circle shape */
+  border-radius: 50%;
+
+  /* 3. Ensure the image covers the circular area */
+  object-fit: cover;
+
+  /* 4. Center the image inside the card */
+  display: block; /* Important for margin: auto to work */
+  margin: 0px auto;
+}
+
+.footer-nav {
+  background-color: #11151a;
+  padding: 10px;
+}
+
+.footer-link {
+  color: white;
+}

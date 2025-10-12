@@ -1,0 +1,36 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1024' height='1024' viewBox='0 0 1024 1024'>
+  <rect width="100%" height="100%" fill="rgba(255, 249, 240, 0)"/>
+  
+  <!-- Badge circle -->
+  <circle cx='512' cy='512' r='360' fill='#00B3A4'/>
+  <circle cx='512' cy='512' r='360' fill='none' stroke='#0B0F19' stroke-width='18' opacity='0.2'/>
+
+  <!-- Rat head -->
+  <g>
+    <!-- Ears -->
+    <circle cx='386' cy='368' r='74' fill='#FFF9F0' stroke='#0B0F19' stroke-width='8'/>
+    <circle cx='638' cy='368' r='74' fill='#FFF9F0' stroke='#0B0F19' stroke-width='8'/>
+    <!-- Head -->
+    <ellipse cx='512' cy='470' rx='170' ry='140' fill='#FFF9F0' stroke='#0B0F19' stroke-width='10'/>
+    <!-- Nose -->
+    <circle cx='512' cy='560' r='18' fill='#FF4D3A'/>
+    <!-- Eyes -->
+    <circle cx='462' cy='460' r='12' fill='#0B0F19'/>
+    <circle cx='562' cy='460' r='12' fill='#0B0F19'/>
+    <!-- Whiskers -->
+    <g stroke='#0B0F19' stroke-width='6' stroke-linecap='round'>
+      <line x1='380' y1='520' x2='450' y2='520'/>
+      <line x1='380' y1='540' x2='450' y2='535'/>
+      <line x1='574' y1='520' x2='644' y2='520'/>
+      <line x1='574' y1='535' x2='644' y2='540'/>
+    </g>
+  </g>
+
+  <!-- Speech balloon -->
+  <g>
+    <rect x='300' y='610' width='424' height='130' rx='26' ry='26' fill='#FFC400' stroke='#0B0F19' stroke-width='8'/>
+    <path d='M 520 740 L 540 790 L 580 740 Z' fill='#FFC400' stroke='#0B0F19' stroke-width='8'/>
+    <text x='512' y='695' font-size='64' font-weight='900' font-family='Bangers, Impact, Arial Black, Arial, sans-serif' text-anchor='middle' fill='#0B0F19'>TALK RAT TALK</text>
+  </g>
+
+</svg>

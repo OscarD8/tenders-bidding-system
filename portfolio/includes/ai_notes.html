@@ -56,6 +56,111 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 12/10/25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        Various prompts entered for Week3 lab task. I marked up the text file and used Gemini to take pieces and style them in CSS. 
+                        Example prompt: <br>
+                         In CSS, how can I create a layout where a sidebar is positioned on the left side of the page, taking up 20% of the body's width and filling the full viewport height, while the main content occupies the remaining 80% on the right? The sidebar should remain visually isolated from the main content section.<br>
+                        The main section should display a 2x2 grid of cards. Additionally, I want to add a title that sits above and aligned with the grid — visually in line with the cards
+                    </span>
+                </p>
+                <p>Date: 12-10-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        Gemini assigned an aside element to the class of 'left-column', and defined a new section containing the grid (.main-content).
+                        Its solution worked for splitting the main content 20/80 however, for me, the .left-column was pinned to the top of the available space. 
+                        Needed to tweak my own HTML as the main problem was not applying justify-content to a parent div for centering 
+                        (it assumed I had a parent div with this applied - had not given it my HTML directly in this case). 
+                        For the solution to the grid in the .main-content, it applied the title to the grid and made the grid three rows,
+                        with the title taking up the whole top row.<br>
+
+                        <br>
+                        // Grid system return:
+                        <pre>
+/* Styling the Container for the 2x2 Grid */
+.cards-container {
+  /* 1. Enable CSS Grid Layout */
+  display: grid;
+
+  /* 2. Define the Columns: still two equal columns */
+  grid-template-columns: 1fr 1fr;
+
+  /* 3. Define the Rows (auto creates rows as needed) */
+  grid-template-rows: auto auto auto; /* Adjusted to account for the title row */
+
+  /* 4. Add Spacing between the grid items (cards) */
+  gap: 20px;
+  padding: 20px; 
+}
+
+/* New: Styling the Title to Span the Entire Grid Width */
+.cards-container h2 {
+    /* 1. Force the element to span from the first column line (1) to the last column line (-1) */
+    /* This makes it occupy the full width of the grid container */
+    grid-column: 1 / -1; 
+    
+    /* 2. Style the title */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px; /* Add some space below the title and above the first row of cards */
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ccc; /* Optional: A nice visual separator */
+}
+
+/* The .card and .card-media styles remain the same from the previous answer */
+.card {
+  /* ... card styles ... */
+}
+
+.card-media {
+  /* ... image styles ... */
+}
+                        </pre>
+
+                        // General idea behind splitting the main content
+                        <pre>
+                            .left-column {
+/* Apply the layout to the wrapper */
+.main-layout {
+  /* 1. Enable Flexbox layout on the parent */
+  display: flex;
+
+  /* 2. Set the height to fill the viewport */
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Set the width for the article (left column) */
+.left-column {
+  /* Takes up 20% of the main-layout's width */
+  width: 20%;
+  
+  /* Optional: Ensures it doesn't shrink below 20% if content is too large */
+  flex-shrink: 0;
+}
+
+/* Set the width for the section (right column) */
+.right-column {
+  /* Takes up the remaining 80% of the main-layout's width */
+  width: 80%;
+  
+  /* A flexible alternative: lets it fill the remaining space */
+  /* flex-grow: 1; */ 
+}
+
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+        
+
 <!-- Card for AI Prompt 3/10/25 -->
 
 		<div class="card">
