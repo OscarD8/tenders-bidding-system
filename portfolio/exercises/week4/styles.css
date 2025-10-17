@@ -87,18 +87,6 @@ header {
   background: #fff;
 }
 
-/* explicit sentinel overrides: always show image, never show overlay */
-.card--sentinel .card__image {
-  display: block !important;
-}
-
-.card--sentinel .card__overlay {
-  display: none !important;
-  opacity: 0 !important;
-  background: none !important;
-  pointer-events: none;
-}
-
 .card__director {
   font-size: 13px;
   font-weight: bold;

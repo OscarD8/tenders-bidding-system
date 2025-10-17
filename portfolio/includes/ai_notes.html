@@ -58,6 +58,98 @@
 
 <!-- Card for AI Prompt 17/10/25 -->
 
+    
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        Change logic of hovering on a card due to creation
+                        of a new class for first items in a row of cards which had 
+                        different functionality. <br>
+
+                        <q>"class="card card--sentinel"
+
+
+                        This specific class does not have overlay functionality.
+                        Fix the code to stop hover triggering background to empty</q>
+                    </span>
+                </p>
+                <p>Date: 17-10-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        Copilot applied the <pre>not()</pre> psuedo-class which 
+                        was new to me. This meant that the overlay of a white background 
+                        linked to showing text when hovering over a card did not trigger 
+                        for divs with the class .card--sentinel. 
+                        This was centered around a card being represented by two divs -
+                        one for the overlay text with white background and one for just
+                        an image. On hover changed the opacity and display of each 
+                        (as long as not a .card--sentinel which copilot named...).
+                        <pre>
+/* only show overlay for non-sentinel cards */
+.card:not(.card--sentinel):hover .card__overlay,
+.card:not(.card--sentinel):focus .card__overlay {
+  opacity: 1;
+  background: #fff;
+
+/* do NOT hide the image for sentinel cards; only hide for normal cards */
+.card:not(.card--sentinel):hover .card__image,
+.card:not(.card--sentinel):focus .card__image {
+  display: none;
+}
+}
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
+<!-- Card for AI Prompt 17/10/25 -->
+
+        <div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        How would I style the first card occurance of each row with data-card-index of -1 
+                        so that when we scroll across the row it always sticks to the same location on the screen
+                    </span>
+                </p>
+                <p>Date: 17-10-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        Copilot used an attribute selector to match to the first items 
+                        in each row. I removed the flex and optional background property 
+                        as I have not applied this to any other cards. It worked as intended.
+                        I later had to change the first card in the row to its own class due
+                        to it not having the same hover logic but possibly could have used 
+                        the same attribute selector.
+
+                        <pre>
+// ...existing code...
+/* make the first card in each row (data-card-index="-1") stick to the viewport
+   while the rest of the row scrolls horizontally */
+.row_scrollbar .card[data-card-index="-1"] {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 16px;        /* distance from the viewport left edge — change as required */
+  z-index: 10;       /* sit above other cards */
+  flex: 0 0 auto;    /* don't shrink/expand */
+  /* optional: keep visual clear when overlay opens */
+  background: transparent;
+}
+</pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        
+<!-- Card for AI Prompt 17/10/25 -->
+
         <div class="card">
             <div class="card-header">
                 <p>Prompt:             
