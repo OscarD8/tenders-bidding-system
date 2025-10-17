@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 480 480"
+     role="img" aria-label="Theatre scene with burgundy curtains, full-width perspective stage, and THEATRE title">
+  
+  <!-- ====== DEFINITIONS ====== -->
+  <defs>
+    <!-- Curtain gradient -->
+    <linearGradient id="curtainGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#8c2234"/>
+      <stop offset="50%" stop-color="#7A1E2C"/>
+      <stop offset="100%" stop-color="#5a1623"/>
+    </linearGradient>
+
+    <!-- Curtain highlight stripes -->
+    <linearGradient id="curtainHighlight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="1"   stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Stage floor gradient -->
+    <linearGradient id="stageGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#6b3d1f"/>
+      <stop offset="55%"  stop-color="#8f5a2f"/>
+      <stop offset="100%" stop-color="#b07a45"/>
+    </linearGradient>
+
+    <!-- Subtle floorboard lines -->
+    <pattern id="floorLines" patternUnits="userSpaceOnUse" width="24" height="6">
+      <rect width="24" height="6" fill="transparent"/>
+      <rect y="5" width="24" height="1" fill="rgba(0,0,0,0.12)"/>
+    </pattern>
+
+    <!-- Soft text shadow -->
+    <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="shadow"/>
+      <feOffset dx="0" dy="2" in="shadow" result="shadowOffset"/>
+      <feMerge>
+        <feMergeNode in="shadowOffset"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ====== BACKGROUND ====== -->
+  <rect width="480" height="480" fill="#E0AA3E"/>
+
+  <!-- ====== STAGE (full width, 100px tall, perspective) ====== -->
+  <g id="stage">
+    <polygon points="0,480 480,480 520,380 -40,380" fill="url(#stageGrad)"/>
+    <polygon points="0,480 480,480 520,380 -40,380" fill="url(#floorLines)" opacity="0.35"/>
+    <rect x="0" y="472" width="480" height="8" fill="#000000" fill-opacity="0.18"/>
+    <line x1="0" y1="380" x2="480" y2="380" stroke="#000000" stroke-opacity="0.25" stroke-width="2"/>
+  </g>
+
+  <!-- ====== CURTAINS (50px each) ====== -->
+  <g id="curtain-left">
+    <rect x="0" y="0" width="50" height="480" fill="url(#curtainGrad)"/>
+    <rect x="10" y="0" width="6" height="480" fill="url(#curtainHighlight)" opacity="0.45"/>
+    <rect x="26" y="0" width="6" height="480" fill="url(#curtainHighlight)" opacity="0.35"/>
+    <rect x="40" y="0" width="4" height="480" fill="url(#curtainHighlight)" opacity="0.25"/>
+    <rect x="48" y="0" width="2" height="480" fill="#000000" fill-opacity="0.30"/>
+  </g>
+
+  <g id="curtain-right">
+    <rect x="430" y="0" width="50" height="480" fill="url(#curtainGrad)"/>
+    <rect x="464" y="0" width="6" height="480" fill="url(#curtainHighlight)" opacity="0.45"/>
+    <rect x="448" y="0" width="6" height="480" fill="url(#curtainHighlight)" opacity="0.35"/>
+    <rect x="436" y="0" width="4" height="480" fill="url(#curtainHighlight)" opacity="0.25"/>
+    <rect x="430" y="0" width="2" height="480" fill="#000000" fill-opacity="0.30"/>
+  </g>
+
+  <!-- ====== TITLE ====== -->
+  <g filter="url(#softShadow)">
+    <text x="50%" y="46%"
+          text-anchor="middle" dominant-baseline="middle"
+          font-family="'Cinzel Decorative', Cinzel, serif"
+          font-weight="700" font-size="64" letter-spacing="3"
+          fill="#826644" stroke="#5e4a33" stroke-width="1" paint-order="stroke">
+      THEATRE
+    </text>
+  </g>
+</svg>

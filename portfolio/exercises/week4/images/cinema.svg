@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 480 480"
+     role="img" aria-label="Animated cinema title with moving film strips">
+ 
+  <!-- Styles for subtle flicker -->
+  <style>
+    .flicker {
+      animation: flicker 1.8s steps(10) infinite;
+    }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      12% { opacity: 0.96; }
+      25% { opacity: 0.99; }
+      37% { opacity: 0.93; }
+      50% { opacity: 1; }
+      62% { opacity: 0.97; }
+      75% { opacity: 0.94; }
+      87% { opacity: 0.99; }
+      100% { opacity: 0.96; }
+    }
+  </style>
+
+  <defs>
+    <!-- Film grain generator -->
+    <filter id="filmGrain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="2" result="noise">
+        <!-- Animate seed for a lively grain -->
+        <animate attributeName="seed" values="2;5;8;11;14;17;20;23;26;29" dur="2.5s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <!-- Gentle contrast so grain is fine, not blotchy -->
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 0.4 0"/>
+    </filter>
+
+    <!-- Subtle glow for the title -->
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Grain mask for speckled text fill -->
+    <mask id="grainMask">
+      <rect width="100%" height="100%" fill="white" filter="url(#filmGrain)"/>
+    </mask>
+
+    <!-- Moving film strip pattern -->
+    <pattern id="filmPattern" patternUnits="userSpaceOnUse" width="120" height="70">
+      <!-- Base strip -->
+      <rect x="0" y="0" width="120" height="70" rx="6" ry="6" fill="#111111"/>
+      <!-- Frame window -->
+      <rect x="16" y="12" width="88" height="46" rx="3" ry="3" fill="#262626"/>
+      <!-- Frame edge accents -->
+      <rect x="14" y="12" width="2" height="46" fill="#333333"/>
+      <rect x="104" y="12" width="2" height="46" fill="#333333"/>
+
+      <!-- Sprocket holes (top row) -->
+      <rect x="8"   y="6"  width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="32"  y="6"  width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="56"  y="6"  width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="80"  y="6"  width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="104" y="6"  width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+
+      <!-- Sprocket holes (bottom row) -->
+      <rect x="8"   y="56" width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="32"  y="56" width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="56"  y="56" width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="80"  y="56" width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+      <rect x="104" y="56" width="10" height="8"  rx="1" ry="1" fill="#d8d8cf"/>
+
+      <!-- Animate the pattern to move right-to-left -->
+      <animateTransform attributeName="patternTransform"
+                        type="translate"
+                        from="0,0" to="-120,0"
+                        dur="4s" repeatCount="indefinite"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="480" height="480" fill="#0b2e63"/>
+
+  <!-- Animated film strips -->
+  <rect x="0" y="24"  width="480" height="70" fill="url(#filmPattern)"/>
+  <rect x="0" y="386" width="480" height="70" fill="url(#filmPattern)"/>
+
+  <!-- Title: off-white with speckled grain and a soft glow -->
+  <g filter="url(#glow)">
+    <!-- Back layer for slight depth (darker/blurred copy) -->
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+          font-family="Impact, 'Arial Black', 'Bebas Neue', Oswald, sans-serif"
+          font-size="96" letter-spacing="8"
+          fill="#cfcfc6" opacity="0.25" transform="translate(0,2)">CINEMA</text>
+
+    <!-- Main text with grain mask and flicker -->
+    <text class="flicker" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+          font-family="Impact, 'Arial Black', 'Bebas Neue', Oswald, sans-serif"
+          font-size="96" letter-spacing="8"
+          fill="#f3f2e6" mask="url(#grainMask)">CINEMA</text>
+
+    <!-- Thin inner stroke to hint at vintage signwork -->
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+          font-family="Impact, 'Arial Black', 'Bebas Neue', Oswald, sans-serif"
+          font-size="96" letter-spacing="8"
+          fill="none" stroke="#ecebdd" stroke-width="1" opacity="0.7">CINEMA</text>
+  </g>
+
+  <!-- Very subtle full-canvas grain for atmosphere -->
+  <rect x="0" y="0" width="480" height="480" filter="url(#filmGrain)" opacity="0.05" pointer-events="none"/>
+</svg>
