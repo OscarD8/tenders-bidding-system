@@ -1,0 +1,52 @@
+div.content a {
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.content {
+  white-space: nowrap;
+}
+
+div.content a:hover {
+  background-color: #777;
+}
+
+.custom_scrollbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 2em;
+  padding: 1em;
+  margin: 1em auto;
+  background-color: #333;
+
+  /* Firefox */
+  scrollbar-width: auto; /* auto | thin | none */
+  scrollbar-color: #4392c7 #f8ebeb; /* thumb-color track-color */
+}
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+.custom_scrollbar::-webkit-scrollbar {
+  height: 40px; /* horizontal scrollbar height */
+}
+
+.custom_scrollbar::-webkit-scrollbar-thumb {
+  background: #2ca322; /* thumb color */
+  border: 3px solid transparent; /* creates padding around thumb */
+}
+
+.custom_scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6224aa;
+}
+
+/* Optional: hide scrollbar buttons (most browsers ignore these) */
+.custom_scrollbar::-webkit-scrollbar-button {
+  background: red;
+  width: 30px; /* Give the button a width */
+  height: 30px; /* Give the button a height */
+}
