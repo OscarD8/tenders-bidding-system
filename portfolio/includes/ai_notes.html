@@ -56,6 +56,76 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 17/10/25 -->
+
+        <div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        I need CSS to create a custom horizontal scrollbar for a div with the class .custom_scrollbar.
+                        It should use flexbox to align items in a row. The width should be 50vw.
+                        It must scroll horizontally but hide any vertical scrollbar.
+                        Make the background of the scrollbar red.
+                    </span>
+                </p>
+                <p>Date: 17-10-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        The response was useful in stating that the elements of the scrollbar
+                        should be displayed with flex as a row, then asserting the overflow-x as 
+                        auto and overflow-y to be none. I ended up not using any of the other functionality it suggested
+                        with the webkit psuedo elements as it wasn't changing anything for me, which
+                        was confusing. I was also having a hard time figuring out how to colour it 
+                        and eventually (as none of these psuedo elements were working)
+                        on MDN docs found the property for 'scrollbar-color' which 
+                        could be applied directly to the div that wrapped the row of cards and this 
+                        worked. 
+
+                        <pre>
+.custom_scrollbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 2em;
+  padding: 1em;
+  margin: 1em auto;
+  background-color: #333;
+}
+
+/* 1. Define the size of the entire scrollbar */
+.custom_scrollbar::-webkit-scrollbar {
+  height: 16px; /* Sets the height for the horizontal scrollbar */
+}
+
+/* 2. Style the track */
+.custom_scrollbar::-webkit-scrollbar-track {
+  background: red;
+}
+
+/* 3. Style the draggable thumb (now correctly scoped) */
+.custom_scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border: 2px solid red; /* Added a border to make it pop against the red */
+}
+
+/* 4. Style the arrow buttons (now with a defined size) */
+.custom_scrollbar::-webkit-scrollbar-button {
+  background: red;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
 <!-- Card for AI Prompt 12/10/25 -->
 
 		<div class="card">
