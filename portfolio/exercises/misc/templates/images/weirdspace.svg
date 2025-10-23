@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1600 300"
+     preserveAspectRatio="xMidYMid slice"
+     role="img"
+     aria-labelledby="title desc"
+     style="width:100%; height:300px; display:block; background:black;">
+  <title id="title">Crumblenauts starfield header</title>
+  <desc id="desc">A retro-futuristic space header with gently twinkling stars.</desc>
+
+  <defs>
+    <!-- deep outer-space background gradient -->
+    <linearGradient id="spaceGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b1321"/>
+      <stop offset="0.45" stop-color="#081325"/>
+      <stop offset="1" stop-color="#021026"/>
+    </linearGradient>
+
+    <!-- small soft glow for stars -->
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,1)" stop-opacity="1"/>
+      <stop offset="40%" stop-color="rgba(255,245,220,0.9)" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="rgba(255,245,220,0.0)" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- star shape (circle) reused -->
+    <circle id="starBase" cx="0" cy="0" r="1.0" />
+
+    <style type="text/css"><![CDATA[
+      /* overall svg styles */
+      svg { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+      /* container for stars */
+      .star {
+        transform-origin: center;
+        filter: none;
+      }
+
+      /* twinkle animation: subtle opacity and scale change */
+      @keyframes twinkle {
+        0%   { opacity: 0.6; transform: scale(1); }
+        25%  { opacity: 1;   transform: scale(1.45); }
+        50%  { opacity: 0.7; transform: scale(1.1); }
+        75%  { opacity: 0.95; transform: scale(1.3); }
+        100% { opacity: 0.6; transform: scale(1); }
+      }
+
+      /* each star will use a CSS variable to vary duration & delay */
+      .star {
+        animation-name: twinkle;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(.4,0,.2,1);
+        /* duration and delay set inline (style="--d:5s; --delay:-1.2s") */
+        animation-duration: var(--d, 4s);
+        animation-delay: var(--delay, 0s);
+      }
+
+      /* a tiny subset of bigger glowy stars */
+      .glow {
+        filter: url(#softBlur);
+      }
+
+      /* faint parallax shimmer line (slow horizontal movement) */
+      .shimmer {
+        opacity: 0.06;
+        animation: drift 20s linear infinite;
+      }
+
+      @keyframes drift {
+        from { transform: translateX(-10%); }
+        to   { transform: translateX(10%); }
+      }
+
+      /* accessibility - reduce motion if user prefers reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .star, .shimmer { animation: none !important; opacity: 0.9; }
+      }
+    ]]></style>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="100%" height="100%" fill="url(#spaceGrad)"/>
+
+  <!-- faint horizontal shimmer band for visual depth -->
+  <g class="shimmer" transform="translate(0,20)">
+    <rect x="-800" y="50" width="3200" height="120" fill="rgba(255,255,255,0.02)"/>
+  </g>
+
+  <!-- starfield group: manually positioned stars with varied sizes and timings -->
+  <g id="stars" stroke="none" fill="url(#starGlow)" transform="translate(0,0)">
+    <!-- Format: use <use> referencing starBase, position with x/y and scale (r), set CSS vars for animation -->
+    <!-- row 1 -->
+    <use xlink:href="#starBase" x="60"  y="40"  transform="scale(1.8)"  class="star" style="--d:4.6s; --delay:-0.6s;" />
+    <use xlink:href="#starBase" x="140" y="20"  transform="scale(0.9)"  class="star" style="--d:3.3s; --delay:-1.2s;" />
+    <use xlink:href="#starBase" x="220" y="60"  transform="scale(1.2)"  class="star" style="--d:5.8s; --delay:-0.3s;" />
+    <use xlink:href="#starBase" x="300" y="26"  transform="scale(0.7)"  class="star" style="--d:2.9s; --delay:-0.8s;" />
+    <use xlink:href="#starBase" x="380" y="80"  transform="scale(1.1)"  class="star" style="--d:4.2s; --delay:-0.2s;" />
+
+    <!-- row 2 -->
+    <use xlink:href="#starBase" x="540" y="35"  transform="scale(2.6)"  class="star glow" style="--d:7.2s; --delay:-1.1s;" />
+    <use xlink:href="#starBase" x="620" y="70"  transform="scale(0.8)"  class="star" style="--d:3.6s; --delay:-0.4s;" />
+    <use xlink:href="#starBase" x="680" y="18"  transform="scale(1.4)"  class="star" style="--d:5.0s; --delay:-1.6s;" />
+    <use xlink:href="#starBase" x="760" y="58"  transform="scale(1.0)"  class="star" style="--d:4.9s; --delay:-0.9s;" />
+    <use xlink:href="#starBase" x="820" y="28"  transform="scale(0.6)"  class="star" style="--d:2.8s; --delay:-0.5s;" />
+
+    <!-- row 3 -->
+    <use xlink:href="#starBase" x="920" y="90"  transform="scale(1.7)"  class="star glow" style="--d:6.4s; --delay:-1.3s;" />
+    <use xlink:href="#starBase" x="980" y="36"  transform="scale(0.95)" class="star" style="--d:3.9s; --delay:-0.7s;" />
+    <use xlink:href="#starBase" x="1060" y="70" transform="scale(1.2)"  class="star" style="--d:5.6s; --delay:-0.1s;" />
+    <use xlink:href="#starBase" x="1140" y="25" transform="scale(0.8)"  class="star" style="--d:3.1s; --delay:-1.0s;" />
+    <use xlink:href="#starBase" x="1220" y="82" transform="scale(1.05)" class="star" style="--d:4.4s; --delay:-0.45s;" />
+
+    <!-- row 4 -->
+    <use xlink:href="#starBase" x="1280" y="50" transform="scale(1.5)"  class="star" style="--d:5.2s; --delay:-0.65s;" />
+    <use xlink:href="#starBase" x="1360" y="20" transform="scale(0.7)"  class="star" style="--d:2.7s; --delay:-0.2s;" />
+    <use xlink:href="#starBase" x="1480" y="72" transform="scale(1.9)"  class="star glow" style="--d:6.9s; --delay:-1.5s;" />
+
+    <!-- left cluster -->
+    <use xlink:href="#starBase" x="30"  y="180" transform="scale(1.0)"  class="star" style="--d:4.1s; --delay:-1.0s;" />
+    <use xlink:href="#starBase" x="110" y="148" transform="scale(0.7)"  class="star" style="--d:3.2s; --delay:-0.3s;" />
+    <use xlink:href="#starBase" x="170" y="200" transform="scale(1.3)"  class="star" style="--d:5.5s; --delay:-0.8s;" />
+
+    <!-- center cluster -->
+    <use xlink:href="#starBase" x="420" y="170" transform="scale(0.9)"  class="star" style="--d:3.7s; --delay:-0.4s;" />
+    <use xlink:href="#starBase" x="540" y="140" transform="scale(1.8)"  class="star glow" style="--d:6.1s; --delay:-1.2s;" />
+    <use xlink:href="#starBase" x="600" y="184" transform="scale(0.6)"  class="star" style="--d:2.9s; --delay:-0.6s;" />
+    <use xlink:href="#starBase" x="700" y="150" transform="scale(1.05)" class="star" style="--d:4.3s; --delay:-0.25s;" />
+
+    <!-- right cluster -->
+    <use xlink:href="#starBase" x="980" y="150" transform="scale(1.4)"  class="star" style="--d:5.9s; --delay:-1.05s;" />
+    <use xlink:href="#starBase" x="1080" y="190" transform="scale(0.8)" class="star" style="--d:3.5s; --delay:-0.35s;" />
+    <use xlink:href="#starBase" x="1220" y="172" transform="scale(0.95)" class="star" style="--d:4.7s; --delay:-0.95s;" />
+    <use xlink:href="#starBase" x="1400" y="200" transform="scale(0.65)" class="star" style="--d:3.0s; --delay:-0.15s;" />
+    <use xlink:href="#starBase" x="1520" y="160" transform="scale(1.25)" class="star glow" style="--d:6.7s; --delay:-1.4s;" />
+
+    <!-- a few very small, nearly static background stars for texture -->
+    <use xlink:href="#starBase" x="210"  y="112" transform="scale(0.45)" class="star" style="--d:6.1s; --delay:-3.1s;" />
+    <use xlink:href="#starBase" x="330"  y="130" transform="scale(0.35)" class="star" style="--d:5.6s; --delay:-2.3s;" />
+    <use xlink:href="#starBase" x="450"  y="98"  transform="scale(0.5)"  class="star" style="--d:6.8s; --delay:-1.9s;" />
+    <use xlink:href="#starBase" x="1180" y="110" transform="scale(0.4)"  class="star" style="--d:7.4s; --delay:-2.6s;" />
+    <use xlink:href="#starBase" x="1320" y="132" transform="scale(0.55)" class="star" style="--d:5.4s; --delay:-0.78s;" />
+  </g>
+
+  <!-- optional: a subtle, slow-moving faint nebula shape to add depth -->
+  <g opacity="0.08" transform="translate(200,10)">
+    <ellipse cx="620" cy="110" rx="420" ry="80" fill="#9bd3ff" />
+  </g>
+
+  <!-- optional subtle shooting star (animated path) -->
+  <g aria-hidden="true">
+    <path id="shootPath" d="M1500 40 C 1400 20, 1200 80, 1000 40" fill="none" stroke="rgba(255,255,255,0.0)" stroke-width="2"/>
+    <circle r="3.2" fill="#fff" opacity="0.0">
+      <animateMotion dur="12s" repeatCount="indefinite" begin="2s"
+                     keyPoints="0;1" keyTimes="0;1">
+        <mpath xlink:href="#shootPath"/>
+      </animateMotion>
+      <animate attributeName="opacity" values="0;1;0" dur="12s" repeatCount="indefinite" begin="2s"/>
+      <animate attributeName="r" values="0.8;3.2;0.8" dur="12s" repeatCount="indefinite" begin="2s"/>
+    </circle>
+  </g>
+
+</svg>

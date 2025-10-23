@@ -1,0 +1,28 @@
+:root {
+  --box-content-color: teal;
+  --border-box-color: red;
+}
+
+.wrapper {
+  width: 500px;
+  height: 500px;
+}
+
+.box-content {
+  background-color: var(--box-content-color);
+  box-sizing: content-box; /* default value, fixes content and adds adjustment */
+  padding: 20px;
+  margin: 10px;
+  width: 1000px;
+  height: 5em;
+  overflow: scroll;
+}
+
+.box-border {
+  background-color: var(--border-box-color);
+  box-sizing: border-box; /* all adjustments are boxed in, content reduced*/
+  padding: 20px;
+  margin: 10px;
+  width: 1000px;
+  height: 5em;
+}

@@ -1,0 +1,21 @@
+.post {
+  container-type: inline-size;
+  container-name: sidebar;
+}
+
+.card h2 {
+  font-size: 1em;
+}
+
+/* If the container is larger than 700px */
+@container (width > 700px) {
+  .card {
+    font-size: 2em;
+  }
+}
+
+@container (width > 700px) {
+  .card h2 {
+    font-size: max(1.5em, 1.23em + 2cqi);
+  }
+}

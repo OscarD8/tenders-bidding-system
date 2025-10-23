@@ -1,0 +1,13 @@
+:root {
+  --main-bg-color: brown;
+}
+
+@property --logo-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: beige;
+}
+
+details {
+  background-color: var(--main-bg-color, red);
+}

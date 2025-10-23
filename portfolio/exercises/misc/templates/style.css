@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  min-height: 250px;
+  background: url("images/weirdspace.svg") no-repeat center center;
+  background-size: cover;
+  background-position: center;
+}
