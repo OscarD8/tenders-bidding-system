@@ -1,11 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Exo+2&display=swap");
+
+:root {
+  --primary-color: rgb(233, 164, 233);
+  font-size: 100%;
+}
+
+@media (max-width: 900px) {
+  :root {
+    font-size: 90%; /* 1rem = 15px */
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    font-size: 80%; /* 1rem = 14px */
+  }
+}
+
 * {
   margin: 0;
 }
 
+/*
 header {
   width: 100%;
   min-height: 250px;
   background: url("images/weirdspace.svg") no-repeat center center;
   background-size: cover;
   background-position: center;
+}
+*/
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Exo 2", sans-serif;
+  background-color: rgb(2, 19, 49);
+}
+
+header {
+  width: 100%;
+  height: 40vh;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5rem;
+}
+
+.header-text-content {
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  font-family: "Bungee";
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--primary-color);
+  text-shadow: 0 4px 8px black;
+  font-size: 1.2rem;
+}
+
+header > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0 0 20% 20%;
+  opacity: 70%;
+}
+
+.navbar {
+  box-sizing: border-box;
+  width: 100%;
+  height: 5%;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 12px black;
+  z-index: 100;
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  height: 100%;
+  align-items: center;
+}
+
+.navbar ul a {
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+  font-family: "Bungee", sans-serif;
+}
+
+.specials {
+  margin-top: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+.specials h2 {
+  color: var(--primary-color);
+  font-family: "Bungee";
+  position: absolute;
+  left: 5rem;
+  top: 3rem;
+  font-size: 3rem;
+}
+
+.special-card {
+  width: 70%;
+  height: 300px;
+  margin-top: 17em;
+  padding: 4rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 50px;
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.special-card:hover {
+  background-color: rgb(97, 176, 182);
+}
+
+.special-card img {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  padding-left: 2rem;
+}
+
+.specials-text {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4rem;
+  gap: 1rem;
+  font-size: 1.3rem;
+  color: antiquewhite;
+}
+
+.specials-header {
+  font-family: "Bungee";
+  font-size: 1.5rem;
+}
+
+.special-card-alt {
+  width: 70%;
+  height: 300px;
+  margin-top: 17em;
+  padding: 4rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 50px;
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.specials-text-alt {
+  display: flex;
+  flex-direction: column;
+  padding-right: 4rem;
+  padding-left: 2rem;
+  gap: 1rem;
+  font-size: 1.3rem;
+  color: antiquewhite;
+}
+
+.special-card-alt img {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  padding-right: 2rem;
+}
+
+.special-card-alt:hover {
+  background-color: rgb(188, 135, 19);
 }

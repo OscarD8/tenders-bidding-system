@@ -4,25 +4,62 @@
 }
 
 .wrapper {
+  padding: 2rem;
   width: 500px;
-  height: 500px;
+  height: 100vh;
+  background-color: blueviolet;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.box-content {
+.box-static {
   background-color: var(--box-content-color);
-  box-sizing: content-box; /* default value, fixes content and adds adjustment */
+  box-sizing: border-box; /* default value, fixes content and adds adjustment */
   padding: 20px;
   margin: 10px;
-  width: 1000px;
-  height: 5em;
-  overflow: scroll;
+  width: 100%;
+  height: 6em;
+  border: white solid 1px;
+  position: fixed;
 }
 
-.box-border {
+.box-sticky {
   background-color: var(--border-box-color);
   box-sizing: border-box; /* all adjustments are boxed in, content reduced*/
   padding: 20px;
   margin: 10px;
-  width: 1000px;
-  height: 5em;
+  width: 100%;
+  height: 2em;
+  border: white solid 1px;
+}
+
+.box-relative {
+  background-color: aquamarine;
+  box-sizing: border-box; /* all adjustments are boxed in, content reduced*/
+  padding: 20px;
+  margin: 10px;
+  width: 100%;
+  height: 3em;
+  border: white solid 1px;
+}
+
+.box-absolute {
+  background-color: yellow;
+  box-sizing: border-box; /* all adjustments are boxed in, content reduced*/
+  padding: 20px;
+  margin: 10px;
+  width: 100%;
+  height: 4em;
+  border: white solid 1px;
+}
+
+.box-fixed {
+  background-color: orange;
+  box-sizing: border-box; /* all adjustments are boxed in, content reduced*/
+  padding: 20px;
+  margin: 10px;
+  width: 100%;
+  height: 6em;
+  border: white solid 1px;
 }
