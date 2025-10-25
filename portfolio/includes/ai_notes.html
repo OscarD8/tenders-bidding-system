@@ -56,6 +56,78 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 25/10/25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        For each p element under h3 id=review in recipe-details, how do I 
+                        display the image of class review-icon in-line with that p element cleanly?
+                    </span>
+                </p>
+                <p>Date: 25-10-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        <p>Gemini used a span to hold the text and get 
+                            out of the block context, to then pair an 
+                            image element alongside that text, wrapping 
+                            this in my original p element. Looked good to me
+                            and styling was easy.
+                        </p>
+<pre>
+&lt;p&gt;
+    &lt;span&gt;
+      &lt;img
+        src=&quot;../images/fork_spoon_24dp.svg&quot;
+        alt=&quot;forkspoon&quot;
+        class=&quot;review-icon&quot;
+      /&gt;
+      &quot;This recipe is amazing! I love how easy it is to follow and the
+      results are always delicious.&quot;
+    &lt;/span&gt;
+&lt;/p&gt;
+</pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
+<!-- Card for AI Prompt 25/10/25 -->
+
+        <div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        How do I adjust recipe details so that when I reduce the size available to it - we always ensure that the top content is visible as currently its squishing out of the box?
+                    </span>
+                </p>
+                <p>Date: 25-10-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        <p>Justify content to be changed to flex start. The container is flex-direction column so 
+                            this refers to the horizontal alignment. By having it centered it looked good at full-screen
+                            but content was lost on resizing. Flex start fixed this alongside overflow-auto which I had in before.
+                        </p>
+                        <pre>
+.recipe-details {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Changed from 'center' to 'flex-start' */
+  width: 60%;
+  overflow: auto; /* Ensures scrollbars appear if content overflows */
+}
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
 <!-- Card for AI Prompt 24/10/25 -->
 
 		<div class="card">
