@@ -78,6 +78,7 @@ header img {
   background-color: #e0c677;
   border-right: solid black 1px;
   border-left: solid black 1px;
+  overflow-y: hidden;
 }
 
 .recipe-header-name p {
@@ -176,7 +177,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
+  height: 7vh;
   background-color: var(--lemon-custard);
   font-size: 0.8rem;
   position: fixed;
@@ -212,5 +213,12 @@ footer {
   }
   .container [data-order="6"] {
     order: 6;
+  }
+}
+
+@media (max-height: 800px) {
+  .banner img {
+    height: 2em;
+    width: 2em;
   }
 }
