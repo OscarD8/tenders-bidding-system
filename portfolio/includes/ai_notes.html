@@ -56,6 +56,99 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 24/10/25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        For the phase test, the key prompts I made were to help me break up the recipe name into a
+                        column of single characters. I prompted it to generate the footer. Lastly
+                        I prompted it to create the grid for me based on the HTML markup I had provided and format the cards.
+                     
+                    </span>
+                </p>
+                <p>Date: 24-10-25</p>
+            </div>
+            <div class="card-body">
+                <div class="answer_required">
+                    <p>
+                        The code it generated for my grid and the cards was largely how I wanted it, and I just had to adjust the font family and sizing. However, I didn't realise in time that this grid structure put the method and ingredient cards out of their correct columns, likely due to how I had marked up the text.
+                    </p>
+                    <p>
+                        I then prompted to make the grid respond better to window size adjustments, but this broke everything. I quickly reversed the changes it made to the HTML but accidentally left the corresponding CSS code in the stylesheet. Below is the initial code returned that is functional.
+                    </p>
+<pre>
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns, each taking equal space */
+    gap: 20px; /* Space between grid items */
+    padding: 20px; /* Padding around the grid */
+    max-width: 1200px; /* Optional: set a max-width for the container */
+    margin: 20px auto 100px auto; /* Center the container on the page and add bottom margin */
+}
+
+.card {
+    /* Existing card styles */
+    border: 1px solid black;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+.card ul {
+    padding-left: 2rem;
+}
+
+.card li {
+    font-family: "Saira Semi Condensed", sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+</pre>
+                    <p>The code it generated for the footer. Again all I tweaked to this was sizing and font-family (I now see it did
+                        actually put in a font-family which I missed). </p>
+
+<pre>
+    footer {
+    border-top: 4px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* Adjust height as needed */
+    background-color: var(--lemon-custard); /* Example background color */
+    font-family: "Saira Semi Condensed", sans-serif;
+    font-size: 0.8rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+    font-family: "Atkinson Hyperlegible Mono", sans-serif;
+}
+</pre>
+                    <p>The code it generated for making the recipe name into a column of single characters. I didn't check each declaration 
+                        and what it was doing - I saw that it looked to achieve the goal and moved on.
+                    </p>
+<pre>
+.recipe-name-header p {
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-height: 1em;
+    text-align: space-between;
+}
+</pre>
+                </div>
+            </div>
+        </div>
+
 <!-- Card for AI Prompt 17/10/25 -->
 
     
@@ -129,7 +222,6 @@
                         the same attribute selector.
 
                         <pre>
-// ...existing code...
 /* make the first card in each row (data-card-index="-1") stick to the viewport
    while the rest of the row scrolls horizontally */
 .row_scrollbar .card[data-card-index="-1"] {
