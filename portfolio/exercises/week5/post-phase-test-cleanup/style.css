@@ -39,8 +39,8 @@ header {
 }
 
 .banner img {
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 3rem;
+  width: 3rem;
   margin: 1rem 0;
 }
 
@@ -68,7 +68,7 @@ header img {
   object-position: center;
 }
 
-.recipe-name-header {
+.recipe-header-name {
   display: flex;
   flex-direction: column;
   width: 0.5%;
@@ -80,27 +80,28 @@ header img {
   border-left: solid black 1px;
 }
 
-.recipe-name-header p {
+.recipe-header-name p {
   word-break: break-all;
   white-space: pre-wrap;
 }
 
-.recipe-details {
+.recipe-header-details {
   padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 54.5%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.recipe-details h3 {
+.recipe-header-details h3 {
   font-family: "Saira Condensed", sans-serif;
   font-size: 0.8rem;
   margin: 0;
 }
 
-.recipe-details p {
+.recipe-header-details p {
   font-family: "Saira Semi Condensed", sans-serif;
   font-size: 0.7rem;
   margin-top: 0.2em;
@@ -184,4 +185,32 @@ footer {
   box-sizing: border-box;
   z-index: 1000;
   font-family: "Atkinson Hyperlegible Mono", sans-serif;
+}
+
+@media (max-width: 600px) {
+  .container {
+    display: flex; /* Change to Flexbox for small screens */
+    flex-direction: column; /* Stack items vertically */
+    gap: 20px;
+  }
+
+  /* Assign order based on the data-order attribute for all direct children of .container */
+  .container [data-order="1"] {
+    order: 1;
+  }
+  .container [data-order="3"] {
+    order: 2;
+  }
+  .container [data-order="4"] {
+    order: 3;
+  }
+  .container [data-order="2"] {
+    order: 4;
+  }
+  .container [data-order="5"] {
+    order: 5;
+  }
+  .container [data-order="6"] {
+    order: 6;
+  }
 }
