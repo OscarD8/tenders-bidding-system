@@ -62,6 +62,59 @@
             <div class="card-header">
                 <p>Prompt:             
                     <span class="answer_required" style="color: #f1f5f9;">
+                        Can we assign an index to each element in my .container
+                        and use that index to display a single column in the order of 
+                        1, 3, 4, 2, 5, 6? Is there any cleaner way to do this?
+                    </span>
+                </p>
+                <p>Date: 25-10-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        <p>
+                            It applied a data order as required and helped me with the CSS syntax, stating:
+<pre>
+While it involves some boilerplate and isn't highly scalable for a changing arbitrary order, for a fixed set of 6 items and a specific reordering, 
+it's a perfectly valid and understandable solution. If the number of items were to grow significantly or the reordering logic 
+became more complex and dynamic, you would typically look towards JavaScript to dynamically assign order properties or manipulate the DOM structure.
+</pre>
+<pre>
+&lt;h2 data-order=&quot;1&quot;&gt;Ingredients&lt;/h2&gt;
+&lt;h2 data-order=&quot;2&quot;&gt;Method&lt;/h2&gt;
+&lt;div class=&quot;card&quot; data-order=&quot;3&quot;&gt;
+    &lt;h3&gt;For the pastry:&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;90g butter&lt;/li&gt;
+      &lt;li&gt;45g caster sugar&lt;/li&gt;
+      &lt;li&gt;grated zest of 1 lemon&lt;/li&gt;
+      &lt;li&gt;1 egg yolk&lt;/li&gt;
+      &lt;li&gt;120g plain flour&lt;/li&gt;
+    &lt;/ul&gt  
+
+    // etc. 
+&lt;/div&gt;
+
+/// in CSS
+.container [data-order="1"] { order: 1; } /* h2 Ingredients */
+.container [data-order="3"] { order: 2; } 
+.container [data-order="4"] { order: 3; }
+.container [data-order="2"] { order: 4; } /* h2 Method */
+.container [data-order="5"] { order: 5; } 
+.container [data-order="6"] { order: 6; } 
+</pre>
+                        </p>
+                    </span>
+                </p>
+            </div>
+        </div>
+
+<!-- Card for AI Prompt 25/10/25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:             
+                    <span class="answer_required" style="color: #f1f5f9;">
                         For each p element under h3 id=review in recipe-details, how do I 
                         display the image of class review-icon in-line with that p element cleanly?
                     </span>
