@@ -56,6 +56,216 @@
             </div>
         </div>
 
+    <!-- Card for AI Prompt 19/11/25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        Using the context of the following two models for council and projects, create me a starter template for testing a project management systems frontend using tailwind 4. I am using the Django framework, and prioriting DRY principles. The root is 'Django Project', which contains an app for 'supply_chain'. The templates to create using tailwind are as follows: A root template called 'base.html'. It holds a header containing a navbar and company name and logo. And a foot with placeholder navigation links. For these root templates, create a list_layout and a detail_layout. These can be reused depending on the app, for displaying lists of councils or projects for example. The same purpose for the detail templates. For the app layouts - provide me an index.html, the main thing I want to test here is showing company information, and a section for a project list passed through. The project_list page should hold an input section where the user can filter on projects by name and council. As well as showing a list of projects. All app templates should extend from base templates. The core theme is sustainability - therefore use a natural color pallet. The main goals here are to test tailwind, and a basic inheritance system with templates. Tailwind was installed using CLI and outputs to static/dist/styles.css
+                    </span>
+                </p>
+                <p>Date: 19-11-2025</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        The response provided the individual templates one by one, using Tailwind CSS, allowing me to confirm that Tailwind was installed and configured correctly. I had to adjust views.py to pass in recent projects to the index.html page - but the purpose of exploring Tailwind and template inheritance was met. I do not plan to keep this exact structure. Templates created were base.html, list_layout.html, detail_layout.html, index.html, project_list.html found on commit 5d52f88. Example:
+<pre>
+&lt;{% extends 'base.html' %}&gt;
+&lt;{% load static %}&gt;
+
+&lt;{% block content %}&gt;
+
+    &lt;div class=&quot;min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden selection:bg-lime-400 selection:text-black&quot;&gt;
+
+        &lt;div class=&quot;fixed inset-0 z-0 pointer-events-none&quot;&gt;
+            &lt;div class=&quot;absolute top-[40%] left-[-10%] w-[50vw] h-[50vw] bg-lime-600/10 rounded-full blur-[100px] animate-pulse duration-[8s]&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-teal-600/10 rounded-full blur-[120px] animate-pulse duration-[12s]&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;main class=&quot;relative z-10&quot;&gt;
+
+            &lt;section
+                    class=&quot;min-h-screen relative flex flex-col justify-center items-center pt-20 pb-32 px-4 border-b border-white/5&quot;&gt;
+
+                &lt;h1 class=&quot;text-[18vw] leading-[0.75] font-black tracking-tighter text-center uppercase select-none mix-blend-difference text-white z-20 pointer-events-none&quot;&gt;
+                    Re—&lt;br&gt;Wild
+                &lt;/h1&gt;
+
+                &lt;figure class=&quot;absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] md:w-[40vw] h-[60vh] z-10 grayscale contrast-125 hover:grayscale-0 transition-all duration-700 ease-in-out group&quot;&gt;
+                    &lt;img src=&quot;https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&amp;w=2574&amp;auto=format&amp;fit=crop&quot;
+                         alt=&quot;Vertical Forest&quot;
+                         class=&quot;w-full h-full object-cover border-4 border-lime-400 shadow-[10px_10px_0px_#84cc16]&quot;&gt;
+
+                    &lt;figcaption
+                            class=&quot;absolute -bottom-6 -right-6 bg-black text-lime-400 border border-lime-400 px-4 py-2 font-mono text-sm uppercase font-bold&quot;&gt;
+                            Projects for Ecological Integration
+                    &lt;/figcaption&gt;
+                &lt;/figure&gt;
+
+                &lt;div class=&quot;absolute bottom-10 left-4 md:left-10 writing-mode-vertical text-xs font-mono uppercase tracking-[0.5em] text-lime-400 animate-pulse&quot;&gt;
+                    Scroll to in
+                &lt;/div&gt;
+
+                &lt;div class=&quot;absolute top-10 right-4 md:right-10 text-right&quot;&gt;
+                    &lt;p class=&quot;text-xs font-mono uppercase tracking-widest mb-1&quot;&gt;System_Status&lt;/p&gt;
+                    &lt;div class=&quot;inline-block px-3 py-1 bg-lime-400 text-black font-bold text-xs uppercase&quot;&gt;
+                        Optimal
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+            &lt;/section&gt;
+
+
+            &lt;section class=&quot;relative py-32 px-4 md:px-12&quot;&gt;
+
+                &lt;div class=&quot;absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-lime-400 to-transparent&quot;&gt;&lt;/div&gt;
+
+                &lt;div class=&quot;container mx-auto max-w-7xl&quot;&gt;
+
+                    &lt;div class=&quot;grid grid-cols-1 lg:grid-cols-12 gap-16&quot;&gt;
+
+                        &lt;div class=&quot;lg:col-span-5 flex flex-col justify-center&quot;&gt;
+                            &lt;h2 class=&quot;text-5xl md:text-7xl font-black leading-none mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white to-white/20&quot;&gt;
+                                Mandating&lt;br&gt;
+                                &lt;span class=&quot;italic font-serif text-lime-400&quot;&gt;Symbiosis.&lt;/span&gt;
+                            &lt;/h2&gt;
+                            &lt;p class=&quot;text-lg text-slate-400 font-light leading-relaxed border-l-2 border-lime-400/50 pl-6&quot;&gt;
+                                We operate as a strict ecological filter for public capital.
+                                &lt;strong class=&quot;text-white block mt-2&quot;&gt;This platform exclusively lists tenders that foster biological system integration and
+                                sustainability.&lt;/strong&gt;
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class=&quot;lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
+
+                            &lt;div class=&quot;group bg-white/5 hover:bg-white/10 backdrop-blur-2xl border border-white/10 p-10 rounded-[3rem] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(132,204,22,0.1)]&quot;&gt;
+                                &lt;div class=&quot;flex flex-col h-full justify-between&quot;&gt;
+                                    &lt;div class=&quot;w-12 h-12 rounded-full bg-lime-500/20 flex items-center justify-center text-lime-400 mb-8 group-hover:scale-110 transition-transform&quot;&gt;
+                                        &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                                            &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
+                                                  d=&quot;M13 10V3L4 14h7v7l9-11h-7z&quot;&gt;&lt;/path&gt;
+                                        &lt;/svg&gt;
+                                    &lt;/div&gt;
+                                    &lt;div&gt;
+                                        &lt;span class=&quot;text-6xl font-black text-white block mb-2&quot;&gt;-12%&lt;/span&gt;
+                                        &lt;span class=&quot;text-xs font-mono uppercase tracking-widest text-lime-400&quot;&gt;Carbon_Efficiency&lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class=&quot;bg-gradient-to-br from-teal-900/40 to-slate-900/40 backdrop-blur-2xl border border-white/10 p-10 rounded-[3rem] transition-all duration-500 hover:-translate-y-2&quot;&gt;
+                                &lt;div class=&quot;flex flex-col h-full justify-between&quot;&gt;
+                                    &lt;div class=&quot;w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 mb-8&quot;&gt;
+                                        &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                                            &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
+                                                  d=&quot;M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011 1h2a1 1 0 011 1v5m-4 0h4&quot;&gt;&lt;/path&gt;
+                                        &lt;/svg&gt;
+                                    &lt;/div&gt;
+                                    &lt;div&gt;
+                                        &lt;span class=&quot;text-6xl font-black text-white block mb-2&quot;&gt;{{ project_count|default:&quot;0&quot; }}&lt;/span&gt;
+                                        &lt;span class=&quot;text-xs font-mono uppercase tracking-widest text-teal-400&quot;&gt;Active_Councils&lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+
+            &lt;section class=&quot;py-24 relative z-10&quot;&gt;
+
+                &lt;div class=&quot;container mx-auto px-4 md:px-12&quot;&gt;
+
+                    &lt;div class=&quot;flex justify-between items-end mb-16 px-4&quot;&gt;
+                        &lt;h3 class=&quot;text-2xl md:text-3xl font-mono uppercase tracking-widest text-white/50&quot;&gt;
+                            // Live_Stream
+                        &lt;/h3&gt;
+                        &lt;a href=&quot;{% url 'supply_chain:project_list' %}&quot;
+                           class=&quot;px-8 py-3 rounded-full bg-lime-400 text-black font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(132,204,22,0.4)]&quot;&gt;
+                            Enter Register
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;grid grid-cols-1 gap-6&quot;&gt;
+
+                        &lt;{% for project in latest_projects %}&gt;
+                            &lt;article
+                                    class=&quot;group relative w-full bg-white/[0.03] hover:bg-white/[0.08] backdrop-blur-xl border border-white/10 rounded-full p-2 transition-all duration-500 hover:scale-[1.01]&quot;&gt;
+
+                                &lt;div class=&quot;flex flex-col md:flex-row items-center gap-6 md:gap-12 px-6 py-4&quot;&gt;
+
+                                    &lt;div class=&quot;w-12 h-12 shrink-0 rounded-full bg-black border border-white/20 flex items-center justify-center text-xs font-mono text-white/50 group-hover:border-lime-400 group-hover:text-lime-400 transition-colors&quot;&gt;
+                                        {{ project.id }}
+                                    &lt;/div&gt;
+
+                                    &lt;div class=&quot;flex-1 text-center md:text-left&quot;&gt;
+                                        &lt;h4 class=&quot;text-2xl font-bold text-white mb-1 group-hover:text-lime-400 transition-colors&quot;&gt;
+                                            {{ project.title }}
+                                        &lt;/h4&gt;
+                                        &lt;div class=&quot;flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-white/40 uppercase tracking-wider&quot;&gt;
+                                            &lt;span&gt;{{ project.council.name }}&lt;/span&gt;
+                                            &lt;span class=&quot;w-1 h-1 bg-lime-500 rounded-full&quot;&gt;&lt;/span&gt;
+                                            &lt;span&gt;Processing&lt;/span&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class=&quot;flex items-center gap-8&quot;&gt;
+                                        &lt;span class=&quot;text-xl font-mono font-bold text-white&quot;&gt;£{{ project.budget }}&lt;/span&gt;
+
+                                        &lt;a href=&quot;#&quot;
+                                           class=&quot;w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-lime-400 group-hover:text-black transition-all&quot;&gt;
+                                            &lt;svg class=&quot;w-4 h-4 transform group-hover:rotate-45 transition-transform&quot;
+                                                 fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                                                &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
+                                                      d=&quot;M14 5l7 7m0 0l-7 7m7-7H3&quot;&gt;&lt;/path&gt;
+                                            &lt;/svg&gt;
+                                        &lt;/a&gt;
+                                    &lt;/div&gt;
+
+                                &lt;/div&gt;
+                            &lt;/article&gt;
+                        &lt;{% empty %}&gt;
+                            &lt;div class=&quot;py-20 text-center opacity-40 font-mono uppercase&quot;&gt;
+                                /// Stream_Offline ///
+                            &lt;/div&gt;
+                        &lt;{% endfor %}&gt;
+
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+            &lt;/section&gt;
+
+        &lt;/main&gt;
+
+        &lt;footer class=&quot;py-12 text-center border-t border-white/5 bg-black&quot;&gt;
+            &lt;p class=&quot;text-[10px] font-mono uppercase tracking-[0.3em] text-white/30&quot;&gt;
+                Leeds Beckett 2025 // Assessment 2
+            &lt;/p&gt;
+        &lt;/footer&gt;
+
+    &lt;/div&gt;
+
+    &lt;style&gt;
+        .writing-mode-vertical {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+    &lt;/style&gt;
+
+&lt;{% endblock %}&gt;
+</pre>
+
+                    </span>
+                </p>
+            </div>
+        </div>
+
+
 <!-- Card for AI Prompt 25/10/25 -->
 
 		<div class="card">
