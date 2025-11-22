@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-h-screen pt-24 pb-12 px-4 md:px-8 bg-stone-900 overflow-y-auto">
+    <div class="max-w-5xl mx-auto">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 text-sm text-stone-500">
+            <a href="{% url 'pages:index' %}" class="hover:text-bamboo-400">Home</a> /
+            <a href="{% url 'supply_chain:projects' %}" class="hover:text-bamboo-400">Projects</a> /
+            <span class="text-stone-300">(Example Title) Green Roof Retrofit - Cental Library</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="glass-panel p-8 md:p-12">
+                    <h1 class="text-3xl md:text-5xl font-bold text-white mb-6">(Example Title) Green Roof Retrofit - Cental Library</h1>
+
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <span class="px-4 py-2 bg-stone-800 border border-stone-700 text-stone-300 rounded-lg text-sm">
+                            (Example Council Name) Leeds
+                        </span>
+                    </div>
+
+                    <div class="prose prose-invert max-w-none text-stone-300">
+                        <h3 class="text-white text-xl font-semibold mb-4">Project Description </h3>
+                        <p class="leading-relaxed mb-6">
+                            (Example Project Description) This project aims to regenerate and restore the native forest of Heaton Park,
+                            enhancing its biodiversity and ecological resilience.
+                        </p>
+
+                        <!-- Placeholder for extra dynamic content later -->
+                        <div class="p-6 bg-stone-950/50 rounded-xl border border-white/5 my-8">
+                            <h4 class="text-bamboo-400 font-semibold mb-2">Sustainability Impact Goal</h4>
+                            <p class="text-sm text-stone-400">
+                                Placeholder for future model extension of sustainability information.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Info -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Budget Card -->
+                <div class="glass-panel p-6">
+                    <h3 class="text-stone-400 text-sm uppercase tracking-widest mb-2">Budget Allocation</h3>
+                    <div class="text-3xl text-white mb-1">£ (Example Project Budget) 50000</div>
+                    <div class="text-xs text-stone-500">Confirmed Funding</div>
+                </div>
+
+                <!-- Key Info -->
+                <div class="glass-panel p-6 space-y-4">
+                    <div>
+                        <h3 class="text-stone-400 text-xs uppercase tracking-widest mb-1">Council Contact</h3>
+                        <div class="text-white"> (Example name) Bob Builder </div>
+                        <a href="mailto:#" class="text-bamboo-400 text-sm hover:underline">(Example email) bobbuilder@proton.uk</a>
+                    </div>
+                    <div class="pt-4 border-t border-white/10">
+                        <h3 class="text-stone-400 text-xs uppercase tracking-widest mb-1">Posted On</h3>
+                        <div class="text-white">(Example Date) 12/01/2025</div>
+                    </div>
+                </div>
+
+                <!-- Action -->
+                <button class="w-full py-4 bg-bamboo-600 hover:bg-bamboo-500 text-white font-bold rounded-xl shadow-lg shadow-bamboo-900/50 transition-all">
+                    Submit Tender Proposal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

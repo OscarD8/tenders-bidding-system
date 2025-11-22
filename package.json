@@ -1,9 +1,9 @@
 {
-  "dependencies": {
+  "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",
     "tailwindcss": "^4.1.17"
   },
   "scripts": {
-    "watch:css": "npx @tailwindcss/cli -i './Django Project/static/src/styles.css' -o './Django Project/static/dist/styles.css' --watch"
+    "watch:css": "npx @tailwindcss/cli -i ./Django_Project/theme/static/src/styles.css -o Django_Project/theme/static/css/dist/style.css --watch"
   }
 }

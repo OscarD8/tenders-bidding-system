@@ -1,0 +1,103 @@
+{% extends 'layouts/list_layout.html' %}
+
+{% block list_content %}
+    <!-- Intro Card -->
+    <div class="inline-block snap-center shrink-0 w-80 md:w-96 h-[60vh] whitespace-normal align-middle">
+        <div class="h-full flex flex-col justify-center p-6">
+            <h1 class="text-4xl font-bold text-white mb-4">Open <br> <span class="text-bamboo-400">Projects</span></h1>
+            <p class="text-stone-400 mb-8">Swipe to explore current sustainable tender opportunities from our partner
+                councils.</p>
+            <div class="flex gap-2">
+                <span class="px-3 py-1 rounded-full border border-white/20 text-xs text-stone-300">Renewable</span>
+                <span class="px-3 py-1 rounded-full border border-white/20 text-xs text-stone-300">Biomass</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="inline-block snap-center shrink-0 w-80 md:w-[28rem] h-[60vh] whitespace-normal align-middle group perspective">
+        <a href="{% url 'supply_chain:project_detail' 1 %}" class="block h-full">
+            <div class="glass-panel h-full p-8 flex flex-col justify-between hover:bg-white/15 transition-all duration-500 transform group-hover:-translate-y-2">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-bamboo-300 transition-colors">
+                        Urban Solar Corridor Installation
+                    </h3>
+                    <p class="text-stone-400 text-sm mb-4">Council 1</p>
+                    <p class="text-stone-300 text-sm line-clamp-4 leading-relaxed">
+                        Deployment of rooftop solar arrays along the A64 business corridor. Includes PV installation,
+                        micro-inverter setup, and battery storage integration to supply renewable power to surrounding
+                        council buildings.
+                    </p>
+                </div>
+                <div class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-xs text-stone-500">Click for details</span>
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-bamboo-500 group-hover:text-white transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="inline-block snap-center shrink-0 w-80 md:w-[28rem] h-[60vh] whitespace-normal align-middle group perspective">
+        <a href="{% url 'supply_chain:project_detail' 2 %}" class="block h-full">
+            <div class="glass-panel h-full p-8 flex flex-col justify-between hover:bg-white/15 transition-all duration-500 transform group-hover:-translate-y-2">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-bamboo-300 transition-colors">
+                        Green Roof Retrofit – Central Library
+                    </h3>
+                    <p class="text-stone-400 text-sm mb-4">Council 1</p>
+                    <p class="text-stone-300 text-sm line-clamp-4 leading-relaxed">
+                        Installation of a living green roof on the Grade II listed Central Library. Work includes
+                        specialist
+                        waterproofing, native wildflower planting, and improved rainwater harvesting to reduce surface
+                        runoff.
+                    </p>
+                </div>
+                <div class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-xs text-stone-500">Click for details</span>
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-bamboo-500 group-hover:text-white transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="inline-block snap-center shrink-0 w-80 md:w-[28rem] h-[60vh] whitespace-normal align-middle group perspective">
+        <a href="{% url 'supply_chain:project_detail' 3 %}" class="block h-full">
+            <div class="glass-panel h-full p-8 flex flex-col justify-between hover:bg-white/15 transition-all duration-500 transform group-hover:-translate-y-2">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-bamboo-300 transition-colors">
+                        Heaton Park Re-Wilding & Climate Buffer
+                    </h3>
+                    <p class="text-stone-400 text-sm mb-4">Council 2</p>
+                    <p class="text-stone-300 text-sm line-clamp-4 leading-relaxed">
+                        Large-scale rewilding of Heaton Park. Includes planting 1,500 native trees, meadow creation,
+                        pond
+                        restoration for amphibian habitat, and drainage redesign to increase climate resilience and
+                        biodiversity.
+                    </p>
+                </div>
+                <div class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-xs text-stone-500">Click for details</span>
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-bamboo-500 group-hover:text-white transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Spacer for end of list -->
+    <div class="inline-block w-16 h-full shrink-0"></div>
+
+{% endblock %}

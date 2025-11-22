@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w-full h-screen flex items-center bg-stone-900 overflow-hidden relative pt-16">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-bamboo-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-earth-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Horizontal Scroll Container -->
+    <div class="w-full h-full overflow-x-auto overflow-y-hidden whitespace-nowrap flex items-center px-8 md:px-16 gap-8 scrollbar-hide snap-x snap-mandatory z-10">
+        {% block list_content %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
