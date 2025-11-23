@@ -56,6 +56,191 @@
             </div>
         </div>
 
+
+<!-- Card for AI 23-11-25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
+                         This is my current setup for the list items template. I want to move away from the horizontal side scroller to a 2 x 2 vertical grid for all
+                        list items - keeping the background blur effects, and the intro tag as is, but update the swipe message to scroll (or remove if redundant). I
+                        also need a new section for accepting user input and allowing searching, as well as filtering for council and potentially future filters for the
+                         future. So there should be some sort of drop down menu for filters. The theme for the filters and the input must match the dark theme of the
+                        global style. Ensure that refactoring is done in the logical files, keeping the list_layout template promoting DRY principles.
+
+                        // inserted my templates
+                    </span>
+                </p>
+                <p>Date: 23-11-2025</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        Gemini came back with an update to each template as required, implementing an adaptive grid system for a list_items block and a
+                        a new block for filters as required. It automatically made the page dynamic and not static so I had to update that, and for the filters in all_projects_list.html
+                        it had implemented 'post' functionality that I have not covered so deleted that but marked the code to come back to it. Minor tweaks to colours but apart
+                        from that, the code it provided has changed the list layout exactly as I wanted it.
+
+                        <pre>
+{% extends &#39;base.html&#39; %}
+{% block content %}
+&lt;div class=&quot;w-full min-h-screen bg-earth-900 relative pt-24 pb-12 px-4 sm:px-8&quot;&gt;
+
+    &lt;div class=&quot;fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0&quot;&gt;
+        &lt;div class=&quot;absolute top-1/4 -left-20 w-96 h-96 bg-bamboo-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;absolute bottom-1/4 -right-20 w-96 h-96 bg-earth-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;relative z-10 max-w-7xl mx-auto&quot;&gt;
+
+        &lt;div class=&quot;mb-12 border-b border-earth-50/10 pb-8&quot;&gt;
+            {% block page_header %}
+            {% endblock %}
+        &lt;/div&gt;
+
+        &lt;div class=&quot;flex flex-col lg:flex-row gap-8&quot;&gt;
+
+            &lt;aside class=&quot;w-full lg:w-1/4 shrink-0&quot;&gt;
+                &lt;div class=&quot;glass-panel p-6 sticky top-28 border-earth-50/10 bg-earth-800/20&quot;&gt;
+                    &lt;h3 class=&quot;text-xs font-bold text-bamboo-400 uppercase tracking-widest mb-6&quot;&gt;Filter Results&lt;/h3&gt;
+
+                    &lt;form method=&quot;get&quot; class=&quot;space-y-6&quot;&gt;
+                        {% block filters %}
+                        {% endblock %}
+
+                        &lt;button type=&quot;submit&quot; class=&quot;w-full bg-bamboo-600 hover:bg-bamboo-500 text-earth-50 font-bold py-3 rounded-lg shadow-lg shadow-bamboo-900/50 transition-all transform hover:-translate-y-0.5&quot;&gt;
+                            Update Results
+                        &lt;/button&gt;
+
+                        &lt;a href=&quot;.&quot; class=&quot;block text-center text-xs text-earth-400 hover:text-earth-200 mt-4 transition-colors&quot;&gt;
+                            Reset Filters
+                        &lt;/a&gt;
+                    &lt;/form&gt;
+                &lt;/div&gt;
+            &lt;/aside&gt;
+
+            &lt;div class=&quot;w-full lg:w-3/4&quot;&gt;
+                &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
+                    {% block list_items %}
+                    {% endblock %}
+                &lt;/div&gt;
+
+                &lt;div class=&quot;mt-12 text-center text-earth-500 text-sm&quot;&gt;
+                    Showing all results
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+
+{% extends &#39;layouts/list_layout.html&#39; %}
+
+{% block page_header %}
+    &lt;div class=&quot;flex flex-col md:flex-row justify-between items-end&quot;&gt;
+        &lt;div class=&quot;max-w-2xl&quot;&gt;
+            &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-earth-50 mb-4&quot;&gt;
+                Open &lt;span class=&quot;text-bamboo-400&quot;&gt;Projects&lt;/span&gt;
+            &lt;/h1&gt;
+            &lt;p class=&quot;text-earth-300 text-lg leading-relaxed&quot;&gt;
+                Explore sustainable tender opportunities from our partner councils.
+                Filter by scope, budget, or authority.
+            &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;flex gap-2 mt-4 md:mt-0&quot;&gt;
+            &lt;span class=&quot;px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium&quot;&gt;
+                {{ projects.count }} Active
+            &lt;/span&gt;
+            &lt;span class=&quot;px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium&quot;&gt;
+                Renewable Focus
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+{% endblock %}
+
+
+{% block filters %}
+    &lt;div&gt;
+        &lt;label for=&quot;q&quot; class=&quot;block text-xs font-bold text-earth-400 uppercase tracking-wider mb-2&quot;&gt;Keywords&lt;/label&gt;
+        &lt;div class=&quot;relative&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;q&quot; id=&quot;q&quot; value=&quot;{{ request.GET.q }}&quot;
+                   placeholder=&quot;Solar, Roof, etc...&quot;
+                   class=&quot;w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4 text-earth-100 placeholder-earth-600 focus:outline-none focus:border-bamboo-500 focus:ring-1 focus:ring-bamboo-500 transition-all&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        &lt;label for=&quot;council&quot; class=&quot;block text-xs font-bold text-earth-400 uppercase tracking-wider mb-2&quot;&gt;Council&lt;/label&gt;
+        &lt;div class=&quot;relative&quot;&gt;
+            &lt;select name=&quot;council&quot; id=&quot;council&quot;
+                    class=&quot;w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4 text-earth-100 appearance-none focus:outline-none focus:border-bamboo-500 focus:ring-1 focus:ring-bamboo-500 transition-all cursor-pointer&quot;&gt;
+                &lt;option value=&quot;&quot;&gt;All Authorities&lt;/option&gt;
+                {% for council in councils %}
+                    &lt;option value=&quot;{{ council.id }}&quot; {% if request.GET.council == council.id|stringformat:&quot;s&quot; %}selected{% endif %}&gt;
+                        {{ council.name }}
+                    &lt;/option&gt;
+                {% endfor %}
+            &lt;/select&gt;
+            &lt;div class=&quot;pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-earth-500&quot;&gt;
+                &lt;svg class=&quot;h-4 w-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M19 9l-7 7-7-7&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+{% endblock %}
+
+
+{% block list_items %}
+    {% for project in projects %}
+        &lt;a href=&quot;{% url &#39;supply_chain:project_detail&#39; project.id %}&quot; class=&quot;group block h-full&quot;&gt;
+            &lt;div class=&quot;glass-panel h-full p-8 flex flex-col justify-between hover:bg-white/5 hover:border-bamboo-400/30 transition-all duration-500 transform group-hover:-translate-y-1&quot;&gt;
+
+                &lt;div&gt;
+                    &lt;div class=&quot;flex justify-between items-start mb-4&quot;&gt;
+                        &lt;h3 class=&quot;text-xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors line-clamp-2&quot;&gt;
+                            {{ project.title }}
+                        &lt;/h3&gt;
+                    &lt;/div&gt;
+
+                    &lt;p class=&quot;text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2&quot;&gt;
+                        &lt;svg class=&quot;w-4 h-4 opacity-70&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                        {{ project.council.name }}
+                    &lt;/p&gt;
+
+                    &lt;p class=&quot;text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6&quot;&gt;
+                        {{ project.description }}
+                    &lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;pt-6 border-t border-earth-50/10 flex items-center justify-between&quot;&gt;
+                    &lt;div&gt;
+                        &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold tracking-wider&quot;&gt;Est. Budget&lt;/span&gt;
+                        &lt;p class=&quot;text-earth-100 font-mono text-lg&quot;&gt;£{{ project.budget }}&lt;/p&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-bamboo-500 group-hover:text-white transition-all shadow-lg&quot;&gt;
+                        &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                            &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M14 5l7 7m0 0l-7 7m7-7H3&quot;&gt;&lt;/path&gt;
+                        &lt;/svg&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/a&gt;
+    {% empty %}
+        &lt;div class=&quot;col-span-1 md:col-span-2 glass-panel p-12 text-center border-dashed border-earth-50/20&quot;&gt;
+            &lt;p class=&quot;text-earth-400 text-lg&quot;&gt;No projects found.&lt;/p&gt;
+        &lt;/div&gt;
+    {% endfor %}
+{% endblock %}
+
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
 <!-- Card for AI Prompt 23/11/25-->
 
 		<div class="card">
