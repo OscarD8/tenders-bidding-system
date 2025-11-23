@@ -62,6 +62,71 @@
             <div class="card-header">
                 <p>Prompt:
                     <span class="answer_required" style="color: #f1f5f9;">
+                        I think my footer is not displaying because I am using h-screen and overflow-hidden on the body - so the footer gets pushed out of view.
+
+    How do I fix this so the footer sits at the bottom naturally but allows scrolling?
+
+    On the Home page only, I need the footer to be fixed (floating over my carousel) with a glassmorphic style to match my navbar, but standard on all other pages.
+                        Therefore I need some way of referring to my theme/templates/components/footer.html with different parameters depending on the page including it. Is this possible?
+
+    Also update the content of the footer to match standard transparency details that you might find on a tender platform.
+                    </span>
+                </p>
+                <p>Date: 23-11-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        Gemini provided a more realistic footer, and the explanation of how to setup an HTML component to
+                        accept parameters for custom styling worked for me. I was confused at how index.html didn't now have two footers as it extends base which defines a footer block
+                        and it itself defines a footer block... but it seems to be django has template overriding.. and by having the footer in a block and not just including it, the
+                        system now allows for overriding and parameter passing. Hence I now have a footer that is partly transparent and sticky on index.html, but not for default calls. Response:
+
+                        1. CSS Layout Fix: You are correct; h-screen restricts the page height. To create a "Sticky Footer" that sits at the bottom but allows scrolling, use Flexbox:
+
+    Set the body to min-h-screen flex flex-col.
+
+    Set the main element to flex-grow. This forces the main content to expand and fill empty space, naturally pushing the footer to the bottom.
+
+2. Conditional Component Logic: You can pass variables into a Django include tag using the with keyword.
+
+    Base Template: Include the footer normally.
+
+    Home Page: Override the footer block, wrap it in a fixed container, and pass the specific Tailwind classes for glassmorphism (e.g., .. include "components/footer.html" with extra_classes="bg-stone-900/80 backdrop-blur-md" ..).
+
+3. Code Solution (Updated Footer Component): I have updated the component to accept the dynamic extra_classes variable and added standard procurement transparency links (Privacy, Terms, Accessibility).
+
+                        <pre>
+&lt;footer class=&quot;w-full text-stone-400 py-8 mt-auto {{ extra_classes|default:'bg-stone-900 border-t border-white/10' }}&quot;&gt;
+    &lt;div class=&quot;max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-xs&quot;&gt;
+
+        &lt;div class=&quot;mb-4 md:mb-0&quot;&gt;
+            &lt;p&gt;&amp;copy; {% now &quot;Y&quot; %} Bamboo Tenders.&lt;/p&gt;
+            &lt;p class=&quot;text-stone-600 mt-1&quot;&gt;Sustainable Decentralized Procurement.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;flex gap-6&quot;&gt;
+            &lt;a href=&quot;#&quot; class=&quot;hover:text-white transition-colors&quot;&gt;Privacy Policy&lt;/a&gt;
+            &lt;a href=&quot;#&quot; class=&quot;hover:text-white transition-colors&quot;&gt;Terms of Service&lt;/a&gt;
+            &lt;a href=&quot;#&quot; class=&quot;hover:text-white transition-colors&quot;&gt;Accessibility&lt;/a&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/footer&gt;
+
+                        </pre>
+
+                    </span>
+                </p>
+            </div>
+        </div>
+
+<!-- Card for AI Prompt 23/11/25-->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
                         Here is my implemented HTML and Tailwind setup for a navigation bar, including a mobile menu that is hidden by default.
                         However, the hamburger icon is currently not functional. Provide the JS to ensure on mobile screens we have an accessible toggle button for the menu.
                         // provided code
