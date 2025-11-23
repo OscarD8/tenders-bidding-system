@@ -56,6 +56,78 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 22/11/25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        I am implementing the architecture for a Django tender system. I have some experience with Android development, so am used to Clean Architecture principles (ViewModels, Use Cases, Repositories) to separate the UI, Domain and Data layers.
+
+I want to apply similar patterns to Django to ensure:
+
+    Separation of Concerns: I have read that views (which seem to act as ViewModels) can become overly complex. I want to avoid 'Fat Views' (similar to isolating out repository implementations into the data layer).
+
+    Domain Logic Isolation: Is there an equivalent layer for business rules (like 'Place Bid') that is separate from the implementation of those use cases?
+
+    DRY Principles & Scalability: I need a directory structure that supports global theming (like MaterialTheme in Compose) and modular independence between apps (I am using Tailwind). I think it makes sense to be able to take the tender app, or bids app, and apply it to a different project with ease.
+
+Could you propose a Django directory structure that maps to these Android concepts? Specifically, how do I implement the equivalent of Use Cases (for read vs. write operations) and ViewModels in Django, ensuring best practices and adherence to DRY principles? Please justify the structure with industry-standard Django resources.
+
+                    </span>
+                </p>
+                <p>Date: 22-11-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+        The response linked resources that led me to other resources on how to structure Django apps. It seems to vary and get complex, but the main concepts I took away were
+                        to take a domain-driven design, using a service layer pattern for separation of concerns. It will be overkill for this project, but I want to see if the approach
+                        helps with the third part of the assignment relating to exploring different functionality. Views are part of the presentation layer but don't handle business logic (they handle
+                        http requests and responses).
+                        Services (services.py) hold use cases for write operations to the database. Selectors (selectors.py) hold read-only use cases. Apps do not import models directly, an apps
+                        selector holds the logic to fetch data from the database - the selector becomes a contract for how we find data (logic) - abstracted from the model and the presentation layer.
+                        I will give it a go.
+                        <pre>
+To achieve the separation of concerns and modularity found in Android Clean Architecture, I recommended a Service-Oriented Architecture (specifically the Services & Selectors pattern).
+
+1. Mapping Android Concepts to Django Components. We establish a direct translation of architectural layers to ensure the Django Views remain as "Orchestrators" only.
+
+    ViewModel → Django View (views.py):
+
+        Concept: Acts as the interface between the User (Request) and the Logic. It handles the HTTP request, parses input, and calls the appropriate "Use Case," just as a ViewModel observes events and calls domain interactors.
+
+    Write Use Case → Service Layer (services.py):
+
+        Concept: Pure business logic for state changes (e.g., place_bid). It validates rules and commits to the DB.
+
+        Resource: Validated by the HackSoftware Django Styleguide, which advocates splitting logic into a Service layer to keep Views thin.
+
+    Read Use Case → Selector Layer (selectors.py):
+
+        Concept: Pure query logic for fetching data (e.g., get_open_tenders). This separates "Read" concerns from "Write" concerns (CQRS), ensuring data fetching logic is reusable across different views.
+
+    UI/Fragment/Composables → Templates (.html):
+
+        Concept: The passive display layer. Composables are dumb and unaware of state, as are the HTML templates. They accept what they are given.
+
+2. Global Theming (The MaterialTheme Equivalent)
+
+    Recommendation: A root-level theme/ directory containing base.html and global Tailwind CSS.
+
+    Resource: Cookiecutter Django (Standard Boilerplate). This pattern decouples the "Brand/Theme" from the specific functional apps, allowing for global style management similar to a centralized Theme object in Compose.
+
+3. Modular Structure (Bounded Contexts)
+
+    Recommendation: Separate apps for supply_chain (Tenders) and pages (Marketing).
+
+    Resource: "Django for Professionals" (Will Vincent). Justifies the creation of a pages app to handle static orchestrations (Home/About) separately from the domain-heavy supply_chain logic. Imagine an orchestra with a conductor that points to different sections. It would be confusing if you placed the conductor (home page) in with the Strings section when she suddenly needs to bring in the choir.
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
     <!-- Card for AI Prompt 19/11/25 -->
 
 		<div class="card">
