@@ -56,6 +56,45 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 23/11/25-->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        Here is my implemented HTML and Tailwind setup for a navigation bar, including a mobile menu that is hidden by default.
+                        However, the hamburger icon is currently not functional. Provide the JS to ensure on mobile screens we have an accessible toggle button for the menu.
+                        // provided code
+                    </span>
+                </p>
+                <p>Date: 23-11-25</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        The JS it provided worked, and from here I added comments for my own understanding. I then looked into where this should be placed, and decided to move the navbar out of base.html.
+                        I also confirmed with Gemini how best to reference this JS in the base.html. It mentioned about JS being cached, and having it isolated to one place and included but deferred until the document is fully loaded
+                        is optimal.
+
+                        <pre>
+    document.addEventListener('DOMContentLoaded', function () { // wait for document to fully load
+    const toggleButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]'); // trigger
+    const menu = document.getElementById('navbar-sticky'); // target
+
+    if (toggleButton && menu) { // safety check on potential null value
+        toggleButton.addEventListener('click', function () {
+            menu.classList.toggle('hidden'); // tailwind - if hidden remove, if not hidden add
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true'; // accessibility
+            toggleButton.setAttribute('aria-expanded', String(!isExpanded));
+        });
+    }
+    });
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
 <!-- Card for AI Prompt 22/11/25 -->
 
 		<div class="card">
