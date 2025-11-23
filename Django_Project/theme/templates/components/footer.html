@@ -7,9 +7,11 @@
         </div>
 
         <div class="flex gap-6">
-            <a href="#" class="hover:text-earth-50 transition-colors">Privacy Policy</a>
-            <a href="#" class="hover:text-earth-50 transition-colors">Terms of Service</a>
-            <a href="#" class="hover:text-earth-50 transition-colors">Accessibility</a>
+            {% with footer_link="hover:text-earth-400 transition-colors" %}
+                <a href="#" class="{{ footer_link }}">Privacy Policy</a>
+                <a href="#" class="{{ footer_link }}">Terms of Service</a>
+                <a href="#" class="{{ footer_link }}">Accessibility</a>
+            {% endwith %}
         </div>
 
     </div>
