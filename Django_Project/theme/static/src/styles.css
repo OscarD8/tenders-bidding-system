@@ -48,7 +48,7 @@
 
 /* Base styles */
 body {
-  @apply bg-stone-900 text-stone-100 antialiased;
+@apply bg-earth-900 text-earth-50 antialiased;
   font-family: 'Inter', sans-serif;
 }
 

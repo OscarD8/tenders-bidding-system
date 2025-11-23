@@ -1,41 +1,54 @@
-<nav class="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-stone-900/80 backdrop-blur-md">
+<nav class="fixed w-full z-50 top-0 start-0 border-b border-earth-50/10 bg-stone-900/80  backdrop-blur-md">
+
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="{% url 'pages:index' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <!-- SVG Logo Icon -->
-            <svg class="w-8 h-8 text-bamboo-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M13.8 13.8V18h-2v-4.2l-2.6 2.6-1.4-1.4 5-5 5 5-1.4 1.4-2.6-2.6zM6 20h12v2H6v-2zM12 2C8 2 4.5 4.5 3 8c1.5-3.5 5-6 9-6s7.5 2.5 9 6c-1.5-3.5-5-6-9-6z"></path>
-                <!-- Abstract bamboo/leaf representation -->
+
+        <a href="{% url 'pages:index' %}" class="flex items-center space-x-3 group">
+            <!-- Brand Logo -->
+            <svg class="w-8 h-8 text-bamboo-400 transition-transform group-hover:scale-110" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+
+                <path d="M7 21v-10" class="text-earth-400"></path>
+                <path d="M6 16h2" class="text-earth-300"></path>
+                <path d="M12 21V5" class="text-earth-400"></path>
+                <path d="M11 10h2" class="text-earth-300"></path>
+                <path d="M11 15h2" class="text-earth-300"></path>
+                <path d="M17 21v-8" class="text-earth-400"></path>
+                <path d="M16 17h2" class="text-earth-300"></path>
+                <path d="M12 5l-2-2"></path>
+                <path d="M12 5l2-2"></path>
+                <path d="M17 13l2-2"></path>
+                <path d="M7 11l-2-2"></path>
             </svg>
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white tracking-tight">Bamboo<span
-                    class="text-bamboo-400">Tenders</span></span>
+            <span class="self-center text-2xl font-semibold tracking-tight text-earth-200">
+                Bamboo<span class="text-bamboo-400">Tenders</span>
+            </span>
         </a>
+
         <button data-collapse-toggle="navbar-sticky" type="button"
-                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-gray-400 rounded-lg md:hidden hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-600"
                 aria-controls="navbar-sticky" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M1 1h15M1 7h15M1 13h15"></path>
+            <svg class="w-5 h-5 text-earth-200" aria-hidden="true" viewBox="0 0 17 14" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path>
             </svg>
         </button>
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-700 rounded-lg bg-stone-800 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                <li>
-                    <a href="{% url 'pages:index' %}"
-                       class="block py-2 px-3 text-white hover:text-bamboo-400 md:p-0 transition-colors">Home</a>
-                </li>
-                <li>
-                    <a href="{% url 'supply_chain:projects' %}"
-                       class="block py-2 px-3 text-white hover:text-bamboo-400 md:p-0 transition-colors">Tenders</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-white hover:text-bamboo-400 md:p-0 transition-colors">Councils</a>
-                </li>
-                <li>
-                    <a href="#"
-                       class="block py-2 px-3 text-white hover:text-bamboo-400 md:p-0 transition-colors">About</a>
-                </li>
+
+        <div class="hidden w-full md:block md:w-auto" id="navbar-sticky">
+
+            <ul class="flex flex-col mt-4 md:mt-0 md:flex-row md:space-x-8 font-medium
+                       p-4 md:p-0 border border-white/10 rounded-lg bg-stone-800 md:bg-transparent md:border-0">
+
+                {% with link_class="block py-2 px-3 rounded md:p-0 text-earth-200 hover:text-bamboo-400 transition-colors" %}
+
+                    <li><a href="{% url 'pages:index' %}" class="{{ link_class }}">Home</a></li>
+                    <li><a href="{% url 'supply_chain:projects' %}" class="{{ link_class }}">Tenders</a></li>
+                    <li><a href="#" class="{{ link_class }}">Councils</a></li>
+                    <li><a href="#" class="{{ link_class }}">About</a></li>
+
+                {% endwith %}
             </ul>
         </div>
+
     </div>
 </nav>
