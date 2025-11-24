@@ -1,73 +1,86 @@
-{% extends 'base.html' %}
+{% extends 'layouts/detail_layout.html' %}
 
-{% block content %}
-<div class="min-h-screen pt-24 pb-12 px-4 md:px-8 bg-stone-900 overflow-y-auto">
-    <div class="max-w-5xl mx-auto">
-        <!-- Breadcrumb -->
-        <nav class="mb-8 text-sm text-stone-500">
-            <a href="{% url 'pages:index' %}" class="hover:text-bamboo-400">Home</a> /
-            <a href="{% url 'supply_chain:projects' %}" class="hover:text-bamboo-400">Projects</a> /
-            <span class="text-stone-300">(Example Title) Green Roof Retrofit - Cental Library</span>
-        </nav>
+{% block breadcrumb_parent %}
+    <a href="{% url 'supply_chain:projects' %}" class="hover:text-bamboo-400 transition-colors">Projects</a>
+{% endblock %}
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Main Content -->
-            <div class="lg:col-span-2 space-y-8">
-                <div class="glass-panel p-8 md:p-12">
-                    <h1 class="text-3xl md:text-5xl font-bold text-white mb-6">(Example Title) Green Roof Retrofit - Cental Library</h1>
+{% block item_title %}
+    <p>Urban Solar Corridor Installation</p>
+{% endblock %}
 
-                    <div class="flex flex-wrap gap-4 mb-8">
-                        <span class="px-4 py-2 bg-stone-800 border border-stone-700 text-stone-300 rounded-lg text-sm">
-                            (Example Council Name) Leeds
-                        </span>
-                    </div>
+{% block item_description %}
+    <div class="prose prose-invert max-w-none">
+        <h3 class="text-xl font-semibold text-earth-50 mb-4">Project Description</h3>
+        <p class="text-earth-300 leading-relaxed mb-8">
+            Deployment of rooftop solar arrays along the A64 business corridor. Includes PV installation, micro-inverter
+            setup, and battery storage integration to supply renewable power to surrounding council buildings.
+        </p>
 
-                    <div class="prose prose-invert max-w-none text-stone-300">
-                        <h3 class="text-white text-xl font-semibold mb-4">Project Description </h3>
-                        <p class="leading-relaxed mb-6">
-                            (Example Project Description) This project aims to regenerate and restore the native forest of Heaton Park,
-                            enhancing its biodiversity and ecological resilience.
-                        </p>
-
-                        <!-- Placeholder for extra dynamic content later -->
-                        <div class="p-6 bg-stone-950/50 rounded-xl border border-white/5 my-8">
-                            <h4 class="text-bamboo-400 font-semibold mb-2">Sustainability Impact Goal</h4>
-                            <p class="text-sm text-stone-400">
-                                Placeholder for future model extension of sustainability information.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sidebar Info -->
-            <div class="lg:col-span-1 space-y-6">
-                <!-- Budget Card -->
-                <div class="glass-panel p-6">
-                    <h3 class="text-stone-400 text-sm uppercase tracking-widest mb-2">Budget Allocation</h3>
-                    <div class="text-3xl text-white mb-1">£ (Example Project Budget) 50000</div>
-                    <div class="text-xs text-stone-500">Confirmed Funding</div>
-                </div>
-
-                <!-- Key Info -->
-                <div class="glass-panel p-6 space-y-4">
-                    <div>
-                        <h3 class="text-stone-400 text-xs uppercase tracking-widest mb-1">Council Contact</h3>
-                        <div class="text-white"> (Example name) Bob Builder </div>
-                        <a href="mailto:#" class="text-bamboo-400 text-sm hover:underline">(Example email) bobbuilder@proton.uk</a>
-                    </div>
-                    <div class="pt-4 border-t border-white/10">
-                        <h3 class="text-stone-400 text-xs uppercase tracking-widest mb-1">Posted On</h3>
-                        <div class="text-white">(Example Date) 12/01/2025</div>
-                    </div>
-                </div>
-
-                <!-- Action -->
-                <button class="w-full py-4 bg-bamboo-600 hover:bg-bamboo-500 text-white font-bold rounded-xl shadow-lg shadow-bamboo-900/50 transition-all">
-                    Submit Tender Proposal
-                </button>
-            </div>
+        <div class="glass-panel bg-bamboo-900/20 p-4 rounded-lg mb-6">
+            <h4 class="text-bamboo-400 font-semibold mb-2 flex items-center gap-2">
+                {% include "components/sustainability_icon.html" %}
+                Sustainability Impact
+            </h4>
+            <p class="text-sm text-earth-400">
+                This project has been flagged for high ecological value. Detailed impact metrics will be available in
+                Phase 2.
+            </p>
         </div>
     </div>
-</div>
+{% endblock %}
+
+{% block hero_footer %}
+    <div>
+        <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Posted On</p>
+        <p class="text-earth-200 font-medium">24/05/2025</p>
+    </div>
+    <div class="h-8 w-px bg-white/10"></div>
+    <div>
+        <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Council</p>
+        <a href="#" class="text-bamboo-400 hover:text-bamboo-300 font-medium hover:underline">
+            Leeds City Council
+        </a>
+    </div>
+{% endblock %}
+
+<!-- Budget Allocation -->
+{% block sidebar_card_1 %}
+    <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-2">Budget Allocation</h3>
+    <p class="text-3xl text-white mb-2">£250000</p>
+    <span class="text-xs px-2 py-1 rounded bg-bamboo-500/10 text-bamboo-400 border border-bamboo-500/20">
+        Confirmed Funding
+    </span>
+{% endblock %}
+
+<!-- Council Contact Info -->
+{% block sidebar_card_2 %}
+    <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-4">Procurement Lead</h3>
+
+    <div class="flex items-start gap-4 mb-4">
+
+        <div class="h-full aspect-auto shrink-0 rounded-xl flex items-center justify-center text-bamboo-400">
+            {% include "components/city_icon.html" %}
+        </div>
+
+        <div class="w-px bg-white/10 self-stretch"></div>
+
+        <div class="overflow-hidden">
+            <p class="text-sm font-bold mb-1">Bob Builder</p>
+            <a href="mailto:bob@council.gov.uk"
+               class="text-xs font-bold text-bamboo-400 hover:text-bamboo-300 flex items-center gap-1.5 transition-colors">
+                bob@council.gov.uk
+            </a>
+        </div>
+
+    </div>
+{% endblock %}
+
+<!-- Bid Action -->
+{% block action_card %}
+    <h3 class="text-lg font-bold text-white mb-1">Ready to Bid?</h3>
+    <p class="text-sm text-bamboo-200/80 mb-6">Applications close in 14 days</p>
+
+    <button class="action-button">
+        Submit Proposal
+    </button>
 {% endblock %}

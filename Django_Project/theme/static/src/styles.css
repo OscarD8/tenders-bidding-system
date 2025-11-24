@@ -1,57 +1,78 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bamboo-50: #f3faf7;
-  --color-bamboo-100: #def7ec;
-  --color-bamboo-200: #bcf0da;
-  --color-bamboo-300: #84e1bc;
-  --color-bamboo-400: #31c48d;
-  --color-bamboo-500: #0e9f6e;
-  --color-bamboo-600: #057a55;
-  --color-bamboo-700: #046c4e;
-  --color-bamboo-800: #03543f;
-  --color-bamboo-900: #014737;
+    --color-bamboo-50: #f3faf7;
+    --color-bamboo-100: #def7ec;
+    --color-bamboo-200: #bcf0da;
+    --color-bamboo-300: #84e1bc;
+    --color-bamboo-400: #31c48d;
+    --color-bamboo-500: #0e9f6e;
+    --color-bamboo-600: #057a55;
+    --color-bamboo-700: #046c4e;
+    --color-bamboo-800: #03543f;
+    --color-bamboo-900: #014737;
 
-  --color-earth-50: #fbf7f3;
-  --color-earth-100: #f5ede4;
-  --color-earth-200: #ebdccb;
-  --color-earth-300: #dbc0a6;
-  --color-earth-400: #c49d7b;
-  --color-earth-500: #a87e59;
-  --color-earth-600: #8b6446;
-  --color-earth-700: #70503a;
-  --color-earth-800: #5d4233;
-  --color-earth-900: #4d382e;
+    --color-earth-50: #fbf7f3;
+    --color-earth-100: #f5ede4;
+    --color-earth-200: #ebdccb;
+    --color-earth-300: #dbc0a6;
+    --color-earth-400: #c49d7b;
+    --color-earth-500: #a87e59;
+    --color-earth-600: #8b6446;
+    --color-earth-700: #70503a;
+    --color-earth-800: #5d4233;
+    --color-earth-900: #4d382e;
 }
 
 @layer utilities {
-  .glass-panel {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl;
-  }
+    /* 1. THE BASE CARD (Used everywhere - Sidebar, Detail, Lists) */
+    .glass-panel {
+        @apply bg-earth-900/25 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl;
+    }
 
-  .snap-container {
-    @apply snap-y snap-mandatory h-screen overflow-y-scroll;
-  }
+    /* 2. THE INTERACTIVE BEHAVIOR (Used only for clickable cards) */
+    /* Notice we use 'group-hover' here. This is the key fix. */
+    .hover-lift {
+        @apply transition-all duration-500 ease-out transform group-hover:-translate-y-2;
+    }
 
-  .snap-section {
-    @apply snap-start h-screen w-full flex items-center justify-center relative overflow-hidden;
-  }
+    /* When the PARENT group (the <a> tag) is hovered, change this card */
+    .hover-glow-bamboo {
+        @apply group-hover:bg-earth-800/30 group-hover:border-bamboo-400/30;
+    }
 
-  .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-  }
-  .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-  }
+    .hover-fill-transition {
+        @apply absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500;
+    }
+
+    .action-button {
+        @apply inline-block bg-bamboo-600 hover:bg-bamboo-500 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 cursor-pointer;
+    }
+
+    .snap-container {
+        @apply snap-y snap-mandatory h-screen overflow-y-scroll;
+    }
+
+    .snap-section {
+        @apply snap-start h-screen w-full flex items-center justify-center relative overflow-hidden;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 }
 
 /* Base styles */
 body {
-@apply bg-earth-900 text-earth-50 antialiased;
-  font-family: 'Inter', sans-serif;
+    @apply bg-earth-900 text-earth-50 antialiased;
+    font-family: 'Inter', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight;
 }
