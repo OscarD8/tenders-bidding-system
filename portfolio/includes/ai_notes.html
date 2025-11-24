@@ -57,6 +57,101 @@
         </div>
 
 
+<!-- Card for AI Prompt 24-11-25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        I have a specific layout style for project_detail, but I also need to create a council_detail page. I would like a reusable item_detail template to extend from to avoid code duplication.
+                        What are the key components of this layout, and how can I optimize this cleanly into a base template that is more generic? I want to keep the card layout consistent but allow flexibility if I need to add extra cards. I have a previously generated template that I like, and a glass-panel styling for cards. It should keep to the idea of a main detail card with aside cards for specific pieces of data.
+                        // Provided code for my template and for project_detail, as well as my styles.css.
+                    </span>
+                </p>
+                <p>Date: 24-11-2025</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        The response provided an updated item_detail template and project_detail to extend it. I really liked the template it made, it had the hero section as needed, specifically blocking
+                        out the footer section of it, and it had a specific action block and extra content block. The only adjustments made were to add comments for readability, and adding an extra
+                         div to nest the two side cards into a grid for better layout adaptability. The layout should work well for council_detail in future. The project_detail it generated was not static so I did not use
+                        this but refactored previous version to fit new layout.
+
+                        <pre>
+{% extends &#39;base.html&#39; %}
+
+{% block content %}
+&lt;div class=&quot;w-full min-h-screen bg-earth-900 relative pt-24 pb-12 px-4 sm:px-8 flex items-center justify-center&quot;&gt;
+
+    &lt;div class=&quot;fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0&quot;&gt;
+        &lt;div class=&quot;absolute top-1/4 -left-20 w-96 h-96 bg-bamboo-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;absolute bottom-1/4 -right-20 w-96 h-96 bg-earth-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;relative z-10 max-w-6xl w-full grid grid-cols-1 lg:grid-cols-3 gap-6&quot;&gt;
+
+        &lt;div class=&quot;lg:col-span-2 glass-panel p-8 md:p-12 flex flex-col justify-between min-h-[500px]&quot;&gt;
+            &lt;div&gt;
+                &lt;div class=&quot;flex items-center gap-3 mb-6 text-earth-400 text-sm font-medium&quot;&gt;
+                    &lt;a href=&quot;{% url &#39;pages:index&#39; %}&quot; class=&quot;hover:text-bamboo-400 transition-colors&quot;&gt;Home&lt;/a&gt;
+                    &lt;span class=&quot;opacity-50&quot;&gt;/&lt;/span&gt;
+                    {% block breadcrumb_parent %}
+                        {% endblock %}
+                &lt;/div&gt;
+
+                &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-earth-50 mb-6 leading-tight&quot;&gt;
+                    {% block item_title %}Title{% endblock %}
+                &lt;/h1&gt;
+
+                &lt;div class=&quot;text-earth-200 text-lg leading-relaxed space-y-4&quot;&gt;
+                    {% block item_description %}Description{% endblock %}
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;mt-8 pt-8 border-t border-earth-50/10 flex items-center gap-6&quot;&gt;
+                {% block hero_footer %}
+                {% endblock %}
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;flex flex-col gap-6&quot;&gt;
+
+            &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors&quot;&gt;
+                {% block sidebar_card_1 %}
+                {% endblock %}
+            &lt;/div&gt;
+
+            &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors&quot;&gt;
+                {% block sidebar_card_2 %}
+                {% endblock %}
+            &lt;/div&gt;
+
+            &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-center text-center bg-bamboo-900/20 border-bamboo-500/30 relative overflow-hidden group cursor-pointer&quot;&gt;
+                 &lt;div class=&quot;absolute inset-0 bg-bamboo-500/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500&quot;&gt;&lt;/div&gt;
+
+                &lt;div class=&quot;relative z-10&quot;&gt;
+                    {% block action_card %}
+                        {% endblock %}
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        {% block extended_content %}
+        {% endblock %}
+
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
+
 <!-- Card for AI 23-11-25 -->
 
 		<div class="card">
