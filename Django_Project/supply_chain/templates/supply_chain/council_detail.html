@@ -1,0 +1,96 @@
+{% extends 'layouts/detail_layout.html' %}
+
+{% block breadcrumb_parent %}
+    <a href="#" class="hover:text-bamboo-400 transition-colors">Councils</a>
+{% endblock %}
+
+
+{% block item_title %}
+    <p>Leeds City Council</p>
+{% endblock %}
+
+{% block item_description %}
+    <p class="text-xl font-medium text-earth-100">Registered Local Authority Partner.</p>
+    <p class="text-earth-400 text-base mt-2">
+        Dedicated to sustainable infrastructure development and transparent procurement processes.
+    </p>
+{% endblock %}
+
+{% block hero_footer %}
+    <div>
+        <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Member Since</p>
+        <p class="text-earth-200 font-medium">20-05-2022</p>
+    </div>
+
+    <div class="h-8 w-px bg-white/10"></div>
+    <div>
+    <!-- Model extension here for sustainability metric on councils -->
+        <div>
+            <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Bamboo Standard</p>
+            <div class="flex items-center gap-2 text-bamboo-400 font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                <span>Going Green</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block sidebar_card_1 %}
+    <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-2">Procurement Contact</h3>
+    <div class="flex items-center gap-3">
+        <div class="font-bold text-sm">
+            Amadeus Phillida
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar_card_2 %}
+    <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-3">Active Tenders</h3>
+    <div class="flex items-baseline gap-2">
+        <span class="text-4xl font-mono text-white">7</span>
+        <span class="text-sm text-earth-400">Live Projects</span>
+    </div>
+{% endblock %}
+
+{% block action_card %}
+    <h3 class="text-lg font-bold text-white mb-1">Have Questions?</h3>
+    <p class="text-sm text-earth-400 mb-4">Contact the procurement team directly.</p>
+
+    <a href="mailto:leedscouncil@proton.gov"
+       class="action-button w-3/4 mx-auto flex items-center justify-between align-middle">
+        {% include "components/email_icon.html" %}
+        Email Council
+    </a>
+
+{% endblock %}
+
+
+{% block extended_content %}
+    <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">
+        <h2 class="text-2xl font-bold text-earth-50">Open Opportunities</h2>
+        <span class="text-sm text-earth-500">Displaying all active tenders</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for project in council.project_set.all %}
+
+            <!-- Projects to go here -->
+
+        {% empty %}
+            <div class="col-span-full py-16 text-center border border-dashed border-earth-50/10 rounded-xl bg-white/5">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-earth-800 mb-4 text-earth-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <p class="text-earth-400 text-lg font-medium">No active tenders found</p>
+                <p class="text-sm text-earth-600 mt-1">This council has no open opportunities listed at the moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
