@@ -56,6 +56,57 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 24-11-25 -->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
+                        I have a specific style for 'glass cards' currently defined with a long string of Tailwind utility classes, including hover states and transitions.
+
+I need to ensure I can separate out a 'glass card' which needs to be interacted with versus one that doesn't (static), while keeping the code DRY.
+
+Please explain how to structure this separation and clarify where these definitions should live in the Tailwind hierarchy (utilities vs. components).
+                    </span>
+                </p>
+                <p>Date: 24-11-2025</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        The question and answer got me testing the hierarchies of tailwind (which I realise now I left at utilities, which is incorrect).
+                        It seems to be utilities is top, components are second, and base is bottom. Gemini also argued that it is clean practice to split
+                        reusable classes out from nouns and verbs... the thing itself and the interactions a thing has. Therefore when establishing a class,
+                        you declare the noun and then additionally declare any preset interactivity that thing can have - which makes sense to me and I wish I
+                        had implemented this system earlier. I have refactored some of the code and I much prefer this approach.
+
+                        <pre>
+1. Architectural Concept: Composition (Noun vs. Verb) To achieve DRY code while maintaining flexibility, you should separate the Structure (what the element is) from the Behavior (what the element does).
+
+    The Noun (.glass-panel): Defines the static visual properties (background, blur, border, shadow). This can be applied to any container.
+
+    The Verb (.hover-lift, .hover-glow): Defines the interaction states (transforms, transitions, color changes). This is applied only when the element is clickable.
+
+2. Tailwind Hierarchy (@layer) These classes should be defined in @layer components. This ensures they have the correct specificity—stronger than the browser defaults (base) but weak enough that you can still override them with standard utility classes (like p-8 or m-4) directly in your HTML.
+
+
+@layer components {
+    /* 1. THE BASE CARD (Structure/Noun) */
+    .glass-panel {
+        @apply bg-earth-900/25 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl;
+    }
+/* 2. THE INTERACTIVE BEHAVIOR (Behavior/Verb) */
+.hover-lift {
+    @apply transition-all duration-500 ease-out transform group-hover:-translate-y-2;
+}
+.hover-glow-bamboo {
+    @apply group-hover:bg-earth-800/30 group-hover:border-bamboo-400/30;
+}
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
 
 <!-- Card for AI Prompt 24-11-25 -->
 
