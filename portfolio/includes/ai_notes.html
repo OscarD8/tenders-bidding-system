@@ -56,6 +56,148 @@
             </div>
         </div>
 
+<!-- Card for AI Prompt 24-11-25-->
+
+		<div class="card">
+            <div class="card-header">
+                <p>Prompt:
+                    <span class="answer_required" style="color: #f1f5f9;">
+ I have seen on other sites that councils will have their own detail
+
+page. I have the following model for a council and ideally need to
+
+extend from the detail_layout template for DRY principles. Any class use
+
+must also follow the current global styling system I have. If you
+
+create any components that may be reused in the future, add a comment to
+
+note this. Follow HTML best practice and clean code principles.
+
+
+Create me the html file for council_detail.html - which is a profile page for an individual council.
+                        // pasted context
+                    </span>
+                </p>
+                <p>Date: 24-11-2025</p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="answer_required">
+                        The generated template was mostly good, I just had to change the way the extra block for the inherited template
+                        was working because it was not filling the max width (shifted out of its div into the parent div and changed
+                        that to flex direction column). I like the way Gemini used the extra detail block for listing projects
+                        related to a council. Minor tweaks made to the button it originally added as the spacing was off.
+                        It added to reusable action card styles to the global css but removed these in the end as not needed.
+
+                        <pre>
+{% extends &#39;layouts/detail_layout.html&#39; %}
+
+{% block breadcrumb_parent %}
+    &lt;a href=&quot;#&quot; class=&quot;hover:text-bamboo-400 transition-colors&quot;&gt;Councils&lt;/a&gt;
+{% endblock %}
+
+
+{% block item_title %}
+    {{ council.name }}
+{% endblock %}
+
+{% block item_description %}
+    &lt;p class=&quot;text-xl font-medium text-earth-100&quot;&gt;Registered Local Authority Partner.&lt;/p&gt;
+    &lt;p class=&quot;text-earth-400 text-base mt-2&quot;&gt;
+        Dedicated to sustainable infrastructure development and transparent procurement processes.
+    &lt;/p&gt;
+{% endblock %}
+
+{% block hero_footer %}
+    &lt;div&gt;
+        &lt;p class=&quot;text-xs text-earth-500 uppercase tracking-widest mb-1&quot;&gt;Member Since&lt;/p&gt;
+        &lt;p class=&quot;text-earth-200 font-medium&quot;&gt;{{ council.created_at|date:&quot;F Y&quot; }}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;h-8 w-px bg-white/10&quot;&gt;&lt;/div&gt; &lt;div&gt;
+        &lt;p class=&quot;text-xs text-earth-500 uppercase tracking-widest mb-1&quot;&gt;Verification&lt;/p&gt;
+        &lt;div class=&quot;flex items-center gap-2 text-bamboo-400 font-medium&quot;&gt;
+            &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+            Verified Profile
+        &lt;/div&gt;
+    &lt;/div&gt;
+{% endblock %}
+
+
+{% block sidebar_card_1 %}
+    &lt;h3 class=&quot;text-xs font-bold text-earth-500 uppercase tracking-widest mb-2&quot;&gt;Procurement Lead&lt;/h3&gt;
+    &lt;div class=&quot;flex items-center gap-3&quot;&gt;
+        &lt;div class=&quot;w-10 h-10 rounded-full bg-earth-800 border border-earth-50/10 flex items-center justify-center text-earth-300 font-bold text-sm&quot;&gt;
+            {{ council.name|slice:&quot;:2&quot;|upper }}
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;p class=&quot;text-lg font-bold text-earth-50&quot;&gt;{{ council.contact }}&lt;/p&gt;
+            &lt;p class=&quot;text-xs text-earth-400&quot;&gt;Head of Projects&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+{% endblock %}
+
+{% block sidebar_card_2 %}
+    &lt;h3 class=&quot;text-xs font-bold text-earth-500 uppercase tracking-widest mb-2&quot;&gt;Active Tenders&lt;/h3&gt;
+    &lt;div class=&quot;flex items-baseline gap-2&quot;&gt;
+        &lt;span class=&quot;text-4xl font-mono text-white&quot;&gt;{{ council.project_set.count }}&lt;/span&gt;
+        &lt;span class=&quot;text-sm text-earth-400&quot;&gt;Live Projects&lt;/span&gt;
+    &lt;/div&gt;
+{% endblock %}
+
+{% block action_card %}
+    &lt;h3 class=&quot;text-lg font-bold text-white mb-1&quot;&gt;Have Questions?&lt;/h3&gt;
+    &lt;p class=&quot;text-sm text-earth-400 mb-4&quot;&gt;Contact the procurement team directly.&lt;/p&gt;
+
+    &lt;a href=&quot;mailto:{{ council.contact_email }}&quot; class=&quot;relative z-20 inline-flex items-center gap-2 bg-bamboo-600 hover:bg-bamboo-500 text-white px-6 py-2 rounded-full font-bold transition-colors shadow-lg&quot;&gt;
+        &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+        Email Council
+    &lt;/a&gt;
+{% endblock %}
+
+
+{% block extended_content %}
+    &lt;div class=&quot;mt-12&quot;&gt;
+        &lt;div class=&quot;flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4&quot;&gt;
+            &lt;h2 class=&quot;text-2xl font-bold text-earth-50&quot;&gt;Open Opportunities&lt;/h2&gt;
+            &lt;span class=&quot;text-sm text-earth-500&quot;&gt;Displaying all active tenders&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6&quot;&gt;
+            {% for project in council.project_set.all %}
+
+                &lt;a href=&quot;{% url &#39;supply_chain:project_detail&#39; project.id %}&quot; class=&quot;glass-panel p-6 hover:bg-white/5 transition-colors group block&quot;&gt;
+                    &lt;div class=&quot;flex justify-between items-start mb-3&quot;&gt;
+                        &lt;span class=&quot;text-xs font-bold text-bamboo-400 border border-bamboo-500/30 px-2 py-1 rounded bg-bamboo-500/10&quot;&gt;Active&lt;/span&gt;
+                        &lt;span class=&quot;text-xs text-earth-500&quot;&gt;{{ project.updated_at|timesince }} ago&lt;/span&gt;
+                    &lt;/div&gt;
+
+                    &lt;h3 class=&quot;text-lg font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-1&quot;&gt;
+                        {{ project.title }}
+                    &lt;/h3&gt;
+
+                    &lt;div class=&quot;mt-4 pt-4 border-t border-earth-50/10 flex justify-between items-center&quot;&gt;
+                        &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold&quot;&gt;Budget&lt;/span&gt;
+                        &lt;span class=&quot;text-earth-200 font-mono&quot;&gt;£{{ project.budget }}&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/a&gt;
+
+            {% empty %}
+                &lt;div class=&quot;col-span-3 py-12 text-center border border-dashed border-earth-50/10 rounded-xl&quot;&gt;
+                    &lt;p class=&quot;text-earth-500 italic&quot;&gt;No active projects listed for this council.&lt;/p&gt;
+                &lt;/div&gt;
+            {% endfor %}
+        &lt;/div&gt;
+    &lt;/div&gt;
+{% endblock %}
+
+                        </pre>
+                    </span>
+                </p>
+            </div>
+        </div>
+
 <!-- Card for AI Prompt 24-11-25 -->
 
 		<div class="card">
