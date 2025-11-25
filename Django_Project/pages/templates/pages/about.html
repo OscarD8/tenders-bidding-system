@@ -1,10 +1,184 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}Our Mission | Bamboo Tenders{% endblock %}
+
+{% block content %}
+
+    <div class="snap-container  bg-earth-900/20">
+
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            {% include "components/greyscale_bg.html" with image_url="https://images.unsplash.com/photo-1633130985400-3ef7fa782fee?q=80&w=1200&auto=format&fit=crop" %}
+        </div>
+
+        <!-- Mission Statement -->
+        <section class="snap-section relative z-10">
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-2 items-center md:mt-10">
+
+                <!-- Detail -->
+                <div class="space-y-6 md:space-y-8">
+                    <span class="text-bamboo-400 font-mono text-sm tracking-widest uppercase">The Origin</span>
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                        Rooted in <span class="text-bamboo-400">Resilience.</span>
+                    </h1>
+                    <div class="space-y-4 md:space-y-8">
+                        <p class="text-sm md:text-xl text-earth-200 leading-relaxed">
+                            We view infrastructure not as a static burden, but as an active participant in planetary
+                            repair.
+                            Bamboo Tenders mandates that every project be powered by <strong>100% renewable
+                            energy</strong>.
+                        </p>
+                        <p class="text-sm md:text-xl text-earth-300 leading-relaxed">
+                            By funding bleeding-edge <strong>geo-engineering research</strong> and utilizing
+                            bio-receptive materials,
+                            we turn dead concrete into <strong>living systems</strong> that inhale carbon, restore
+                            biodiversity, and actively heal the atmosphere.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Animation Card -->
+                <div class="relative flex justify-center items-center mt-6 md:mt-4 lg:mt-0">
+                    <div class="glass-panel w-60 md:w-sm p-6 md:p-12 aspect-square flex items-center justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-br from-bamboo-500/10 to-earth-500/10"></div>
+                        {% include "components/svg_components/bamboo_growing_svg.html" %}
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Measurement Impact Section -->
+        <section class="snap-section relative z-10 overflow-hidden">
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 w-full">
+
+                <!-- Header -->
+                <div class="hidden md:block text-center mb-16">
+                    <h2 class="text-4xl font-bold text-earth-50">Measured Impact</h2>
+                    <p class="text-earth-400 mt-4">Quantifying the shift from industrial to ecological procurement.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[500px]">
+
+                    <!-- Capture Metric -->
+                    <div class="glass-panel p-4 md:p-8 flex flex-col justify-center md:col-span-1 hover-lift group gap-6">
+                        <div>
+                            <h3 class="text-earth-300 text-sm uppercase tracking-wider">Carbon Sequestration</h3>
+                            <p class="text-xl md:text-5xl font-mono text-white mt-2">4.2<span
+                                    class="text-lg text-earth-500 ml-1">Mt</span>
+                            </p>
+                        </div>
+                        <p class="text-sm text-earth-400 md:mt-4">
+                            Equivalent CO2 removed via verified albedo-enhancement projects.
+                        </p>
+                    </div>
+
+                    <!-- Detail -->
+                    <div class="glass-panel p-4 md:p-8 md:col-span-2 flex flex-col md:flex-row items-center gap-8 hover-lift">
+                        <div class="flex-1">
+                            <h3 class="text-lg md:text-3xl font-bold text-earth-300 mb-4">Material Transition Index</h3>
+                            <p class="text-earth-200 mb-6 text-sm md:text-lg">
+                                We track the percentage of raw materials sourced from bio-based alternatives.
+                                Our network has successfully replaced traditional insulation with <strong>mycelium
+                                composites</strong> across 12 major council retrofits.
+                            </p>
+
+                            <!-- Minor Metrics -->
+                            <!-- View could provide this data for a loop? -->
+                            <div class="grid grid-cols-2 gap-2">
+                                {% include "components/metric_card.html" with title="Concrete Sourced" value="-45%" tone="text-red-400" %}
+                                {% include "components/metric_card.html" with title="Bio-Aggregate" value="+210%" tone="text-bamboo-400" %}
+                            </div>
+                        </div>
+
+                        <!-- Animation Card -->
+                        <div class="w-60 md:w-1/2 h-36 md:h-64 rounded-xl overflow-hidden relative flex items-center justify-center">
+                            {% include "components/svg_components/root_structures_svg.html" %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Monitoring Section -->
+        <section class="snap-section relative z-10">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+
+                    <!-- Animation Card -->
+                    <div class="relative flex items-center justify-center">
+                        <div class="glass-panel w-60 md:w-sm p-6 md:p-12 aspect-square">
+                            {% include "components/svg_components/monitoring_svg.html" %}
+                        </div>
+                    </div>
+
+                    <!-- Detail Card -->
+                    <div class="order-1 md:order-2 space-y-2 md:space-y-6">
+                        <h2 class="text-2xl  md:text-4xl font-bold text-earth-50">Atmospheric Monitoring</h2>
+                        <p class="text-md md:text-lg text-earth-300">
+                            We don't rely on self-reported data. Bamboo Tenders integrates with <strong>IoT
+                            Stratospheric Sensors</strong> to monitor local albedo changes and heat reflection in
+                            real-time.
+                        </p>
+
+                        <ul class="space-y-4 mt-4 list-disc pl-6">
+
+                            {% with monitoring_point="flex items-center gap-3" %}
+                                <li class="monitoring-point {{ monitoring_point }}">
+                                    <span class="bullet-point"></span>
+                                    <span class="text-earth-200">Direct Albedo Measurement via satellite uplink.</span>
+                                </li>
+                                <li class="monitoring-point {{ monitoring_point }}">
+                                    <span class="bullet-point"></span>
+                                    <span class="text-earth-200">Soil microbiome health tracking for agro-forestry projects.</span>
+                                </li>
+                                <li class="monitoring-point {{ monitoring_point }}">
+                                    <span class="bullet-point"></span>
+                                    <span class="text-earth-200">Supply chain transparency ledger (Blockchain verified).</span>
+                                </li>
+                            {% endwith %}
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section class="snap-section relative z-10">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <span class="inline-block py-1 px-3 rounded-full bg-bamboo-500/10 border border-bamboo-500/30 text-bamboo-400 text-xs font-bold uppercase tracking-widest mb-6">
+                    Roadmap 2040
+                </span>
+
+                <h2 class="text-5xl md:text-6xl font-bold text-earth-50 mb-8">
+                    Geo-Engineering for Good.
+                </h2>
+
+                <p class="text-xl text-earth-300 mb-12 max-w-2xl mx-auto">
+                    Our next phase involves scaling <strong>passive radiative cooling</strong> surfaces across all
+                    council infrastructure, effectively turning city roofs into heat mirrors to combat global warming
+                    directly.
+                </p>
+
+                <a href="{% url 'supply_chain:projects' %}" class="action-button">
+                    View Active Tenders
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Override Footer to make sticky -->
+    {% block footer_layout %}
+        <div class="fixed bottom-0 w-full z-50">
+            {% include "components/footer.html" with extra_classes="bg-stone-900/60 backdrop-blur-md border-t border-white/10" %}
+        </div>
+    {% endblock %}
+{% endblock %}

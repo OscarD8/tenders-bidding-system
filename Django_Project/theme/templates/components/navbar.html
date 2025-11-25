@@ -1,12 +1,12 @@
 <nav class="fixed w-full z-50 top-0 start-0 border-b border-earth-50/10 bg-stone-900/80  backdrop-blur-md">
 
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4">
 
         <!-- Brand Logo and Name -->
         <a href="{% url 'pages:index' %}" class="flex items-center space-x-3 group">
             {% include "components/brand_logo.html" %}
 
-            <span class="hover:text-earth-500 transition-colors self-center text-2xl font-semibold tracking-tight text-earth-200">
+            <span class="hover:text-earth-500 transition-colors self-center sm:text-lg md:text-2xl font-semibold tracking-tight text-earth-200">
                 Bamboo<span class="text-bamboo-400">Tenders</span>
             </span>
         </a>
@@ -32,7 +32,7 @@
                     <li><a href="{% url 'pages:index' %}" class="{{ link_class }}">Home</a></li>
                     <li><a href="{% url 'supply_chain:projects' %}" class="{{ link_class }}">Tenders</a></li>
                     <li><a href="#" class="{{ link_class }}">Councils</a></li>
-                    <li><a href="#" class="{{ link_class }}">About</a></li>
+                    <li><a href="{% url 'pages:about' %}" class="{{ link_class }}">About</a></li>
 
                 {% endwith %}
             </ul>

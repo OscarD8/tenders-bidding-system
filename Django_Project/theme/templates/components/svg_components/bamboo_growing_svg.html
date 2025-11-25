@@ -1,0 +1,85 @@
+<svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+    <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"></feGaussianBlur>
+            <feMerge>
+                <feMergeNode in="coloredBlur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <style>
+        /* Bamboo Growth Animation */
+        @keyframes sprout-grow {
+            0% { transform: scaleY(0.5) translateY(100px); opacity: 0.7; }
+            100% { transform: scaleY(1) translateY(0); opacity: 1; }
+        }
+        @keyframes leaf-unfold {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Fresh Air Particle Animation */
+        @keyframes air-rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-180px) scale(1.2); opacity: 0; }
+        }
+
+        .bamboo-shoot {
+            transform-origin: bottom center;
+            animation: sprout-grow 3s ease-out forwards;
+        }
+        .bamboo-leaf {
+            transform-origin: bottom left;
+            transform: scale(0);
+            animation: leaf-unfold 1.5s ease-out forwards 1s;
+        }
+        .bamboo-leaf.right {
+            transform-origin: bottom right;
+        }
+
+        .air-particle {
+            opacity: 0;
+            filter: url(#glow);
+            animation: air-rise 4s ease-in-out infinite;
+        }
+
+        /* Staggered particle delays */
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1.2s; }
+        .delay-3 { animation-delay: 2.0s; }
+        .delay-4 { animation-delay: 2.8s; }
+    </style>
+
+    <path d="M50 350 Q 200 330 350 350" stroke="#8b6446" stroke-width="4" stroke-linecap="round" opacity="0.8"></path>
+
+    <g class="bamboo-shoot" transform-origin="200 350">
+        <path d="M195 350 L 195 250 Q 200 245 205 250 L 205 350 Z" fill="#0e9f6e" stroke="#0e9f6e" stroke-width="2"></path>
+
+        <rect x="192" y="340" width="16" height="4" rx="2" fill="#057a55"></rect>
+
+        <rect x="192" y="290" width="16" height="4" rx="2" fill="#057a55"></rect>
+
+        <g transform="translate(200, 250)">
+            <path class="bamboo-leaf" d="M0 0 C -20 -20, -40 -10, -50 10 C -40 20, -20 15, 0 0 Z" fill="#31c48d"></path>
+            <path class="bamboo-leaf right delay-1" d="M0 0 C 20 -25, 45 -15, 55 5 C 45 20, 20 15, 0 0 Z" fill="#31c48d"></path>
+            <path class="bamboo-leaf delay-2" d="M0 -5 C -10 -30, 10 -30, 0 -5 Z" fill="#84e1bc"></path>
+        </g>
+    </g>
+
+    <g fill="#bcf0da">
+        <circle cx="160" cy="320" r="4" class="air-particle"></circle>
+        <circle cx="140" cy="280" r="3" class="air-particle delay-1"></circle>
+        <circle cx="170" cy="220" r="5" class="air-particle delay-2"></circle>
+
+        <circle cx="240" cy="310" r="4" class="air-particle delay-3"></circle>
+        <circle cx="260" cy="260" r="3" class="air-particle delay-4"></circle>
+        <circle cx="230" cy="200" r="5" class="air-particle delay-1"></circle>
+
+        <circle cx="200" cy="150" r="6" class="air-particle delay-2"></circle>
+    </g>
+
+</svg>
