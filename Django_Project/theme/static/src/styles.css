@@ -45,7 +45,11 @@
     }
 
     .action-button {
-        @apply inline-block bg-bamboo-600 hover:bg-bamboo-500 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 cursor-pointer;
+        @apply inline-block bg-bamboo-600 hover:bg-bamboo-500 text-white font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 cursor-pointer;
+    }
+
+    .outline-variant {
+        @apply bg-transparent border-2 border-bamboo-400 text-bamboo-400 rounded-lg hover:bg-bamboo-400 hover:text-stone-900
     }
 
     .snap-container {

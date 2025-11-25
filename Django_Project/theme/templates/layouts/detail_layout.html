@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="w-full min-h-screen bg-stone-900 relative pt-24 pb-12 px-4 sm:px-8 flex-col  items-center justify-center">
+    <div class="w-full bg-stone-900 relative pt-24 pb-2 px-4 sm:px-8 flex-col  items-center justify-center">
 
         {% include "components/background_blur.html" %}
 
         <!-- Main Content -->
-        <div class="relative z-10 max-w-6xl w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="relative z-10 max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
 
             <!-- Hero Section -->
             <section class="lg:col-span-2 glass-panel p-8 md:p-12 flex flex-col justify-between min-h-[500px]">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <div class="mt-8 pt-8 border-t border-earth-50/10 flex items-center gap-6">
+                <div class="mt-8 pt-8 border-t border-earth-50/10 flex items-start gap-6">
                     {% block hero_footer %}
                     {% endblock %}
                 </div>
@@ -39,12 +39,12 @@
             <div class="flex flex-col gap-6">
 
                 <div class="grid grid-cols-2 gap-6 lg:grid-cols-1">
-                    <div class="glass-panel p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors">
+                    <div class="glass-panel p-4 md:p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors">
                         {% block sidebar_card_1 %}
                         {% endblock %}
                     </div>
 
-                    <div class="glass-panel p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors">
+                    <div class="glass-panel p-4 md:p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors">
                         {% block sidebar_card_2 %}
                         {% endblock %}
                     </div>
@@ -62,10 +62,11 @@
             </div>
         </div>
 
-                <!-- Extended Content -->
-            <div class="relative z-10 mt-16">
-                {% block extended_content %}
-                {% endblock %}
-            </div>
+        <!-- Extended Content -->
+        <div class="relative z-10 mt-16">
+            {% block extended_content %}
+            {% endblock %}
+        </div>
+
     </div>
 {% endblock %}

@@ -9,13 +9,13 @@
                 class="snap-section bg-[url('https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center">
             <div class="absolute inset-0 bg-stone-900/70"></div>
             <div class="relative z-10 text-center max-w-4xl px-6">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-bamboo-300 to-bamboo-500">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-bamboo-300 to-bamboo-500 ">
                     Future of Tenders is Green.
                 </h1>
                 <p class="text-xl md:text-2xl text-earth-100 mb-8 font-light">
                     Decentralized procurement for a sustainable planet. We empower councils to build with nature.
                 </p>
-                <a href="{% url 'supply_chain:projects' %}" class="action-button">
+                <a href="{% url 'supply_chain:projects' %}" class="action-button shadow-lg shadow-bamboo-900/50">
                     View Opportunities
                 </a>
             </div>
@@ -23,7 +23,7 @@
 
         <!-- Section 2: Mission -->
         <section class="snap-section bg-stone-800">
-            <div class="glass-panel p-12 max-w-5xl w-full mx-4 grid md:grid-cols-2 gap-12 items-center">
+            <div class="glass-panel p-4 md:p-12 max-w-5xl w-full mx-4 grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-4xl font-bold mb-6 text-bamboo-300">Symbiotic Infrastructure</h2>
                     <p class="text-lg text-stone-300 mb-4 leading-relaxed">
@@ -44,7 +44,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="h-64 md:h-full rounded-xl flex items-center justify-center border border-white/5">
+                <div class="h-34 md:68 md:h-full rounded-xl flex items-center justify-center border border-white/5">
                     <img src="https://images.unsplash.com/photo-1719825523711-eda3221c111c?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                          alt="Bamboo tender illustration"
                          class="w-full h-full object-cover rounded-xl"/>
@@ -57,20 +57,19 @@
             <div class="text-center">
                 <h2 class="text-4xl md:text-6xl font-bold mb-8 text-earth-200">Join the Revolution</h2>
                 <div class="flex flex-col md:flex-row gap-6 justify-center">
-                    <a href="#"
-                       class="px-8 py-4 bg-transparent border-2 border-bamboo-400 text-bamboo-400 font-bold rounded-lg hover:bg-bamboo-400 hover:text-stone-900 transition-colors">
+                    <a href="#" class="action-button outline-variant">
                         For Councils
                     </a>
-                    <a href="{% url 'supply_chain:projects' %}"
-                       class="px-8 py-4 bg-bamboo-500 text-white font-bold rounded-lg hover:bg-bamboo-400 transition-colors shadow-lg shadow-bamboo-900/50">
+                    <a href="{% url 'supply_chain:projects' %}" class="action-button rounded-lg">
                         Browse Tenders
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Extra Classes for transparency -->
+        <!-- Extra Classes on the footer for transparency -->
         {% block footer_layout %}
+            <!-- Sticky Footer for Home Page -->
             <div class="fixed bottom-0 w-full z-50">
                 {% include "components/footer.html" with extra_classes="bg-stone-900/60 backdrop-blur-md border-t border-white/10" %}
             </div>
