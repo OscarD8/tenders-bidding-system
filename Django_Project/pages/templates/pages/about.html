@@ -9,7 +9,7 @@
 
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            {% include "components/greyscale_bg.html" with image_url="https://images.unsplash.com/photo-1633130985400-3ef7fa782fee?q=80&w=1200&auto=format&fit=crop" %}
+            {% include "components/bg_template.html" with image_url="https://images.unsplash.com/photo-1633130985400-3ef7fa782fee?q=80&w=1200&auto=format&fit=crop" %}
         </div>
 
         <!-- Mission Statement -->
@@ -90,7 +90,7 @@
                             <!-- Minor Metrics -->
                             <!-- View could provide this data for a loop? -->
                             <div class="grid grid-cols-2 gap-2">
-                                {% include "components/metric_card.html" with title="Concrete Sourced" value="-45%" tone="text-red-400" %}
+                                {% include "components/metric_card.html" with title="Concrete Sourced" value="-45%" tone="text-blue-400" %}
                                 {% include "components/metric_card.html" with title="Bio-Aggregate" value="+210%" tone="text-bamboo-400" %}
                             </div>
                         </div>
