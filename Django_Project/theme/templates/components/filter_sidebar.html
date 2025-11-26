@@ -1,0 +1,17 @@
+<div class="glass-panel p-6 sticky top-28 border-earth-50/10 bg-earth-800/20">
+    <h3 class="text-xs font-bold text-bamboo-400 uppercase tracking-widest mb-6">
+        {{ title|default:"Filter Results" }}
+    </h3>
+
+    <form method="get" class="space-y-6">
+        {{ content }}
+
+        <button type="submit" class="action-button w-full rounded-lg shadow-lg shadow-bamboo-900/50 py-3 text-sm">
+            Update Results
+        </button>
+
+        <a href="." class="block text-center text-xs text-earth-400 hover:text-earth-200 mt-4 transition-colors">
+            Reset Filters
+        </a>
+    </form>
+</div>

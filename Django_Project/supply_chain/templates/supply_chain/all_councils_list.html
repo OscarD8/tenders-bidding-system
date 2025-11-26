@@ -1,7 +1,161 @@
-{% if not councils %}
-    There are no councils in the database.
-{% else %}
-    {% for council in councils %}
-        {{ council.name }} <br/>
-    {% endfor %}
-{% endif %}
+{% extends 'layouts/list_layout.html' %}
+
+{% block page_header %}
+    <div class="flex flex-col justify-between">
+        <div class="max-w-2xl">
+            <h1 class="title-large">
+                Partner <span class="text-bamboo-400">Councils</span>
+            </h1>
+            <p class="text-earth-300 text-lg leading-relaxed">
+                Our network of local authorities committed to sustainable, transparent, and regenerative infrastructure.
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block layout_sidebar %}
+        <div class="glass-panel sidebar-variant p-8">
+
+        <h3 class="sidebar-title text-earth-500">Search</h3>
+
+        <form method="get" class="space-y-6">
+
+            <div>
+                <div class="relative">
+                    <input type="text" name="q" id="q" value="{{ request.GET.q }}"
+                           placeholder="Council, contact..."
+                           class="focus-input"
+                           autocomplete="off"
+                           aria-label="Search projects by keywords"
+                    />
+                    <button
+                            type="button"
+                            class="absolute right-5 top-1/2 transform -translate-y-1/2 text-earth-500"
+                            aria-label="Clear search"
+                            onclick="this.closest('form').q.value = '';"
+                    >
+                        &times;
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="action-button action-button-fill-variant">
+                Update Results
+            </button>
+
+        </form>
+
+    </div>
+{% endblock %}
+
+{% block list_items %}
+
+    <a href="{% url 'supply_chain:council_detail' 1 %}" class="group block">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
+
+            <div>
+                <div class="flex justify-between items-start mb-6 gap-4">
+
+                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors">
+                        Poppleton Council
+                    </h3>
+
+                    <span class="shrink-0 px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium">
+                        5 Tenders
+                    </span>
+
+                </div>
+
+                <div class="space-y-2 mb-6">
+                    <p class="text-earth-300 text-sm flex items-center gap-2">
+                        <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Contact</span>
+                        <span class="text-earth-200">Bob Builder</span>
+                    </p>
+                    <p class="text-earth-300 text-sm flex items-center gap-2">
+                        <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Email</span>
+                        <span class="text-earth-200 truncate">bob@poppleton.gov.uk</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
+                <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">View Profile</span>
+                {% include "components/circular_button.html" %}
+            </div>
+
+        </div>
+    </a>
+
+    <a href="{% url 'supply_chain:council_detail' 1 %}" class="group block h-full">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
+
+            <div>
+                <div class="flex justify-between items-start mb-6 gap-4">
+
+                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors">
+                        Leeds City Council
+                    </h3>
+
+                    <span class="shrink-0 px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium">
+                        1 Tender
+                    </span>
+
+                </div>
+
+                <div class="space-y-2 mb-6">
+                    <p class="text-earth-300 text-sm flex items-center gap-2">
+                        <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Contact</span>
+                        <span class="text-earth-200">Derek Digger</span>
+                    </p>
+                    <p class="text-earth-300 text-sm flex items-center gap-2">
+                        <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Email</span>
+                        <span class="text-earth-200 truncate">d.digger@huddersfield.gov.uk</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
+                <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">View Profile</span>
+                {% include "components/circular_button.html" %}
+            </div>
+
+        </div>
+    </a>
+
+    <a href="{% url 'supply_chain:council_detail' 1 %}" class="group block h-full">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
+
+            <div>
+                <div class="flex justify-between items-start mb-6 gap-4">
+
+                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors">
+                        Manchester Council
+                    </h3>
+
+                    <span class="shrink-0 px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium">
+                        No Tenders
+                    </span>
+
+                </div>
+
+                <div class="space-y-2 mb-6">
+                    <p class="text-earth-300 text-sm flex items-center gap-2">
+                        <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Contact</span>
+                        <span class="text-earth-200">Sarah Surveyor</span>
+                    </p>
+                    <p class="text-earth-300 text-sm flex items-center gap-2">
+                        <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Email</span>
+                        <span class="text-earth-200 truncate">sarah.s@manchester.gov.uk</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
+                <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">View Profile</span>
+                {% include "components/circular_button.html" %}
+            </div>
+
+        </div>
+    </a>
+
+{% endblock %}

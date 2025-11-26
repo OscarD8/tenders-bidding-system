@@ -31,7 +31,7 @@
 
                     <li><a href="{% url 'pages:index' %}" class="{{ link_class }}">Home</a></li>
                     <li><a href="{% url 'supply_chain:projects' %}" class="{{ link_class }}">Tenders</a></li>
-                    <li><a href="#" class="{{ link_class }}">Councils</a></li>
+                    <li><a href="{% url 'supply_chain:councils' %}" class="{{ link_class }}">Councils</a></li>
                     <li><a href="{% url 'pages:about' %}" class="{{ link_class }}">About</a></li>
 
                 {% endwith %}

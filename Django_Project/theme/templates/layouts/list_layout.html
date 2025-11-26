@@ -1,46 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="w-full min-h-screen bg-stone-900 relative pt-24 pb-12 px-4 sm:px-8">
+    <div class="w-full min-h-screen bg-stone-900 relative pt-24 pb-12 px-4 sm:px-8">
 
-    <div class="relative z-10 max-w-7xl mx-auto">
+        <div class="relative z-10 max-w-7xl mx-auto">
 
-        <!-- Header -->
-        <div class="mb-12 border-b border-earth-50/10 pb-8">
-            {% block page_header %}
-            {% endblock %}
-        </div>
-
-        <div class="flex flex-col lg:flex-row gap-8">
-
-            <!-- Input Options -->
-            <aside class="w-full lg:w-1/4 shrink-0">
-                <div class="glass-panel p-6 sticky top-28 border-earth-50/10 bg-earth-800/20">
-                    <h3 class="text-xs font-bold text-bamboo-400 uppercase tracking-widest mb-6">Filter Results</h3>
-
-                    <form method="get" class="space-y-6">
-                        {% block filters %}
-                        {% endblock %}
-                        <button type="submit" class="action-button w-full rounded-lg shadow-lg shadow-bamboo-900/50">
-                            Update Results
-                        </button>
-
-                        <a href="." class="block text-center text-xs text-earth-400 hover:text-earth-200 mt-4 transition-colors">
-                            Reset Filters
-                        </a>
-                    </form>
-                </div>
-            </aside>
-
-            <!-- List Item Container - Expands to two columns on larger screens -->
-            <div class="w-full lg:w-3/4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {% block list_items %}
-                    {% endblock %}
-                </div>
+            <!-- Header -->
+            <div class="mb-12 border-b border-earth-50/10 pb-8">
+                {% block page_header %}
+                {% endblock %}
             </div>
 
+            <div class="flex flex-col lg:flex-row gap-8">
+
+                <aside class="w-full lg:w-1/4 shrink-0">
+                    {% block layout_sidebar %}
+                    {% endblock %}
+                </aside>
+
+                <!-- List Item Container - Expands to two columns on larger screens -->
+                <div class="w-full lg:w-3/4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {% block list_items %}
+                        {% endblock %}
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

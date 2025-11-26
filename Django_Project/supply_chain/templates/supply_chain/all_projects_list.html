@@ -3,7 +3,7 @@
 {% block page_header %}
     <div class="flex flex-col md:flex-row justify-between items-end">
         <div class="max-w-2xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-earth-200 mb-4">
+            <h1 class="title-large">
                 Open <span class="text-bamboo-400">Projects</span>
             </h1>
             <p class="text-earth-300 text-lg leading-relaxed">
@@ -13,10 +13,10 @@
         </div>
 
         <div class="flex gap-2 mt-4 md:mt-0">
-            <span class="px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium">
+            <span class="px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium text-center">
                 (Amount) Active
             </span>
-            <span class="px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium">
+            <span class="px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium text-center">
                 Renewable Focus
             </span>
         </div>
@@ -24,34 +24,61 @@
 {% endblock %}
 
 
-{% block filters %}
-    <div>
-        <label for="q" class="block text-xs font-bold text-earth-400 uppercase tracking-wider mb-2">Keywords</label>
-        <div class="relative">
-            <input type="text" name="q" id="q"
-                   placeholder="Solar, Roof, etc..."
-                   class="w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4 text-earth-100 placeholder-earth-600 focus:outline-none focus:border-bamboo-500 focus:ring-1 focus:ring-bamboo-500 transition-all">
-        </div>
-    </div>
+<!-- Sidebar used for Filter Section -->
+{% block layout_sidebar %}
+    <div class="glass-panel sidebar-variant p-8">
 
-    <div>
-        <label for="council"
-               class="block text-xs font-bold text-earth-400 uppercase tracking-wider mb-2">Council</label>
-        <div class="relative">
-            <select name="council" id="council"
-                    class="w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4 text-earth-200 appearance-none focus:outline-none focus:border-bamboo-500 focus:ring-1 focus:ring-bamboo-500 transition-all cursor-pointer">
-                <option value="">All Authorities</option>
-                <!-- Retrieve Councils here -->
-            </select>
-            {% include "components/drop_arrow_icon.html" %}
-        </div>
+        <h3 class="sidebar-title">Filter Results</h3>
+
+        <form method="get" class="space-y-6">
+
+            <div>
+                <label for="q"
+                       class="sub-heading-earth-400">Keywords</label>
+                <div class="relative">
+                    <input type="text" name="q" id="q" value="{{ request.GET.q }}"
+                           placeholder="Solar, Roof, etc..."
+                           class="focus-input"
+                           autocomplete="off"
+                           aria-label="Search projects by keywords"
+                    />
+                    <button
+                            type="button"
+                            class="absolute right-5 top-1/2 transform -translate-y-1/2 text-earth-500"
+                            aria-label="Clear search"
+                            onclick="this.closest('form').q.value = '';"
+                    >
+                        &times;
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <label for="council" class="sub-heading-earth-400">Council</label>
+                <div class="relative">
+                    <select name="council" id="council"
+                            class="focus-input cursor-pointer appearance-none">
+                        <option value="">All Authorities</option>
+                        <!-- Councils to go here -->
+                    </select>
+
+                    {% include "components/drop_arrow_icon.html" %}
+                </div>
+            </div>
+
+            <button type="submit" class="action-button action-button-fill-variant">
+                Update Results
+            </button>
+
+        </form>
+
     </div>
 {% endblock %}
 
 
 {% block list_items %}
     <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
-        <div class="glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-4">
@@ -85,7 +112,7 @@
     </a>
 
     <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
-        <div class="glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-4">
@@ -120,7 +147,7 @@
     </a>
 
     <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
-        <div class="glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-4">
@@ -156,7 +183,7 @@
     </a>
 
     <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
-        <div class="glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-4">
@@ -192,7 +219,7 @@
     </a>
 
     <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
-        <div class="glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between">
+        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-4">

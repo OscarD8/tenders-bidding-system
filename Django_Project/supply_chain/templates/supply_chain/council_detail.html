@@ -2,7 +2,7 @@
 
 <!-- Hero Detail Card -->
 {% block breadcrumb_parent %}
-    <a href="#" class="hover:text-bamboo-400 transition-colors">Councils</a>
+    <a href="{% url 'supply_chain:councils' %}" class="hover:text-bamboo-400 transition-colors">Councils</a>
 {% endblock %}
 
 {% block item_title %}
@@ -19,12 +19,15 @@
 {% block hero_footer %}
     <div>
         <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Member Since</p>
-        <p class="text-earth-200 text-sm md:text-lg">20-05-2022</p>
+        <p>
+            <time datetime="2022-05-20" class="text-earth-200 text-sm md:text-lg" aria-label="20 May 2022">20-05-2022
+            </time>
+        </p>
     </div>
 
     <div class="h-8 w-px bg-white/10"></div>
     <div>
-    <!-- Model extension here for sustainability metric on councils -->
+        <!-- Model extension here for sustainability metric on councils -->
         <div>
             <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Bamboo Standard</p>
             <div class="flex items-center gap-2 text-bamboo-400 text-sm md:text-lg">
@@ -81,11 +84,12 @@
 
                 <!-- Projects related to council to go here -->
 
-                {% empty %}
+            {% empty %}
                 <div class="col-span-full py-16 text-center border border-dashed border-earth-50/10 rounded-xl bg-white/5">
                     {% include "components/folder_icon.html" %}
                     <p class="text-earth-400 text-lg font-medium">No active tenders found</p>
-                    <p class="text-sm text-earth-600 mt-1">This council has no open opportunities listed at the moment.</p>
+                    <p class="text-sm text-earth-600 mt-1">This council has no open opportunities listed at the
+                        moment.</p>
                 </div>
 
             {% endfor %}
