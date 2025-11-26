@@ -9,17 +9,17 @@
             <!-- Hero Section -->
             <section class="lg:col-span-2 glass-panel p-8 md:p-12 flex flex-col justify-between min-h-[500px]">
                 <div>
-
                     <!-- Breadcrumbs -->
-                    <div class="flex items-center gap-3 mb-6 text-earth-400 text-sm font-medium">
+                    <nav aria-label="Breadcrumb"
+                         class="flex items-center gap-3 mb-6 text-earth-400 text-sm font-medium">
                         <a href="{% url 'pages:index' %}" class="hover:text-bamboo-400 transition-colors">Home</a>
                         <span class="opacity-50">/</span>
                         {% block breadcrumb_parent %}
                         {% endblock %}
-                    </div>
+                    </nav>
 
                     <h1 class="text-4xl md:text-5xl font-bold text-earth-50 mb-6 leading-tight">
-                        {% block item_title %}Title{% endblock %}
+                        {% block item_title %}Missing Title{% endblock %}
                     </h1>
 
                     <div class="text-earth-200 text-lg leading-relaxed space-y-4">
@@ -27,41 +27,41 @@
                     </div>
                 </div>
 
-                <div class="mt-8 pt-8 border-t border-earth-50/10 flex items-start gap-6">
+                <footer class="mt-8 pt-8 border-t border-earth-50/10 flex items-start gap-6">
                     {% block hero_footer %}
                     {% endblock %}
-                </div>
+                </footer>
             </section>
 
             <!-- Sidebar Cards -->
-            <div class="flex flex-col gap-6">
-
-                <div class="grid grid-cols-2 gap-6 lg:grid-cols-1">
-                    <div class="glass-panel p-4 md:p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors">
+            <aside class="flex flex-col gap-6">
+                <div class="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-1">
+                    <section
+                            class="glass-panel p-4 md:p-8">
                         {% block sidebar_card_1 %}
                         {% endblock %}
-                    </div>
+                    </section>
 
-                    <div class="glass-panel p-4 md:p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors">
+                    <section
+                            class="glass-panel p-4 md:p-8">
                         {% block sidebar_card_2 %}
                         {% endblock %}
-                    </div>
+                    </section>
                 </div>
 
-                <div class="glass-panel p-8 flex-1 flex flex-col justify-center items-center text-center group">
-                    <div class="hover-fill-transition bg-bamboo-500/10"></div>
-
-                    <div class="relative z-10">
+                <div class="glass-panel p-8 flex-1 flex justify-center items-center text-center group hover-fill-bamboo">
+                    <!-- Render content above the fill effect -->
+                    <section class="relative z-10">
                         {% block action_card %}
                         {% endblock %}
-                    </div>
+                    </section>
                 </div>
+            </aside>
 
-            </div>
         </div>
 
         <!-- Extended Content -->
-        <div class="relative z-10 mt-16">
+        <div class="relative z-10">
             {% block extended_content %}
             {% endblock %}
         </div>

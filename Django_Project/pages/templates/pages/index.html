@@ -16,7 +16,7 @@
                 <p class="text-xl md:text-2xl text-earth-100 mb-8 font-light">
                     Decentralized procurement for a sustainable planet. We empower councils to build with nature.
                 </p>
-                <a href="{% url 'supply_chain:projects' %}" class="action-button shadow-lg shadow-bamboo-900/50">
+                <a href="{% url 'supply_chain:projects' %}" class="btn btn-primary btn-xl">
                     View Opportunities
                 </a>
             </div>
@@ -60,10 +60,10 @@
             <div class="text-center">
                 <h2 class="text-4xl md:text-6xl font-bold mb-8 text-earth-200">Join the Revolution</h2>
                 <div class="flex flex-col md:flex-row gap-6 justify-center">
-                    <a href="#" class="action-button outline-button-variant">
+                    <a href="#" class="btn btn-outline btn-md w-full">
                         For Councils
                     </a>
-                    <a href="{% url 'supply_chain:projects' %}" class="action-button rounded-lg">
+                    <a href="{% url 'supply_chain:projects' %}" class="btn btn-primary btn-md w-full">
                         Browse Tenders
                     </a>
                 </div>
@@ -72,7 +72,7 @@
 
         <!-- Extra Classes on the footer for transparency -->
         {% block footer_layout %}
-            <!-- Sticky Footer for Home Page -->
+            <!-- Wrapping Footer for Home Page to make it stick -->
             <div class="fixed bottom-0 w-full z-50">
                 {% include "components/footer.html" with extra_classes="bg-stone-900/60 backdrop-blur-md border-t border-white/10" %}
             </div>

@@ -44,23 +44,47 @@
         @apply group-hover:bg-earth-800/30 group-hover:border-bamboo-400/30;
     }
 
-    .hover-fill-transition {
-        @apply absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500;
+    /* Hover effect applies to the parent.
+       It automatically creates the child layer using CSS.
+    */
+    .hover-fill-bamboo {
+        @apply relative overflow-hidden;
+        /* Essential for containing the fill */
     }
 
-    .action-button {
-        @apply inline-block bg-bamboo-600 hover:bg-bamboo-500 text-white font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 cursor-pointer;
+    .hover-fill-bamboo::before {
+        content: "";
+        @apply absolute inset-0 bg-bamboo-500/10;
+        @apply transform scale-x-0 transition-transform origin-left duration-500 ease-out;
+        z-index: 0; /* sits behind content */
     }
 
-    .action-button-fill-variant {
-        @apply w-full rounded-lg shadow-lg shadow-bamboo-900/50 py-3 text-sm
+    /* Trigger the fill when the parent is hovered */
+    .hover-fill-bamboo:hover::before {
+        @apply scale-x-100;
     }
 
-    .outline-button-variant {
-        @apply bg-transparent border-2 border-bamboo-400 text-bamboo-400 rounded-lg hover:bg-bamboo-400 hover:text-stone-900
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 font-bold transition-all transform hover:scale-105 cursor-pointer text-center;
     }
 
-    .title-large{
+    .btn-primary {
+        @apply bg-bamboo-600 hover:bg-bamboo-500 text-white shadow-lg;
+    }
+
+    .btn-outline {
+        @apply bg-transparent border-2 border-bamboo-400 text-bamboo-400 hover:bg-bamboo-400 hover:text-stone-900;
+    }
+
+    .btn-xl {
+        @apply py-4 px-8 rounded-full text-base;
+    }
+
+    .btn-md {
+        @apply py-3 px-6 rounded-lg text-sm;
+    }
+
+    .title-large {
         @apply text-4xl md:text-5xl font-bold text-earth-200 mb-4
     }
 

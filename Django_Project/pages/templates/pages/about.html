@@ -170,23 +170,45 @@
                     Geo-Engineering for Good.
                 </h2>
 
-                <p class="text-md md:text-xl text-earth-300 mb-12 max-w-2xl mx-auto">
-                    Our next-generation <strong>Solar Mycelium Trees</strong> combine photovoltaic leaves with a
-                    mycelium-based trunk
-                    that captures airborne carbon and locks it into biodegradable structural fibres. These living
-                    installations generate power by day and continue carbon fixation through microbial respiration at
-                    night, evolving into a networked forest of urban climate infrastructure.
-                </p>
+                <figure class="max-w-4xl mx-auto my-12">
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
-                    <a href="{% url 'supply_chain:projects' %}"
-                       class="action-button rounded-lg w-full h-full flex items-center justify-center text-center">
-                        View Active Tenders
+                    <blockquote
+                            class="text-lg md:text-2xl text-earth-200 text-center relative z-10">
+                        <p>
+                            "Our next-generation Solar Mycelium Trees combine photovoltaic leaves with a mycelium-based
+                            trunk that captures airborne carbon and locks it into biodegradable structural fibres. These
+                            living installations generate power by day and continue carbon fixation through microbial
+                            respiration at night."
+                        </p>
+                    </blockquote>
+
+                    <figcaption class="mt-6 flex items-center justify-center gap-2 md:gap-4">
+
+                        <div class="w-10 h-10 rounded-full bg-bamboo-500/20 flex items-center justify-center text-bamboo-400">
+                            {% include "components/svg_components/research_icon.html" %}
+                        </div>
+
+                        <div class="text-left">
+                            <div class="text-earth-50 font-bold">Dr. Aris Thorne</div>
+
+                            <div class="text-sm text-bamboo-400">
+                                <cite>The Regenerative City Whitepaper (2030)</cite>
+                            </div>
+                        </div>
+
+                    </figcaption>
+
+                </figure>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mx-auto w-3/4">
+                    <a href="#"
+                       class="btn btn-outline btn-md">
+                        2040 Roadmap
                     </a>
 
-                    <a href="#"
-                       class="action-button outline-button-variant rounded-lg w-full h-full flex items-center justify-center text-center">
-                        2040
+                    <a href="{% url 'supply_chain:projects' %}"
+                       class="btn btn-primary btn-md">
+                        View Active Tenders
                     </a>
                 </div>
             </div>
@@ -194,7 +216,7 @@
 
     </div>
 
-    <!-- Override Footer to make sticky -->
+    <!-- Wrapping Footer to make sticky -->
     {% block footer_layout %}
         <div class="fixed bottom-0 w-full z-50">
             {% include "components/footer.html" with extra_classes="bg-stone-900/60 backdrop-blur-md border-t border-white/10" %}

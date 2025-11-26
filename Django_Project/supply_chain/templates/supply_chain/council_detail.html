@@ -1,20 +1,29 @@
 {% extends 'layouts/detail_layout.html' %}
 
+
 <!-- Hero Detail Card -->
 {% block breadcrumb_parent %}
     <a href="{% url 'supply_chain:councils' %}" class="hover:text-bamboo-400 transition-colors">Councils</a>
 {% endblock %}
 
+
 {% block item_title %}
-    <p>Leeds City Council</p>
+    Leeds City Council
 {% endblock %}
 
-{% block item_description %}
-    <p class="text-xl font-medium text-earth-100">Registered Local Authority Partner.</p>
-    <p class="text-earth-400 text-base mt-2">
-        Dedicated to sustainable infrastructure development and transparent procurement processes.
+
+{% block item_description %} <!-- Future model extension to include sustainability policy and region -->
+    <p class="text-xl font-medium text-earth-100 flex items-center gap-2">
+        {% include 'components/svg_components/location_icon.html' %}
+        West Yorkshire
+    </p>
+
+    <p class="text-earth-400 text-base mt-3 leading-relaxed border-l-2 border-bamboo-500/30 pl-4">
+        "Climate Emergency 2035 Strategy: Mandating a circular construction economy with a requirement for 100%
+        renewable energy on sites."
     </p>
 {% endblock %}
+
 
 {% block hero_footer %}
     <div>
@@ -49,6 +58,7 @@
     </div>
 {% endblock %}
 
+
 {% block sidebar_card_2 %}
     <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-3">Active Tenders</h3>
     <div class="flex items-baseline gap-2">
@@ -57,26 +67,25 @@
     </div>
 {% endblock %}
 
+
 {% block action_card %}
     <h3 class="text-lg font-bold text-white mb-1">Have Questions?</h3>
     <p class="text-sm text-earth-400 mb-4">Contact the procurement team directly.</p>
 
     <a href="mailto:leedscouncil@proton.gov"
-       class="action-button w-3/4 mx-auto flex items-center justify-between align-middle">
+       class="btn btn-primary btn-xl">
         {% include "components/email_icon.html" %}
         Email Council
     </a>
-
 {% endblock %}
 
 
 <!-- Extended Content -->
 {% block extended_content %}
-    <div class="max-w-6xl mx-auto px-4 sm:px-8 mt-12 pb-8">
-
+    <section aria-labelledby="opportunities-heading" class="max-w-6xl mx-auto px-4 sm:px-8 pb-8 mt-16">
         <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">
             <h2 class="text-1xl md:text-2xl font-bold text-earth-50">Open Opportunities</h2>
-            <span class="text-sm text-earth-500 text-right">Displaying all active tenders</span>
+            <p class="text-sm text-earth-500 text-right">Displaying all active tenders</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -94,6 +103,5 @@
 
             {% endfor %}
         </div>
-
-    </div>
+    </section>
 {% endblock %}
