@@ -4,6 +4,6 @@
     "tailwindcss": "^4.1.17"
   },
   "scripts": {
-    "watch:css": "npx @tailwindcss/cli -i ./Django_Project/theme/static/src/styles.css -o Django_Project/theme/static/css/dist/style.css --watch"
+    "watch:css": "npx @tailwindcss/cli -i ./Django_Project/theme/static/src/styles.css -o Django_Project/theme/static/dist/css/styles.css --watch"
   }
 }

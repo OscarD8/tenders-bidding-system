@@ -2,11 +2,12 @@
 
 <div class="absolute inset-0 z-0">
     <img
-            src="{{ image_url }}"
+            src="{% if static_path %}{% static static_path %}{% else %}{{ image_url }}{% endif %}"
             sizes="100vw"
-            alt="City skyline at dusk"
+            alt="{{ alt_text|default:'Background image' }}"
             loading="lazy"
             class="w-full h-full object-cover opacity-40 grayscale"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-stone-900 via-earth-900/50 to-stone-900"></div>
+
 </div>
