@@ -56,6 +56,57 @@
         </div>
     </div>
 
+    <!-- Card for AI Prompt 26-11-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        I have an issue with the way that a specific cards hover effect is not matching the exact shape of the card
+                    itself, it overflows from the rounded corners. The effect is being applied to a div and then the actual card
+                    has reduced opacity, overlaying the hover effect. Is a separate div purely for the effect clean code... is there
+                    a way to tie the hover effect to the card so any adjustments to the card shape do not require adjustments to the
+                    effect as well?
+                    </span>
+            </p>
+            <p>Date: 26-25-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    Copilot adjusted the code to isolate out the hover effects to the style.css, changing the system so that a
+                    div for styling is not used. Instead the hover effect is applied to the card itself and the cards contents
+                    are called in a nested div with a z-index to display over the effect. It split the hover functionality out into
+                     three separate tools. One to get the shape of the parent, with overflow-hidden it ignores anything outside of
+                    its parent context. It then uses two pseudo-elements on that initial rule to implement the hover logic from a
+                    before state.
+
+                    <pre>
+    /* Hover effect applies to the parent.
+       It automatically creates the child layer using CSS.
+    */
+    .hover-fill-bamboo {
+        @apply relative overflow-hidden;
+        /* Essential for containing the fill */
+    }
+
+    .hover-fill-bamboo::before {
+        content: "";
+        @apply absolute inset-0 bg-bamboo-500/10;
+        @apply transform scale-x-0 transition-transform origin-left duration-500 ease-out;
+        z-index: 0; /* sits behind content */
+    }
+
+    /* Trigger the fill when the parent is hovered */
+    .hover-fill-bamboo:hover::before {
+        @apply scale-x-100;
+    }
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
     <!-- Card for AI Prompt 26-11-25-->
 
     <div class="card">
