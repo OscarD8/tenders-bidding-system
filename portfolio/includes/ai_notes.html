@@ -1,67 +1,240 @@
 <section id="ai">
-		<h1 class="page-title">Summary and Reflection on Artificial Intelligence (AI) Usage</h1>
-        <p class="top_message">
-				<span class="answer_required">Please edit the HTML documents directly with your answers - making use of correct HTML markup</span>
-		</p>
+    <h1 class="page-title">Summary and Reflection on Artificial Intelligence (AI) Usage</h1>
+    <p class="top_message">
+        <span class="answer_required">Please edit the HTML documents directly with your answers - making use of correct HTML markup</span>
+    </p>
 
-        <p>
+    <p>
             <span class="answer_required">Please provide a list of the AI prompts used to assist
                 in the creation of this portfolio, along with a brief reflection on how the AI response
                 helped (or not) your understanding. If you did not use AI, please state "No AI used".
             </span>
-        </p>
-        <p>
+    </p>
+    <p>
             <span class="answer_required">Please note that the list does not need to
                 include every minor prompt, but should cover the main prompts that 
                 significantly influenced and assisted you in your portfolio.
             </span>
-        </p>
+    </p>
 
-        <p>
+    <p>
             <span class="answer_required">Please create a new card for each prompt
                 used, detailing the prompt, a summary of the AI's response, and your 
                 reflection on its usefulness. Please also include the date when the prompt
                 was made.
             </span>
-        </p>
+    </p>
 
-        <p>
+    <p>
             <span class="answer_required">Please commit regularly to GIT - 
                 so that the date can be verified. While the exact date of the commit
                 may not match the date of the prompt, it should be close enough to
                 provide a reasonable estimate of when the prompt was made. 
                 </span>
-        </p>
-        <p>
+    </p>
+    <p>
             <span class="answer_required">Completing this 
                 page at the end will not be acceptable.
             </span>
-        </p>
+    </p>
 
-<!-- Card for Blank AI Prompt -->
+    <!-- Card for Blank AI Prompt -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         Please write your prompt here
                     </span>
-                </p>
-                <p>Date: ??-??-????</p>
-            </div>
-            <div class="card-body">
-                <p>
-                    <span class="answer_required">Please write your answer here</span>
-                </p>
-            </div>
+            </p>
+            <p>Date: ??-??-????</p>
         </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">Please write your answer here</span>
+            </p>
+        </div>
+    </div>
 
-<!-- Card for AI Prompt 25-11-25-->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <!-- Card for AI Prompt 26-11-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        See the following model for a council, and the list_layout.html template with the usage by all_projects_list.
+                    Create me the all_councils_list.html semantically using the template and following DRY principles.
+                    This is the design stage so ensure that the following three models are hard coded into a list item card. Be sure to reuse my global styling components also attached. There should not be a filter section as this is not needed for council lists.
+                     It must basically replicate my all_projects_list but adapting for the council model.
+                    </span>
+            </p>
+            <p>Date: 26-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    The page layout used the template correctly. Its usage of the filter section for a generic card was pointless, and made me realise my reusable
+                    template was broken in how it always expected a filter section (changed this). I ended up putting a filter section in anyway... For the list items
+                    it used the same class setup for my project_list, ensuring list item templates were visually identical. I removed its component
+                    for the use of a city icon with a background (looked bad), and shifted to including the amount of active tenders. Various adjustments for a clean
+                     mobile experience. Have simplified the form for now as I don't know how this works currently. Forms need work.
+
+                    <pre>
+{% extends &#x27;layouts/list_layout.html&#x27; %}
+
+{% block page_header %}
+    &lt;div class=&quot;flex flex-col md:flex-row justify-between items-end&quot;&gt;
+        &lt;div class=&quot;max-w-2xl&quot;&gt;
+            &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-earth-200 mb-4&quot;&gt;
+                Partner &lt;span class=&quot;text-bamboo-400&quot;&gt;Councils&lt;/span&gt;
+            &lt;/h1&gt;
+            &lt;p class=&quot;text-earth-300 text-lg leading-relaxed&quot;&gt;
+                Our network of local authorities committed to sustainable, transparent, and regenerative infrastructure.
+            &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;flex gap-2 mt-4 md:mt-0&quot;&gt;
+            &lt;span class=&quot;px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium&quot;&gt;
+                3 Partners
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+{% endblock %}
+
+{% block filters %}
+    &lt;div class=&quot;text-earth-400 text-sm leading-relaxed&quot;&gt;
+        &lt;p class=&quot;mb-4&quot;&gt;
+            These councils have been verified for their commitment to the &lt;strong&gt;Bamboo Standard&lt;/strong&gt;.
+        &lt;/p&gt;
+        &lt;p&gt;
+            View their individual profiles to see active tenders and sustainability metrics.
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;style&gt;
+        /* Local override to hide the form submit button for this specific page */
+        aside button[type=&quot;submit&quot;], aside a[href=&quot;.&quot;] { display: none; }
+    &lt;/style&gt;
+{% endblock %}
+
+{% block list_items %}
+
+    &lt;a href=&quot;#&quot; class=&quot;group block h-full&quot;&gt;
+        &lt;div class=&quot;glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between&quot;&gt;
+
+            &lt;div class=&quot;flex items-start justify-between mb-6&quot;&gt;
+                &lt;div class=&quot;w-12 h-12 rounded-xl bg-earth-800 border border-earth-50/10 flex items-center justify-center text-bamboo-400&quot;&gt;
+                    {% include &quot;components/city_icon.html&quot; %}
+                &lt;/div&gt;
+                &lt;span class=&quot;inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20&quot;&gt;Verified&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div&gt;
+                &lt;h3 class=&quot;text-2xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors&quot;&gt;
+                    Poppleton Council
+                &lt;/h3&gt;
+
+                &lt;div class=&quot;space-y-2 mb-6&quot;&gt;
+                    &lt;p class=&quot;text-earth-300 text-sm flex items-center gap-2&quot;&gt;
+                        &lt;span class=&quot;text-earth-500 text-xs uppercase tracking-wide w-16&quot;&gt;Contact&lt;/span&gt;
+                        &lt;span class=&quot;text-earth-200&quot;&gt;Bob Builder&lt;/span&gt;
+                    &lt;/p&gt;
+                    &lt;p class=&quot;text-earth-300 text-sm flex items-center gap-2&quot;&gt;
+                        &lt;span class=&quot;text-earth-500 text-xs uppercase tracking-wide w-16&quot;&gt;Email&lt;/span&gt;
+                        &lt;span class=&quot;text-earth-200 truncate&quot;&gt;bob@poppleton.gov.uk&lt;/span&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;pt-6 border-t border-earth-50/10 flex items-center justify-between&quot;&gt;
+                &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold tracking-wider&quot;&gt;View Profile&lt;/span&gt;
+                {% include &quot;components/circular_button.html&quot; %}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+
+    &lt;a href=&quot;#&quot; class=&quot;group block h-full&quot;&gt;
+        &lt;div class=&quot;glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between&quot;&gt;
+
+            &lt;div class=&quot;flex items-start justify-between mb-6&quot;&gt;
+                &lt;div class=&quot;w-12 h-12 rounded-xl bg-earth-800 border border-earth-50/10 flex items-center justify-center text-bamboo-400&quot;&gt;
+                    {% include &quot;components/city_icon.html&quot; %}
+                &lt;/div&gt;
+                &lt;span class=&quot;inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20&quot;&gt;Verified&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div&gt;
+                &lt;h3 class=&quot;text-2xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors&quot;&gt;
+                    Huddersfield Council
+                &lt;/h3&gt;
+
+                &lt;div class=&quot;space-y-2 mb-6&quot;&gt;
+                    &lt;p class=&quot;text-earth-300 text-sm flex items-center gap-2&quot;&gt;
+                        &lt;span class=&quot;text-earth-500 text-xs uppercase tracking-wide w-16&quot;&gt;Contact&lt;/span&gt;
+                        &lt;span class=&quot;text-earth-200&quot;&gt;Derek Digger&lt;/span&gt;
+                    &lt;/p&gt;
+                    &lt;p class=&quot;text-earth-300 text-sm flex items-center gap-2&quot;&gt;
+                        &lt;span class=&quot;text-earth-500 text-xs uppercase tracking-wide w-16&quot;&gt;Email&lt;/span&gt;
+                        &lt;span class=&quot;text-earth-200 truncate&quot;&gt;d.digger@huddersfield.gov.uk&lt;/span&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;pt-6 border-t border-earth-50/10 flex items-center justify-between&quot;&gt;
+                &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold tracking-wider&quot;&gt;View Profile&lt;/span&gt;
+                {% include &quot;components/circular_button.html&quot; %}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+
+    &lt;a href=&quot;#&quot; class=&quot;group block h-full&quot;&gt;
+        &lt;div class=&quot;glass-panel hover-lift hover-glow-bamboo h-full p-8 flex flex-col justify-between&quot;&gt;
+
+            &lt;div class=&quot;flex items-start justify-between mb-6&quot;&gt;
+                &lt;div class=&quot;w-12 h-12 rounded-xl bg-earth-800 border border-earth-50/10 flex items-center justify-center text-bamboo-400&quot;&gt;
+                    {% include &quot;components/city_icon.html&quot; %}
+                &lt;/div&gt;
+                &lt;span class=&quot;inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20&quot;&gt;Verified&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div&gt;
+                &lt;h3 class=&quot;text-2xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors&quot;&gt;
+                    Manchester Council
+                &lt;/h3&gt;
+
+                &lt;div class=&quot;space-y-2 mb-6&quot;&gt;
+                    &lt;p class=&quot;text-earth-300 text-sm flex items-center gap-2&quot;&gt;
+                        &lt;span class=&quot;text-earth-500 text-xs uppercase tracking-wide w-16&quot;&gt;Contact&lt;/span&gt;
+                        &lt;span class=&quot;text-earth-200&quot;&gt;Sarah Surveyor&lt;/span&gt;
+                    &lt;/p&gt;
+                    &lt;p class=&quot;text-earth-300 text-sm flex items-center gap-2&quot;&gt;
+                        &lt;span class=&quot;text-earth-500 text-xs uppercase tracking-wide w-16&quot;&gt;Email&lt;/span&gt;
+                        &lt;span class=&quot;text-earth-200 truncate&quot;&gt;sarah.s@manchester.gov.uk&lt;/span&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;pt-6 border-t border-earth-50/10 flex items-center justify-between&quot;&gt;
+                &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold tracking-wider&quot;&gt;View Profile&lt;/span&gt;
+                {% include &quot;components/circular_button.html&quot; %}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+
+{% endblock %}
+
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Card for AI Prompt 25-11-25-->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
  In context of the brand theme and static components, create me the about screen which will go in pages/templates/pages. I currently have no layout template specifically for this, but it should extend base.html. It will be a static page making up information about how the green tender system came to be, the mission statement, and the goals for the future. One card should be focusing on their metrics for the impact BambooTenders has had and the way they monitor this. You can get experimental here considering modern research into sustainability practices, including mycelium instead of plastic, any geoengineering approaches for renewable energy sources that currently haven't been implemented (things like surface albedo enhancement etc... get creative). The layout should be adaptive across mobile and desktop, implementing the snap section classes for each distinct section.
 
 
@@ -73,11 +246,11 @@ Create me this about.html template following DRY principles and clean code pract
 
 Here is my global style.css and my base.html:
                     </span>
-                </p>
-                <p>Date: 25-11-2025</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 25-11-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         Gemini generated the section for a mission statement, certain metrics, how they monitor, and an additional unrequested section for a roadmap (great idea) -
                         all correctly applying the snap classes for the different sections.
@@ -90,185 +263,239 @@ Here is my global style.css and my base.html:
 {% extends &#39;base.html&#39; %}
 {% load static %}
 
-{% block title %}Our Mission | Bamboo Tenders{% endblock %}
+                            {% block title %}Our Mission | Bamboo Tenders{% endblock %}
 
-{% block content %}
+                            {% block content %}
 
-&lt;div class=&quot;snap-container bg-earth-900 text-earth-50&quot;&gt;
+                                &lt;div class=&quot;snap-container bg-earth-900 text-earth-50&quot;&gt;
 
-    {% include &quot;components/background_blur.html&quot; %}
+                                {% include &quot;components/background_blur.html&quot; %}
 
-    &lt;section class=&quot;snap-section relative z-10&quot;&gt;
-        &lt;div class=&quot;max-w-6xl mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full&quot;&gt;
+                                &lt;section class=&quot;snap-section relative z-10&quot;&gt;
+                                &lt;div class=&quot;max-w-6xl mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-2
+                                gap-12 items-center h-full&quot;&gt;
 
-            &lt;div class=&quot;space-y-8&quot;&gt;
-                &lt;span class=&quot;text-bamboo-400 font-mono text-sm tracking-widest uppercase&quot;&gt;The Origin&lt;/span&gt;
-                &lt;h1 class=&quot;text-5xl md:text-7xl font-bold leading-tight&quot;&gt;
-                    Rooted in &lt;span class=&quot;text-bamboo-400&quot;&gt;Resilience.&lt;/span&gt;
-                &lt;/h1&gt;
-                &lt;p class=&quot;text-xl text-earth-200 leading-relaxed&quot;&gt;
-                    Bamboo Tenders began as a response to the fragility of centralized supply chains. We realized that true stability comes from decentralization and organic growth.
-                &lt;/p&gt;
-                &lt;p class=&quot;text-lg text-earth-300 leading-relaxed&quot;&gt;
-                    Our mission is to decouple infrastructure development from carbon-heavy legacy systems, prioritizing &lt;strong&gt;mycelium-based composites&lt;/strong&gt; and &lt;strong&gt;regenerative material sourcing&lt;/strong&gt; over steel and concrete.
-                &lt;/p&gt;
-            &lt;/div&gt;
+                                &lt;div class=&quot;space-y-8&quot;&gt;
+                                &lt;span class=&quot;text-bamboo-400 font-mono text-sm tracking-widest uppercase&quot;
+                                &gt;The Origin&lt;/span&gt;
+                                &lt;h1 class=&quot;text-5xl md:text-7xl font-bold leading-tight&quot;&gt;
+                                Rooted in &lt;span class=&quot;text-bamboo-400&quot;&gt;Resilience.&lt;/span&gt;
+                                &lt;/h1&gt;
+                                &lt;p class=&quot;text-xl text-earth-200 leading-relaxed&quot;&gt;
+                                Bamboo Tenders began as a response to the fragility of centralized supply chains. We
+                                realized that true stability comes from decentralization and organic growth.
+                                &lt;/p&gt;
+                                &lt;p class=&quot;text-lg text-earth-300 leading-relaxed&quot;&gt;
+                                Our mission is to decouple infrastructure development from carbon-heavy legacy systems,
+                                prioritizing &lt;strong&gt;mycelium-based composites&lt;/strong&gt; and &lt;strong&gt;
+                                regenerative material sourcing&lt;/strong&gt; over steel and concrete.
+                                &lt;/p&gt;
+                                &lt;/div&gt;
 
-            &lt;div class=&quot;relative flex justify-center items-center&quot;&gt;
-                &lt;div class=&quot;glass-panel p-12 w-full max-w-md aspect-square flex items-center justify-center relative overflow-hidden group&quot;&gt;
-                    &lt;div class=&quot;absolute inset-0 bg-gradient-to-br from-bamboo-500/10 to-earth-500/10&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;relative flex justify-center items-center&quot;&gt;
+                                &lt;div class=&quot;glass-panel p-12 w-full max-w-md aspect-square flex items-center
+                                justify-center relative overflow-hidden group&quot;&gt;
+                                &lt;div class=&quot;absolute inset-0 bg-gradient-to-br from-bamboo-500/10
+                                to-earth-500/10&quot;&gt;&lt;/div&gt;
 
-                    &lt;svg class=&quot;w-64 h-64 text-bamboo-400 opacity-80&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-                        &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;0.5&quot; d=&quot;M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418&quot;&gt;&lt;/path&gt;
-                    &lt;/svg&gt;
-                    &lt;span class=&quot;absolute bottom-6 text-xs text-earth-400 uppercase tracking-widest&quot;&gt;Bio-Mimicry Architecture&lt;/span&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/section&gt;
+                                &lt;svg class=&quot;w-64 h-64 text-bamboo-400 opacity-80&quot; fill=&quot;none&quot;
+                                stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                                &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;
+                                stroke-width=&quot;0.5&quot; d=&quot;M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004
+                                9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485
+                                0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0
+                                00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686
+                                0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112
+                                16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113
+                                1.157-4.418&quot;&gt;&lt;/path&gt;
+                                &lt;/svg&gt;
+                                &lt;span class=&quot;absolute bottom-6 text-xs text-earth-400 uppercase tracking-widest
+                                &quot;&gt;Bio-Mimicry Architecture&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/section&gt;
 
-    &lt;section class=&quot;snap-section relative z-10&quot;&gt;
-        &lt;div class=&quot;max-w-7xl mx-auto px-4 sm:px-8 w-full&quot;&gt;
-            &lt;div class=&quot;text-center mb-16&quot;&gt;
-                &lt;h2 class=&quot;text-4xl font-bold text-earth-50&quot;&gt;Measured Impact&lt;/h2&gt;
-                &lt;p class=&quot;text-earth-400 mt-4&quot;&gt;Quantifying the shift from industrial to ecological procurement.&lt;/p&gt;
-            &lt;/div&gt;
+                                &lt;section class=&quot;snap-section relative z-10&quot;&gt;
+                                &lt;div class=&quot;max-w-7xl mx-auto px-4 sm:px-8 w-full&quot;&gt;
+                                &lt;div class=&quot;text-center mb-16&quot;&gt;
+                                &lt;h2 class=&quot;text-4xl font-bold text-earth-50&quot;&gt;Measured Impact&lt;/h2&gt;
+                                &lt;p class=&quot;text-earth-400 mt-4&quot;&gt;Quantifying the shift from industrial to
+                                ecological procurement.&lt;/p&gt;
+                                &lt;/div&gt;
 
-            &lt;div class=&quot;grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[500px]&quot;&gt;
+                                &lt;div class=&quot;grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[500px]&quot;&gt;
 
-                &lt;div class=&quot;glass-panel p-8 flex flex-col justify-between md:col-span-1 hover-lift group&quot;&gt;
-                    &lt;div&gt;
-                        &lt;div class=&quot;w-12 h-12 rounded-full bg-bamboo-900/50 flex items-center justify-center text-bamboo-400 mb-6&quot;&gt;
-                            &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
-                        &lt;/div&gt;
-                        &lt;h3 class=&quot;text-earth-300 text-sm uppercase tracking-wider&quot;&gt;Carbon Sequestration&lt;/h3&gt;
-                        &lt;p class=&quot;text-5xl font-mono text-white mt-2&quot;&gt;4.2&lt;span class=&quot;text-lg text-earth-500 ml-1&quot;&gt;Mt&lt;/span&gt;&lt;/p&gt;
-                    &lt;/div&gt;
-                    &lt;p class=&quot;text-sm text-earth-400 mt-4&quot;&gt;
-                        Equivalent CO2 removed via verified albedo-enhancement projects in urban heat islands.
-                    &lt;/p&gt;
-                    &lt;div class=&quot;h-1 w-full bg-earth-800 mt-6 rounded-full overflow-hidden&quot;&gt;
-                        &lt;div class=&quot;h-full bg-bamboo-500 w-[85%] group-hover:w-[90%] transition-all duration-1000&quot;&gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
+                                &lt;div class=&quot;glass-panel p-8 flex flex-col justify-between md:col-span-1
+                                hover-lift group&quot;&gt;
+                                &lt;div&gt;
+                                &lt;div class=&quot;w-12 h-12 rounded-full bg-bamboo-900/50 flex items-center
+                                justify-center text-bamboo-400 mb-6&quot;&gt;
+                                &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot;
+                                viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot;
+                                stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M3.055 11H5a2 2 0
+                                012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2
+                                0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118
+                                0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                                &lt;/div&gt;
+                                &lt;h3 class=&quot;text-earth-300 text-sm uppercase tracking-wider&quot;&gt;Carbon
+                                Sequestration&lt;/h3&gt;
+                                &lt;p class=&quot;text-5xl font-mono text-white mt-2&quot;&gt;4.2&lt;span class=&quot;
+                                text-lg text-earth-500 ml-1&quot;&gt;Mt&lt;/span&gt;&lt;/p&gt;
+                                &lt;/div&gt;
+                                &lt;p class=&quot;text-sm text-earth-400 mt-4&quot;&gt;
+                                Equivalent CO2 removed via verified albedo-enhancement projects in urban heat islands.
+                                &lt;/p&gt;
+                                &lt;div class=&quot;h-1 w-full bg-earth-800 mt-6 rounded-full overflow-hidden&quot;&gt;
+                                &lt;div class=&quot;h-full bg-bamboo-500 w-[85%] group-hover:w-[90%] transition-all
+                                duration-1000&quot;&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-                &lt;div class=&quot;glass-panel p-8 md:col-span-2 flex flex-col md:flex-row items-center gap-8 hover-lift&quot;&gt;
-                    &lt;div class=&quot;flex-1&quot;&gt;
-                        &lt;h3 class=&quot;text-3xl font-bold text-white mb-4&quot;&gt;Material Transition Index&lt;/h3&gt;
-                        &lt;p class=&quot;text-earth-200 mb-6&quot;&gt;
-                            We track the percentage of raw materials sourced from bio-based alternatives.
-                            Our network has successfully replaced traditional insulation with &lt;strong&gt;mycelium composites&lt;/strong&gt; across 12 major council retrofits.
-                        &lt;/p&gt;
+                                &lt;div class=&quot;glass-panel p-8 md:col-span-2 flex flex-col md:flex-row items-center
+                                gap-8 hover-lift&quot;&gt;
+                                &lt;div class=&quot;flex-1&quot;&gt;
+                                &lt;h3 class=&quot;text-3xl font-bold text-white mb-4&quot;&gt;Material Transition Index
+                                &lt;/h3&gt;
+                                &lt;p class=&quot;text-earth-200 mb-6&quot;&gt;
+                                We track the percentage of raw materials sourced from bio-based alternatives.
+                                Our network has successfully replaced traditional insulation with &lt;strong&gt;mycelium
+                                composites&lt;/strong&gt; across 12 major council retrofits.
+                                &lt;/p&gt;
 
-                        &lt;div class=&quot;grid grid-cols-2 gap-4&quot;&gt;
-                            &lt;div class=&quot;bg-earth-900/50 p-4 rounded-lg border border-earth-50/5&quot;&gt;
+                                &lt;div class=&quot;grid grid-cols-2 gap-4&quot;&gt;
+                                &lt;div class=&quot;bg-earth-900/50 p-4 rounded-lg border border-earth-50/5&quot;&gt;
                                 &lt;span class=&quot;block text-xs text-earth-500&quot;&gt;Concrete Sourced&lt;/span&gt;
                                 &lt;span class=&quot;text-2xl font-mono text-red-400&quot;&gt;-45%&lt;/span&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&quot;bg-earth-900/50 p-4 rounded-lg border border-earth-50/5&quot;&gt;
-                                &lt;span class=&quot;block text-xs text-earth-500&quot;&gt;Bio-Aggregate Sourced&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;bg-earth-900/50 p-4 rounded-lg border border-earth-50/5&quot;&gt;
+                                &lt;span class=&quot;block text-xs text-earth-500&quot;&gt;Bio-Aggregate Sourced&lt;
+                                /span&gt;
                                 &lt;span class=&quot;text-2xl font-mono text-bamboo-400&quot;&gt;+210%&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;div class=&quot;w-full md:w-1/2 h-64 rounded-xl overflow-hidden relative&quot;&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;w-full md:w-1/2 h-64 rounded-xl overflow-hidden relative&quot;&gt;
 
-                        [Image of Mycelium Brick Construction]
+                                [Image of Mycelium Brick Construction]
 
-                        &lt;div class=&quot;absolute inset-0 bg-gradient-to-tr from-earth-800 to-bamboo-900 opacity-80 flex items-center justify-center&quot;&gt;
-                            &lt;svg class=&quot;w-24 h-24 text-white/20&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-                                &lt;path d=&quot;M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-1.61c0-2.33 4.67-3.5 7-3.5s7 1.17 7 3.5V19z&quot;/&gt;
-                            &lt;/svg&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
+                                &lt;div class=&quot;absolute inset-0 bg-gradient-to-tr from-earth-800 to-bamboo-900
+                                opacity-80 flex items-center justify-center&quot;&gt;
+                                &lt;svg class=&quot;w-24 h-24 text-white/20&quot; fill=&quot;currentColor&quot; viewBox=
+                                &quot;0 0 24 24&quot;&gt;
+                                &lt;path d=&quot;M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9
+                                2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12
+                                13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-1.61c0-2.33 4.67-3.5 7-3.5s7 1.17 7 3.5V19z
+                                &quot;/&gt;
+                                &lt;/svg&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/section&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/section&gt;
 
-    &lt;section class=&quot;snap-section relative z-10&quot;&gt;
-        &lt;div class=&quot;max-w-5xl mx-auto px-4 sm:px-8 w-full&quot;&gt;
-            &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-16 items-center&quot;&gt;
+                                &lt;section class=&quot;snap-section relative z-10&quot;&gt;
+                                &lt;div class=&quot;max-w-5xl mx-auto px-4 sm:px-8 w-full&quot;&gt;
+                                &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-16 items-center&quot;&gt;
 
-                &lt;div class=&quot;order-2 md:order-1&quot;&gt;
-                    &lt;div class=&quot;glass-panel aspect-square relative p-8 flex items-center justify-center&quot;&gt;
-                        &lt;div class=&quot;absolute inset-0 flex items-center justify-center&quot;&gt;
-                            &lt;div class=&quot;w-64 h-64 border border-bamboo-500/20 rounded-full animate-ping absolute&quot;&gt;&lt;/div&gt;
-                            &lt;div class=&quot;w-48 h-48 border border-bamboo-500/40 rounded-full&quot;&gt;&lt;/div&gt;
-                            &lt;div class=&quot;w-32 h-32 border border-bamboo-500/60 rounded-full flex items-center justify-center bg-earth-900/80 backdrop-blur&quot;&gt;
-                                &lt;span class=&quot;text-bamboo-400 font-mono text-xs animate-pulse&quot;&gt;LIVE FEED&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
+                                &lt;div class=&quot;order-2 md:order-1&quot;&gt;
+                                &lt;div class=&quot;glass-panel aspect-square relative p-8 flex items-center
+                                justify-center&quot;&gt;
+                                &lt;div class=&quot;absolute inset-0 flex items-center justify-center&quot;&gt;
+                                &lt;div class=&quot;w-64 h-64 border border-bamboo-500/20 rounded-full animate-ping
+                                absolute&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;w-48 h-48 border border-bamboo-500/40 rounded-full&quot;&gt;&lt;/div
+                                &gt;
+                                &lt;div class=&quot;w-32 h-32 border border-bamboo-500/60 rounded-full flex items-center
+                                justify-center bg-earth-900/80 backdrop-blur&quot;&gt;
+                                &lt;span class=&quot;text-bamboo-400 font-mono text-xs animate-pulse&quot;&gt;LIVE FEED
+                                &lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-                &lt;div class=&quot;order-1 md:order-2 space-y-6&quot;&gt;
-                    &lt;h2 class=&quot;text-4xl font-bold text-earth-50&quot;&gt;Atmospheric Monitoring&lt;/h2&gt;
-                    &lt;p class=&quot;text-lg text-earth-300&quot;&gt;
-                        We don&#39;t rely on self-reported data. Bamboo Tenders integrates with &lt;strong&gt;IoT Stratospheric Sensors&lt;/strong&gt; to monitor local albedo changes and heat reflection in real-time.
-                    &lt;/p&gt;
+                                &lt;div class=&quot;order-1 md:order-2 space-y-6&quot;&gt;
+                                &lt;h2 class=&quot;text-4xl font-bold text-earth-50&quot;&gt;Atmospheric Monitoring&lt;
+                                /h2&gt;
+                                &lt;p class=&quot;text-lg text-earth-300&quot;&gt;
+                                We don&#39;t rely on self-reported data. Bamboo Tenders integrates with &lt;strong&gt;
+                                IoT Stratospheric Sensors&lt;/strong&gt; to monitor local albedo changes and heat
+                                reflection in real-time.
+                                &lt;/p&gt;
 
-                    &lt;ul class=&quot;space-y-4 mt-4&quot;&gt;
-                        &lt;li class=&quot;flex items-start gap-3&quot;&gt;
-                            &lt;span class=&quot;mt-1 w-2 h-2 rounded-full bg-bamboo-500&quot;&gt;&lt;/span&gt;
-                            &lt;span class=&quot;text-earth-200&quot;&gt;Direct Albedo Measurement via satellite uplink.&lt;/span&gt;
-                        &lt;/li&gt;
-                        &lt;li class=&quot;flex items-start gap-3&quot;&gt;
-                            &lt;span class=&quot;mt-1 w-2 h-2 rounded-full bg-bamboo-500&quot;&gt;&lt;/span&gt;
-                            &lt;span class=&quot;text-earth-200&quot;&gt;Soil microbiome health tracking for agro-forestry projects.&lt;/span&gt;
-                        &lt;/li&gt;
-                        &lt;li class=&quot;flex items-start gap-3&quot;&gt;
-                            &lt;span class=&quot;mt-1 w-2 h-2 rounded-full bg-bamboo-500&quot;&gt;&lt;/span&gt;
-                            &lt;span class=&quot;text-earth-200&quot;&gt;Supply chain transparency ledger (Blockchain verified).&lt;/span&gt;
-                        &lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/div&gt;
+                                &lt;ul class=&quot;space-y-4 mt-4&quot;&gt;
+                                &lt;li class=&quot;flex items-start gap-3&quot;&gt;
+                                &lt;span class=&quot;mt-1 w-2 h-2 rounded-full bg-bamboo-500&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;text-earth-200&quot;&gt;Direct Albedo Measurement via satellite
+                                uplink.&lt;/span&gt;
+                                &lt;/li&gt;
+                                &lt;li class=&quot;flex items-start gap-3&quot;&gt;
+                                &lt;span class=&quot;mt-1 w-2 h-2 rounded-full bg-bamboo-500&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;text-earth-200&quot;&gt;Soil microbiome health tracking for
+                                agro-forestry projects.&lt;/span&gt;
+                                &lt;/li&gt;
+                                &lt;li class=&quot;flex items-start gap-3&quot;&gt;
+                                &lt;span class=&quot;mt-1 w-2 h-2 rounded-full bg-bamboo-500&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;text-earth-200&quot;&gt;Supply chain transparency ledger
+                                (Blockchain verified).&lt;/span&gt;
+                                &lt;/li&gt;
+                                &lt;/ul&gt;
+                                &lt;/div&gt;
 
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/section&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/section&gt;
 
-    &lt;section class=&quot;snap-section relative z-10&quot;&gt;
-        &lt;div class=&quot;max-w-4xl mx-auto text-center px-4&quot;&gt;
-            &lt;span class=&quot;inline-block py-1 px-3 rounded-full bg-bamboo-500/10 border border-bamboo-500/30 text-bamboo-400 text-xs font-bold uppercase tracking-widest mb-6&quot;&gt;
-                Roadmap 2030
-            &lt;/span&gt;
+                                &lt;section class=&quot;snap-section relative z-10&quot;&gt;
+                                &lt;div class=&quot;max-w-4xl mx-auto text-center px-4&quot;&gt;
+                                &lt;span class=&quot;inline-block py-1 px-3 rounded-full bg-bamboo-500/10 border
+                                border-bamboo-500/30 text-bamboo-400 text-xs font-bold uppercase tracking-widest mb-6
+                                &quot;&gt;
+                                Roadmap 2030
+                                &lt;/span&gt;
 
-            &lt;h2 class=&quot;text-5xl md:text-6xl font-bold text-earth-50 mb-8&quot;&gt;
-                Geo-Engineering for Good.
-            &lt;/h2&gt;
+                                &lt;h2 class=&quot;text-5xl md:text-6xl font-bold text-earth-50 mb-8&quot;&gt;
+                                Geo-Engineering for Good.
+                                &lt;/h2&gt;
 
-            &lt;p class=&quot;text-xl text-earth-300 mb-12 max-w-2xl mx-auto&quot;&gt;
-                Our next phase involves scaling &lt;strong&gt;passive radiative cooling&lt;/strong&gt; surfaces across all council infrastructure, effectively turning city roofs into heat mirrors to combat global warming directly.
-            &lt;/p&gt;
+                                &lt;p class=&quot;text-xl text-earth-300 mb-12 max-w-2xl mx-auto&quot;&gt;
+                                Our next phase involves scaling &lt;strong&gt;passive radiative cooling&lt;/strong&gt;
+                                surfaces across all council infrastructure, effectively turning city roofs into heat
+                                mirrors to combat global warming directly.
+                                &lt;/p&gt;
 
-            &lt;div class=&quot;flex flex-col sm:flex-row justify-center gap-6&quot;&gt;
-                &lt;a href=&quot;{% url &#39;supply_chain:projects&#39; %}&quot; class=&quot;action-button&quot;&gt;
-                    View Active Tenders
-                &lt;/a&gt;
-                &lt;a href=&quot;#&quot; class=&quot;bg-transparent border-2 border-earth-500 text-earth-300 hover:border-earth-300 hover:text-white font-bold py-4 px-8 rounded-full transition-all&quot;&gt;
-                    Read the Whitepaper
-                &lt;/a&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/section&gt;
+                                &lt;div class=&quot;flex flex-col sm:flex-row justify-center gap-6&quot;&gt;
+                                &lt;a href=&quot;{% url &#39;supply_chain:projects&#39; %}&quot; class=&quot;
+                                action-button&quot;&gt;
+                                View Active Tenders
+                                &lt;/a&gt;
+                                &lt;a href=&quot;#&quot; class=&quot;bg-transparent border-2 border-earth-500
+                                text-earth-300 hover:border-earth-300 hover:text-white font-bold py-4 px-8 rounded-full
+                                transition-all&quot;&gt;
+                                Read the Whitepaper
+                                &lt;/a&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/section&gt;
 
-&lt;/div&gt;
-{% endblock %}
+                                &lt;/div&gt;
+                            {% endblock %}
 
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 24-11-25-->
+    <!-- Card for AI Prompt 24-11-25-->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
  I have seen on other sites that councils will have their own detail
 
 page. I have the following model for a council and ideally need to
@@ -285,11 +512,11 @@ note this. Follow HTML best practice and clean code principles.
 Create me the html file for council_detail.html - which is a profile page for an individual council.
                         // pasted context
                     </span>
-                </p>
-                <p>Date: 24-11-2025</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 24-11-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         The generated template was mostly good, I just had to change the way the extra block for the inherited template
                         was working because it was not filling the max width (shifted out of its div into the parent div and changed
@@ -300,128 +527,161 @@ Create me the html file for council_detail.html - which is a profile page for an
                         <pre>
 {% extends &#39;layouts/detail_layout.html&#39; %}
 
-{% block breadcrumb_parent %}
-    &lt;a href=&quot;#&quot; class=&quot;hover:text-bamboo-400 transition-colors&quot;&gt;Councils&lt;/a&gt;
-{% endblock %}
+                            {% block breadcrumb_parent %}
+                                &lt;a href=&quot;#&quot; class=&quot;hover:text-bamboo-400 transition-colors&quot;&gt;
+                                Councils&lt;/a&gt;
+                            {% endblock %}
 
 
-{% block item_title %}
-    {{ council.name }}
-{% endblock %}
+                            {% block item_title %}
+                                {{ council.name }}
+                            {% endblock %}
 
-{% block item_description %}
-    &lt;p class=&quot;text-xl font-medium text-earth-100&quot;&gt;Registered Local Authority Partner.&lt;/p&gt;
-    &lt;p class=&quot;text-earth-400 text-base mt-2&quot;&gt;
-        Dedicated to sustainable infrastructure development and transparent procurement processes.
-    &lt;/p&gt;
-{% endblock %}
+                            {% block item_description %}
+                                &lt;p class=&quot;text-xl font-medium text-earth-100&quot;&gt;Registered Local Authority
+                                Partner.&lt;/p&gt;
+                                &lt;p class=&quot;text-earth-400 text-base mt-2&quot;&gt;
+                                Dedicated to sustainable infrastructure development and transparent procurement
+                                processes.
+                                &lt;/p&gt;
+                            {% endblock %}
 
-{% block hero_footer %}
-    &lt;div&gt;
-        &lt;p class=&quot;text-xs text-earth-500 uppercase tracking-widest mb-1&quot;&gt;Member Since&lt;/p&gt;
-        &lt;p class=&quot;text-earth-200 font-medium&quot;&gt;{{ council.created_at|date:&quot;F Y&quot; }}&lt;/p&gt;
-    &lt;/div&gt;
+                            {% block hero_footer %}
+                                &lt;div&gt;
+                                &lt;p class=&quot;text-xs text-earth-500 uppercase tracking-widest mb-1&quot;&gt;Member
+                                Since&lt;/p&gt;
+                                &lt;p class=&quot;text-earth-200 font-medium&quot;&gt;
+                                {{ council.created_at|date:&quot;F Y&quot; }}&lt;/p&gt;
+                                &lt;/div&gt;
 
-    &lt;div class=&quot;h-8 w-px bg-white/10&quot;&gt;&lt;/div&gt; &lt;div&gt;
-        &lt;p class=&quot;text-xs text-earth-500 uppercase tracking-widest mb-1&quot;&gt;Verification&lt;/p&gt;
-        &lt;div class=&quot;flex items-center gap-2 text-bamboo-400 font-medium&quot;&gt;
-            &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
-            Verified Profile
-        &lt;/div&gt;
-    &lt;/div&gt;
-{% endblock %}
-
-
-{% block sidebar_card_1 %}
-    &lt;h3 class=&quot;text-xs font-bold text-earth-500 uppercase tracking-widest mb-2&quot;&gt;Procurement Lead&lt;/h3&gt;
-    &lt;div class=&quot;flex items-center gap-3&quot;&gt;
-        &lt;div class=&quot;w-10 h-10 rounded-full bg-earth-800 border border-earth-50/10 flex items-center justify-center text-earth-300 font-bold text-sm&quot;&gt;
-            {{ council.name|slice:&quot;:2&quot;|upper }}
-        &lt;/div&gt;
-        &lt;div&gt;
-            &lt;p class=&quot;text-lg font-bold text-earth-50&quot;&gt;{{ council.contact }}&lt;/p&gt;
-            &lt;p class=&quot;text-xs text-earth-400&quot;&gt;Head of Projects&lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-{% endblock %}
-
-{% block sidebar_card_2 %}
-    &lt;h3 class=&quot;text-xs font-bold text-earth-500 uppercase tracking-widest mb-2&quot;&gt;Active Tenders&lt;/h3&gt;
-    &lt;div class=&quot;flex items-baseline gap-2&quot;&gt;
-        &lt;span class=&quot;text-4xl font-mono text-white&quot;&gt;{{ council.project_set.count }}&lt;/span&gt;
-        &lt;span class=&quot;text-sm text-earth-400&quot;&gt;Live Projects&lt;/span&gt;
-    &lt;/div&gt;
-{% endblock %}
-
-{% block action_card %}
-    &lt;h3 class=&quot;text-lg font-bold text-white mb-1&quot;&gt;Have Questions?&lt;/h3&gt;
-    &lt;p class=&quot;text-sm text-earth-400 mb-4&quot;&gt;Contact the procurement team directly.&lt;/p&gt;
-
-    &lt;a href=&quot;mailto:{{ council.contact_email }}&quot; class=&quot;relative z-20 inline-flex items-center gap-2 bg-bamboo-600 hover:bg-bamboo-500 text-white px-6 py-2 rounded-full font-bold transition-colors shadow-lg&quot;&gt;
-        &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
-        Email Council
-    &lt;/a&gt;
-{% endblock %}
+                                &lt;div class=&quot;h-8 w-px bg-white/10&quot;&gt;&lt;/div&gt; &lt;div&gt;
+                                &lt;p class=&quot;text-xs text-earth-500 uppercase tracking-widest mb-1&quot;&gt;
+                                Verification&lt;/p&gt;
+                                &lt;div class=&quot;flex items-center gap-2 text-bamboo-400 font-medium&quot;&gt;
+                                &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot;
+                                viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot;
+                                stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M9 12l2 2 4-4m6 2a9
+                                9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                                Verified Profile
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
 
-{% block extended_content %}
-    &lt;div class=&quot;mt-12&quot;&gt;
-        &lt;div class=&quot;flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4&quot;&gt;
-            &lt;h2 class=&quot;text-2xl font-bold text-earth-50&quot;&gt;Open Opportunities&lt;/h2&gt;
-            &lt;span class=&quot;text-sm text-earth-500&quot;&gt;Displaying all active tenders&lt;/span&gt;
-        &lt;/div&gt;
+                            {% block sidebar_card_1 %}
+                                &lt;h3 class=&quot;text-xs font-bold text-earth-500 uppercase tracking-widest mb-2&quot;
+                                &gt;Procurement Lead&lt;/h3&gt;
+                                &lt;div class=&quot;flex items-center gap-3&quot;&gt;
+                                &lt;div class=&quot;w-10 h-10 rounded-full bg-earth-800 border border-earth-50/10 flex
+                                items-center justify-center text-earth-300 font-bold text-sm&quot;&gt;
+                                {{ council.name|slice:&quot;:2&quot;|upper }}
+                                &lt;/div&gt;
+                                &lt;div&gt;
+                                &lt;p class=&quot;text-lg font-bold text-earth-50&quot;&gt;{{ council.contact }}&lt;/p
+                                &gt;
+                                &lt;p class=&quot;text-xs text-earth-400&quot;&gt;Head of Projects&lt;/p&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
-        &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6&quot;&gt;
-            {% for project in council.project_set.all %}
+                            {% block sidebar_card_2 %}
+                                &lt;h3 class=&quot;text-xs font-bold text-earth-500 uppercase tracking-widest mb-2&quot;
+                                &gt;Active Tenders&lt;/h3&gt;
+                                &lt;div class=&quot;flex items-baseline gap-2&quot;&gt;
+                                &lt;span class=&quot;text-4xl font-mono text-white&quot;&gt;
+                                {{ council.project_set.count }}&lt;/span&gt;
+                                &lt;span class=&quot;text-sm text-earth-400&quot;&gt;Live Projects&lt;/span&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
-                &lt;a href=&quot;{% url &#39;supply_chain:project_detail&#39; project.id %}&quot; class=&quot;glass-panel p-6 hover:bg-white/5 transition-colors group block&quot;&gt;
-                    &lt;div class=&quot;flex justify-between items-start mb-3&quot;&gt;
-                        &lt;span class=&quot;text-xs font-bold text-bamboo-400 border border-bamboo-500/30 px-2 py-1 rounded bg-bamboo-500/10&quot;&gt;Active&lt;/span&gt;
-                        &lt;span class=&quot;text-xs text-earth-500&quot;&gt;{{ project.updated_at|timesince }} ago&lt;/span&gt;
-                    &lt;/div&gt;
+                            {% block action_card %}
+                                &lt;h3 class=&quot;text-lg font-bold text-white mb-1&quot;&gt;Have Questions?&lt;/h3&gt;
+                                &lt;p class=&quot;text-sm text-earth-400 mb-4&quot;&gt;Contact the procurement team
+                                directly.&lt;/p&gt;
 
-                    &lt;h3 class=&quot;text-lg font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-1&quot;&gt;
-                        {{ project.title }}
-                    &lt;/h3&gt;
+                                &lt;a href=&quot;mailto:{{ council.contact_email }}&quot; class=&quot;relative z-20
+                                inline-flex items-center gap-2 bg-bamboo-600 hover:bg-bamboo-500 text-white px-6 py-2
+                                rounded-full font-bold transition-colors shadow-lg&quot;&gt;
+                                &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot;
+                                viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot;
+                                stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M3 8l7.89 5.26a2 2
+                                0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z&quot;
+                                &gt;&lt;/path&gt;&lt;/svg&gt;
+                                Email Council
+                                &lt;/a&gt;
+                            {% endblock %}
 
-                    &lt;div class=&quot;mt-4 pt-4 border-t border-earth-50/10 flex justify-between items-center&quot;&gt;
-                        &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold&quot;&gt;Budget&lt;/span&gt;
-                        &lt;span class=&quot;text-earth-200 font-mono&quot;&gt;£{{ project.budget }}&lt;/span&gt;
-                    &lt;/div&gt;
-                &lt;/a&gt;
 
-            {% empty %}
-                &lt;div class=&quot;col-span-3 py-12 text-center border border-dashed border-earth-50/10 rounded-xl&quot;&gt;
-                    &lt;p class=&quot;text-earth-500 italic&quot;&gt;No active projects listed for this council.&lt;/p&gt;
-                &lt;/div&gt;
-            {% endfor %}
-        &lt;/div&gt;
-    &lt;/div&gt;
-{% endblock %}
+                            {% block extended_content %}
+                                &lt;div class=&quot;mt-12&quot;&gt;
+                                &lt;div class=&quot;flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4
+                                &quot;&gt;
+                                &lt;h2 class=&quot;text-2xl font-bold text-earth-50&quot;&gt;Open Opportunities&lt;/h2
+                                &gt;
+                                &lt;span class=&quot;text-sm text-earth-500&quot;&gt;Displaying all active tenders&lt;
+                                /span&gt;
+                                &lt;/div&gt;
+
+                                &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6&quot;&gt;
+                                {% for project in council.project_set.all %}
+
+                                    &lt;a href=&quot;{% url &#39;supply_chain:project_detail&#39; project.id %}&quot;
+                                    class=&quot;glass-panel p-6 hover:bg-white/5 transition-colors group block&quot;&gt;
+                                    &lt;div class=&quot;flex justify-between items-start mb-3&quot;&gt;
+                                    &lt;span class=&quot;text-xs font-bold text-bamboo-400 border border-bamboo-500/30
+                                    px-2 py-1 rounded bg-bamboo-500/10&quot;&gt;Active&lt;/span&gt;
+                                    &lt;span class=&quot;text-xs text-earth-500&quot;&gt;
+                                    {{ project.updated_at|timesince }} ago&lt;/span&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;h3 class=&quot;text-lg font-bold text-earth-50 mb-2 group-hover:text-bamboo-400
+                                    transition-colors line-clamp-1&quot;&gt;
+                                    {{ project.title }}
+                                    &lt;/h3&gt;
+
+                                    &lt;div class=&quot;mt-4 pt-4 border-t border-earth-50/10 flex justify-between
+                                    items-center&quot;&gt;
+                                    &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold&quot;&gt;Budget&lt;
+                                    /span&gt;
+                                    &lt;span class=&quot;text-earth-200 font-mono&quot;&gt;£{{ project.budget }}&lt;
+                                    /span&gt;
+                                    &lt;/div&gt;
+                                    &lt;/a&gt;
+
+                                {% empty %}
+                                    &lt;div class=&quot;col-span-3 py-12 text-center border border-dashed
+                                    border-earth-50/10 rounded-xl&quot;&gt;
+                                    &lt;p class=&quot;text-earth-500 italic&quot;&gt;No active projects listed for this
+                                    council.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                {% endfor %}
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 24-11-25 -->
+    <!-- Card for AI Prompt 24-11-25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         I have a specific style for 'glass cards' currently defined with a long string of Tailwind utility classes, including hover states and transitions.
 
 I need to ensure I can separate out a 'glass card' which needs to be interacted with versus one that doesn't (static), while keeping the code DRY.
 
 Please explain how to structure this separation and clarify where these definitions should live in the Tailwind hierarchy (utilities vs. components).
                     </span>
-                </p>
-                <p>Date: 24-11-2025</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 24-11-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         The question and answer got me testing the hierarchies of tailwind (which I realise now I left at utilities, which is incorrect).
                         It seems to be utilities is top, components are second, and base is bottom. Gemini also argued that it is clean practice to split
@@ -453,25 +713,25 @@ Please explain how to structure this separation and clarify where these definiti
 }
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 24-11-25 -->
+    <!-- Card for AI Prompt 24-11-25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         I have a specific layout style for project_detail, but I also need to create a council_detail page. I would like a reusable item_detail template to extend from to avoid code duplication.
                         What are the key components of this layout, and how can I optimize this cleanly into a base template that is more generic? I want to keep the card layout consistent but allow flexibility if I need to add extra cards. I have a previously generated template that I like, and a glass-panel styling for cards. It should keep to the idea of a main detail card with aside cards for specific pieces of data.
                         // Provided code for my template and for project_detail, as well as my styles.css.
                     </span>
-                </p>
-                <p>Date: 24-11-2025</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 24-11-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         The response provided an updated item_detail template and project_detail to extend it. I really liked the template it made, it had the hero section as needed, specifically blocking
                         out the footer section of it, and it had a specific action block and extra content block. The only adjustments made were to add comments for readability, and adding an extra
@@ -481,83 +741,99 @@ Please explain how to structure this separation and clarify where these definiti
                         <pre>
 {% extends &#39;base.html&#39; %}
 
-{% block content %}
-&lt;div class=&quot;w-full min-h-screen bg-earth-900 relative pt-24 pb-12 px-4 sm:px-8 flex items-center justify-center&quot;&gt;
+                            {% block content %}
+                                &lt;div class=&quot;w-full min-h-screen bg-earth-900 relative pt-24 pb-12 px-4 sm:px-8
+                                flex items-center justify-center&quot;&gt;
 
-    &lt;div class=&quot;fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0&quot;&gt;
-        &lt;div class=&quot;absolute top-1/4 -left-20 w-96 h-96 bg-bamboo-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;absolute bottom-1/4 -right-20 w-96 h-96 bg-earth-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
+                                &lt;div class=&quot;fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none
+                                z-0&quot;&gt;
+                                &lt;div class=&quot;absolute top-1/4 -left-20 w-96 h-96 bg-bamboo-500/10 rounded-full
+                                blur-3xl&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;absolute bottom-1/4 -right-20 w-96 h-96 bg-earth-500/10 rounded-full
+                                blur-3xl&quot;&gt;&lt;/div&gt;
+                                &lt;/div&gt;
 
-    &lt;div class=&quot;relative z-10 max-w-6xl w-full grid grid-cols-1 lg:grid-cols-3 gap-6&quot;&gt;
+                                &lt;div class=&quot;relative z-10 max-w-6xl w-full grid grid-cols-1 lg:grid-cols-3 gap-6
+                                &quot;&gt;
 
-        &lt;div class=&quot;lg:col-span-2 glass-panel p-8 md:p-12 flex flex-col justify-between min-h-[500px]&quot;&gt;
-            &lt;div&gt;
-                &lt;div class=&quot;flex items-center gap-3 mb-6 text-earth-400 text-sm font-medium&quot;&gt;
-                    &lt;a href=&quot;{% url &#39;pages:index&#39; %}&quot; class=&quot;hover:text-bamboo-400 transition-colors&quot;&gt;Home&lt;/a&gt;
-                    &lt;span class=&quot;opacity-50&quot;&gt;/&lt;/span&gt;
-                    {% block breadcrumb_parent %}
-                        {% endblock %}
-                &lt;/div&gt;
+                                &lt;div class=&quot;lg:col-span-2 glass-panel p-8 md:p-12 flex flex-col justify-between
+                                min-h-[500px]&quot;&gt;
+                                &lt;div&gt;
+                                &lt;div class=&quot;flex items-center gap-3 mb-6 text-earth-400 text-sm font-medium
+                                &quot;&gt;
+                                &lt;a href=&quot;{% url &#39;pages:index&#39; %}&quot; class=&quot;hover:text-bamboo-400
+                                transition-colors&quot;&gt;Home&lt;/a&gt;
+                                &lt;span class=&quot;opacity-50&quot;&gt;/&lt;/span&gt;
+                                {% block breadcrumb_parent %}
+                                {% endblock %}
+                                &lt;/div&gt;
 
-                &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-earth-50 mb-6 leading-tight&quot;&gt;
-                    {% block item_title %}Title{% endblock %}
-                &lt;/h1&gt;
+                                &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-earth-50 mb-6 leading-tight&quot;
+                                &gt;
+                                {% block item_title %}Title{% endblock %}
+                                &lt;/h1&gt;
 
-                &lt;div class=&quot;text-earth-200 text-lg leading-relaxed space-y-4&quot;&gt;
-                    {% block item_description %}Description{% endblock %}
-                &lt;/div&gt;
-            &lt;/div&gt;
+                                &lt;div class=&quot;text-earth-200 text-lg leading-relaxed space-y-4&quot;&gt;
+                                {% block item_description %}Description{% endblock %}
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-            &lt;div class=&quot;mt-8 pt-8 border-t border-earth-50/10 flex items-center gap-6&quot;&gt;
-                {% block hero_footer %}
-                {% endblock %}
-            &lt;/div&gt;
-        &lt;/div&gt;
+                                &lt;div class=&quot;mt-8 pt-8 border-t border-earth-50/10 flex items-center gap-6&quot;
+                                &gt;
+                                {% block hero_footer %}
+                                {% endblock %}
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-        &lt;div class=&quot;flex flex-col gap-6&quot;&gt;
+                                &lt;div class=&quot;flex flex-col gap-6&quot;&gt;
 
-            &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors&quot;&gt;
-                {% block sidebar_card_1 %}
-                {% endblock %}
-            &lt;/div&gt;
+                                &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-start
+                                hover:bg-white/5 transition-colors&quot;&gt;
+                                {% block sidebar_card_1 %}
+                                {% endblock %}
+                                &lt;/div&gt;
 
-            &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-start hover:bg-white/5 transition-colors&quot;&gt;
-                {% block sidebar_card_2 %}
-                {% endblock %}
-            &lt;/div&gt;
+                                &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-start
+                                hover:bg-white/5 transition-colors&quot;&gt;
+                                {% block sidebar_card_2 %}
+                                {% endblock %}
+                                &lt;/div&gt;
 
-            &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-center text-center bg-bamboo-900/20 border-bamboo-500/30 relative overflow-hidden group cursor-pointer&quot;&gt;
-                 &lt;div class=&quot;absolute inset-0 bg-bamboo-500/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;glass-panel p-8 flex-1 flex flex-col justify-center items-center
+                                text-center bg-bamboo-900/20 border-bamboo-500/30 relative overflow-hidden group
+                                cursor-pointer&quot;&gt;
+                                &lt;div class=&quot;absolute inset-0 bg-bamboo-500/10 transform scale-x-0
+                                group-hover:scale-x-100 transition-transform origin-left duration-500&quot;&gt;&lt;/div
+                                &gt;
 
-                &lt;div class=&quot;relative z-10&quot;&gt;
-                    {% block action_card %}
-                        {% endblock %}
-                &lt;/div&gt;
-            &lt;/div&gt;
+                                &lt;div class=&quot;relative z-10&quot;&gt;
+                                {% block action_card %}
+                                {% endblock %}
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-        &lt;/div&gt;
+                                &lt;/div&gt;
 
-        {% block extended_content %}
-        {% endblock %}
+                                {% block extended_content %}
+                                {% endblock %}
 
-    &lt;/div&gt;
-&lt;/div&gt;
-{% endblock %}
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
 
-<!-- Card for AI 23-11-25 -->
+    <!-- Card for AI 23-11-25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                          This is my current setup for the list items template. I want to move away from the horizontal side scroller to a 2 x 2 vertical grid for all
                         list items - keeping the background blur effects, and the intro tag as is, but update the swipe message to scroll (or remove if redundant). I
                         also need a new section for accepting user input and allowing searching, as well as filtering for council and potentially future filters for the
@@ -566,11 +842,11 @@ Please explain how to structure this separation and clarify where these definiti
 
                         // inserted my templates
                     </span>
-                </p>
-                <p>Date: 23-11-2025</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 23-11-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         Gemini came back with an update to each template as required, implementing an adaptive grid system for a list_items block and a
                         a new block for filters as required. It automatically made the page dynamic and not static so I had to update that, and for the filters in all_projects_list.html
@@ -579,169 +855,211 @@ Please explain how to structure this separation and clarify where these definiti
 
                         <pre>
 {% extends &#39;base.html&#39; %}
-{% block content %}
-&lt;div class=&quot;w-full min-h-screen bg-earth-900 relative pt-24 pb-12 px-4 sm:px-8&quot;&gt;
+                            {% block content %}
+                                &lt;div class=&quot;w-full min-h-screen bg-earth-900 relative pt-24 pb-12 px-4 sm:px-8
+                                &quot;&gt;
 
-    &lt;div class=&quot;fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0&quot;&gt;
-        &lt;div class=&quot;absolute top-1/4 -left-20 w-96 h-96 bg-bamboo-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;absolute bottom-1/4 -right-20 w-96 h-96 bg-earth-500/10 rounded-full blur-3xl&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
+                                &lt;div class=&quot;fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none
+                                z-0&quot;&gt;
+                                &lt;div class=&quot;absolute top-1/4 -left-20 w-96 h-96 bg-bamboo-500/10 rounded-full
+                                blur-3xl&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;absolute bottom-1/4 -right-20 w-96 h-96 bg-earth-500/10 rounded-full
+                                blur-3xl&quot;&gt;&lt;/div&gt;
+                                &lt;/div&gt;
 
-    &lt;div class=&quot;relative z-10 max-w-7xl mx-auto&quot;&gt;
+                                &lt;div class=&quot;relative z-10 max-w-7xl mx-auto&quot;&gt;
 
-        &lt;div class=&quot;mb-12 border-b border-earth-50/10 pb-8&quot;&gt;
-            {% block page_header %}
-            {% endblock %}
-        &lt;/div&gt;
+                                &lt;div class=&quot;mb-12 border-b border-earth-50/10 pb-8&quot;&gt;
+                                {% block page_header %}
+                                {% endblock %}
+                                &lt;/div&gt;
 
-        &lt;div class=&quot;flex flex-col lg:flex-row gap-8&quot;&gt;
+                                &lt;div class=&quot;flex flex-col lg:flex-row gap-8&quot;&gt;
 
-            &lt;aside class=&quot;w-full lg:w-1/4 shrink-0&quot;&gt;
-                &lt;div class=&quot;glass-panel p-6 sticky top-28 border-earth-50/10 bg-earth-800/20&quot;&gt;
-                    &lt;h3 class=&quot;text-xs font-bold text-bamboo-400 uppercase tracking-widest mb-6&quot;&gt;Filter Results&lt;/h3&gt;
+                                &lt;aside class=&quot;w-full lg:w-1/4 shrink-0&quot;&gt;
+                                &lt;div class=&quot;glass-panel p-6 sticky top-28 border-earth-50/10 bg-earth-800/20
+                                &quot;&gt;
+                                &lt;h3 class=&quot;text-xs font-bold text-bamboo-400 uppercase tracking-widest mb-6
+                                &quot;&gt;Filter Results&lt;/h3&gt;
 
-                    &lt;form method=&quot;get&quot; class=&quot;space-y-6&quot;&gt;
-                        {% block filters %}
-                        {% endblock %}
+                                &lt;form method=&quot;get&quot; class=&quot;space-y-6&quot;&gt;
+                                {% block filters %}
+                                {% endblock %}
 
-                        &lt;button type=&quot;submit&quot; class=&quot;w-full bg-bamboo-600 hover:bg-bamboo-500 text-earth-50 font-bold py-3 rounded-lg shadow-lg shadow-bamboo-900/50 transition-all transform hover:-translate-y-0.5&quot;&gt;
-                            Update Results
-                        &lt;/button&gt;
+                                &lt;button type=&quot;submit&quot; class=&quot;w-full bg-bamboo-600 hover:bg-bamboo-500
+                                text-earth-50 font-bold py-3 rounded-lg shadow-lg shadow-bamboo-900/50 transition-all
+                                transform hover:-translate-y-0.5&quot;&gt;
+                                Update Results
+                                &lt;/button&gt;
 
-                        &lt;a href=&quot;.&quot; class=&quot;block text-center text-xs text-earth-400 hover:text-earth-200 mt-4 transition-colors&quot;&gt;
-                            Reset Filters
-                        &lt;/a&gt;
-                    &lt;/form&gt;
-                &lt;/div&gt;
-            &lt;/aside&gt;
+                                &lt;a href=&quot;.&quot; class=&quot;block text-center text-xs text-earth-400
+                                hover:text-earth-200 mt-4 transition-colors&quot;&gt;
+                                Reset Filters
+                                &lt;/a&gt;
+                                &lt;/form&gt;
+                                &lt;/div&gt;
+                                &lt;/aside&gt;
 
-            &lt;div class=&quot;w-full lg:w-3/4&quot;&gt;
-                &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
-                    {% block list_items %}
-                    {% endblock %}
-                &lt;/div&gt;
+                                &lt;div class=&quot;w-full lg:w-3/4&quot;&gt;
+                                &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
+                                {% block list_items %}
+                                {% endblock %}
+                                &lt;/div&gt;
 
-                &lt;div class=&quot;mt-12 text-center text-earth-500 text-sm&quot;&gt;
-                    Showing all results
-                &lt;/div&gt;
-            &lt;/div&gt;
+                                &lt;div class=&quot;mt-12 text-center text-earth-500 text-sm&quot;&gt;
+                                Showing all results
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-{% endblock %}
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
-{% extends &#39;layouts/list_layout.html&#39; %}
+                            {% extends &#39;layouts/list_layout.html&#39; %}
 
-{% block page_header %}
-    &lt;div class=&quot;flex flex-col md:flex-row justify-between items-end&quot;&gt;
-        &lt;div class=&quot;max-w-2xl&quot;&gt;
-            &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-earth-50 mb-4&quot;&gt;
-                Open &lt;span class=&quot;text-bamboo-400&quot;&gt;Projects&lt;/span&gt;
-            &lt;/h1&gt;
-            &lt;p class=&quot;text-earth-300 text-lg leading-relaxed&quot;&gt;
-                Explore sustainable tender opportunities from our partner councils.
-                Filter by scope, budget, or authority.
-            &lt;/p&gt;
-        &lt;/div&gt;
+                            {% block page_header %}
+                                &lt;div class=&quot;flex flex-col md:flex-row justify-between items-end&quot;&gt;
+                                &lt;div class=&quot;max-w-2xl&quot;&gt;
+                                &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-earth-50 mb-4&quot;&gt;
+                                Open &lt;span class=&quot;text-bamboo-400&quot;&gt;Projects&lt;/span&gt;
+                                &lt;/h1&gt;
+                                &lt;p class=&quot;text-earth-300 text-lg leading-relaxed&quot;&gt;
+                                Explore sustainable tender opportunities from our partner councils.
+                                Filter by scope, budget, or authority.
+                                &lt;/p&gt;
+                                &lt;/div&gt;
 
-        &lt;div class=&quot;flex gap-2 mt-4 md:mt-0&quot;&gt;
-            &lt;span class=&quot;px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium&quot;&gt;
-                {{ projects.count }} Active
-            &lt;/span&gt;
-            &lt;span class=&quot;px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium&quot;&gt;
-                Renewable Focus
-            &lt;/span&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-{% endblock %}
-
-
-{% block filters %}
-    &lt;div&gt;
-        &lt;label for=&quot;q&quot; class=&quot;block text-xs font-bold text-earth-400 uppercase tracking-wider mb-2&quot;&gt;Keywords&lt;/label&gt;
-        &lt;div class=&quot;relative&quot;&gt;
-            &lt;input type=&quot;text&quot; name=&quot;q&quot; id=&quot;q&quot; value=&quot;{{ request.GET.q }}&quot;
-                   placeholder=&quot;Solar, Roof, etc...&quot;
-                   class=&quot;w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4 text-earth-100 placeholder-earth-600 focus:outline-none focus:border-bamboo-500 focus:ring-1 focus:ring-bamboo-500 transition-all&quot;&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div&gt;
-        &lt;label for=&quot;council&quot; class=&quot;block text-xs font-bold text-earth-400 uppercase tracking-wider mb-2&quot;&gt;Council&lt;/label&gt;
-        &lt;div class=&quot;relative&quot;&gt;
-            &lt;select name=&quot;council&quot; id=&quot;council&quot;
-                    class=&quot;w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4 text-earth-100 appearance-none focus:outline-none focus:border-bamboo-500 focus:ring-1 focus:ring-bamboo-500 transition-all cursor-pointer&quot;&gt;
-                &lt;option value=&quot;&quot;&gt;All Authorities&lt;/option&gt;
-                {% for council in councils %}
-                    &lt;option value=&quot;{{ council.id }}&quot; {% if request.GET.council == council.id|stringformat:&quot;s&quot; %}selected{% endif %}&gt;
-                        {{ council.name }}
-                    &lt;/option&gt;
-                {% endfor %}
-            &lt;/select&gt;
-            &lt;div class=&quot;pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-earth-500&quot;&gt;
-                &lt;svg class=&quot;h-4 w-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M19 9l-7 7-7-7&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-{% endblock %}
+                                &lt;div class=&quot;flex gap-2 mt-4 md:mt-0&quot;&gt;
+                                &lt;span class=&quot;px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10
+                                text-bamboo-300 text-xs font-medium&quot;&gt;
+                                {{ projects.count }} Active
+                                &lt;/span&gt;
+                                &lt;span class=&quot;px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10
+                                text-earth-300 text-xs font-medium&quot;&gt;
+                                Renewable Focus
+                                &lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
 
-{% block list_items %}
-    {% for project in projects %}
-        &lt;a href=&quot;{% url &#39;supply_chain:project_detail&#39; project.id %}&quot; class=&quot;group block h-full&quot;&gt;
-            &lt;div class=&quot;glass-panel h-full p-8 flex flex-col justify-between hover:bg-white/5 hover:border-bamboo-400/30 transition-all duration-500 transform group-hover:-translate-y-1&quot;&gt;
+                            {% block filters %}
+                                &lt;div&gt;
+                                &lt;label for=&quot;q&quot; class=&quot;block text-xs font-bold text-earth-400 uppercase
+                                tracking-wider mb-2&quot;&gt;Keywords&lt;/label&gt;
+                                &lt;div class=&quot;relative&quot;&gt;
+                                &lt;input type=&quot;text&quot; name=&quot;q&quot; id=&quot;q&quot; value=&quot;
+                                {{ request.GET.q }}&quot;
+                                placeholder=&quot;Solar, Roof, etc...&quot;
+                                class=&quot;w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4
+                                text-earth-100 placeholder-earth-600 focus:outline-none focus:border-bamboo-500
+                                focus:ring-1 focus:ring-bamboo-500 transition-all&quot;&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
 
-                &lt;div&gt;
-                    &lt;div class=&quot;flex justify-between items-start mb-4&quot;&gt;
-                        &lt;h3 class=&quot;text-xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors line-clamp-2&quot;&gt;
-                            {{ project.title }}
-                        &lt;/h3&gt;
-                    &lt;/div&gt;
+                                &lt;div&gt;
+                                &lt;label for=&quot;council&quot; class=&quot;block text-xs font-bold text-earth-400
+                                uppercase tracking-wider mb-2&quot;&gt;Council&lt;/label&gt;
+                                &lt;div class=&quot;relative&quot;&gt;
+                                &lt;select name=&quot;council&quot; id=&quot;council&quot;
+                                class=&quot;w-full bg-earth-900/50 border border-earth-50/10 rounded-lg py-3 px-4
+                                text-earth-100 appearance-none focus:outline-none focus:border-bamboo-500 focus:ring-1
+                                focus:ring-bamboo-500 transition-all cursor-pointer&quot;&gt;
+                                &lt;option value=&quot;&quot;&gt;All Authorities&lt;/option&gt;
+                                {% for council in councils %}
+                                    &lt;option value=&quot;{{ council.id }}&quot;
+                                    {% if request.GET.council == council.id|stringformat:&quot;s&quot; %}selected
+                                    {% endif %}&gt;
+                                    {{ council.name }}
+                                    &lt;/option&gt;
+                                {% endfor %}
+                                &lt;/select&gt;
+                                &lt;div class=&quot;pointer-events-none absolute inset-y-0 right-0 flex items-center
+                                px-4 text-earth-500&quot;&gt;
+                                &lt;svg class=&quot;h-4 w-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot;
+                                viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot;
+                                stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M19 9l-7 7-7-7
+                                &quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;
+                            {% endblock %}
 
-                    &lt;p class=&quot;text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2&quot;&gt;
-                        &lt;svg class=&quot;w-4 h-4 opacity-70&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
-                        {{ project.council.name }}
-                    &lt;/p&gt;
 
-                    &lt;p class=&quot;text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6&quot;&gt;
-                        {{ project.description }}
-                    &lt;/p&gt;
-                &lt;/div&gt;
+                            {% block list_items %}
+                                {% for project in projects %}
+                                    &lt;a href=&quot;{% url &#39;supply_chain:project_detail&#39; project.id %}&quot;
+                                    class=&quot;group block h-full&quot;&gt;
+                                    &lt;div class=&quot;glass-panel h-full p-8 flex flex-col justify-between
+                                    hover:bg-white/5 hover:border-bamboo-400/30 transition-all duration-500 transform
+                                    group-hover:-translate-y-1&quot;&gt;
 
-                &lt;div class=&quot;pt-6 border-t border-earth-50/10 flex items-center justify-between&quot;&gt;
-                    &lt;div&gt;
-                        &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold tracking-wider&quot;&gt;Est. Budget&lt;/span&gt;
-                        &lt;p class=&quot;text-earth-100 font-mono text-lg&quot;&gt;£{{ project.budget }}&lt;/p&gt;
-                    &lt;/div&gt;
+                                    &lt;div&gt;
+                                    &lt;div class=&quot;flex justify-between items-start mb-4&quot;&gt;
+                                    &lt;h3 class=&quot;text-xl font-bold text-earth-50 group-hover:text-bamboo-400
+                                    transition-colors line-clamp-2&quot;&gt;
+                                    {{ project.title }}
+                                    &lt;/h3&gt;
+                                    &lt;/div&gt;
 
-                    &lt;div class=&quot;w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-bamboo-500 group-hover:text-white transition-all shadow-lg&quot;&gt;
-                        &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-                            &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M14 5l7 7m0 0l-7 7m7-7H3&quot;&gt;&lt;/path&gt;
-                        &lt;/svg&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/a&gt;
-    {% empty %}
-        &lt;div class=&quot;col-span-1 md:col-span-2 glass-panel p-12 text-center border-dashed border-earth-50/20&quot;&gt;
-            &lt;p class=&quot;text-earth-400 text-lg&quot;&gt;No projects found.&lt;/p&gt;
-        &lt;/div&gt;
-    {% endfor %}
-{% endblock %}
+                                    &lt;p class=&quot;text-bamboo-200/80 text-sm mb-4 font-medium flex items-center
+                                    gap-2&quot;&gt;
+                                    &lt;svg class=&quot;w-4 h-4 opacity-70&quot; fill=&quot;none&quot; stroke=&quot;
+                                    currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;
+                                    round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M19
+                                    21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1
+                                    4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4&quot;&gt;&lt;/path&gt;
+                                    &lt;/svg&gt;
+                                    {{ project.council.name }}
+                                    &lt;/p&gt;
+
+                                    &lt;p class=&quot;text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6&quot;&gt;
+                                    {{ project.description }}
+                                    &lt;/p&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class=&quot;pt-6 border-t border-earth-50/10 flex items-center
+                                    justify-between&quot;&gt;
+                                    &lt;div&gt;
+                                    &lt;span class=&quot;text-xs text-earth-500 uppercase font-bold tracking-wider&quot;
+                                    &gt;Est. Budget&lt;/span&gt;
+                                    &lt;p class=&quot;text-earth-100 font-mono text-lg&quot;&gt;£{{ project.budget }}
+                                    &lt;/p&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class=&quot;w-10 h-10 rounded-full bg-white/5 flex items-center
+                                    justify-center group-hover:bg-bamboo-500 group-hover:text-white transition-all
+                                    shadow-lg&quot;&gt;
+                                    &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor
+                                    &quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                                    &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;
+                                    stroke-width=&quot;2&quot; d=&quot;M14 5l7 7m0 0l-7 7m7-7H3&quot;&gt;&lt;/path&gt;
+                                    &lt;/svg&gt;
+                                    &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;/a&gt;
+                                {% empty %}
+                                    &lt;div class=&quot;col-span-1 md:col-span-2 glass-panel p-12 text-center
+                                    border-dashed border-earth-50/20&quot;&gt;
+                                    &lt;p class=&quot;text-earth-400 text-lg&quot;&gt;No projects found.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                {% endfor %}
+                            {% endblock %}
 
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 23/11/25-->
+    <!-- Card for AI Prompt 23/11/25-->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         I think my footer is not displaying because I am using h-screen and overflow-hidden on the body - so the footer gets pushed out of view.
 
     How do I fix this so the footer sits at the bottom naturally but allows scrolling?
@@ -751,11 +1069,11 @@ Please explain how to structure this separation and clarify where these definiti
 
     Also update the content of the footer to match standard transparency details that you might find on a tender platform.
                     </span>
-                </p>
-                <p>Date: 23-11-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 23-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         Gemini provided a more realistic footer, and the explanation of how to setup an HTML component to
                         accept parameters for custom styling worked for me. I was confused at how index.html didn't now have two footers as it extends base which defines a footer block
@@ -797,25 +1115,25 @@ Please explain how to structure this separation and clarify where these definiti
                         </pre>
 
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 23/11/25-->
+    <!-- Card for AI Prompt 23/11/25-->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         Here is my implemented HTML and Tailwind setup for a navigation bar, including a mobile menu that is hidden by default.
                         However, the hamburger icon is currently not functional. Provide the JS to ensure on mobile screens we have an accessible toggle button for the menu.
                         // provided code
                     </span>
-                </p>
-                <p>Date: 23-11-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 23-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         The JS it provided worked, and from here I added comments for my own understanding. I then looked into where this should be placed, and decided to move the navbar out of base.html.
                         I also confirmed with Gemini how best to reference this JS in the base.html. It mentioned about JS being cached, and having it isolated to one place and included but deferred until the document is fully loaded
@@ -836,16 +1154,16 @@ Please explain how to structure this separation and clarify where these definiti
     });
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 22/11/25 -->
+    <!-- Card for AI Prompt 22/11/25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         I am implementing the architecture for a Django tender system. I have some experience with Android development, so am used to Clean Architecture principles (ViewModels, Use Cases, Repositories) to separate the UI, Domain and Data layers.
 
 I want to apply similar patterns to Django to ensure:
@@ -859,11 +1177,11 @@ I want to apply similar patterns to Django to ensure:
 Could you propose a Django directory structure that maps to these Android concepts? Specifically, how do I implement the equivalent of Use Cases (for read vs. write operations) and ViewModels in Django, ensuring best practices and adherence to DRY principles? Please justify the structure with industry-standard Django resources.
 
                     </span>
-                </p>
-                <p>Date: 22-11-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 22-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
         The response linked resources that led me to other resources on how to structure Django apps. It seems to vary and get complex, but the main concepts I took away were
                         to take a domain-driven design, using a service layer pattern for separation of concerns. It will be overkill for this project, but I want to see if the approach
@@ -908,23 +1226,23 @@ To achieve the separation of concerns and modularity found in Android Clean Arch
     Resource: "Django for Professionals" (Will Vincent). Justifies the creation of a pages app to handle static orchestrations (Home/About) separately from the domain-heavy supply_chain logic. Imagine an orchestra with a conductor that points to different sections. It would be confusing if you placed the conductor (home page) in with the Strings section when she suddenly needs to bring in the choir.
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
     <!-- Card for AI Prompt 19/11/25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         Using the context of the following two models for council and projects, create me a starter template for testing a project management systems frontend using tailwind 4. I am using the Django framework, and prioriting DRY principles. The root is 'Django Project', which contains an app for 'supply_chain'. The templates to create using tailwind are as follows: A root template called 'base.html'. It holds a header containing a navbar and company name and logo. And a foot with placeholder navigation links. For these root templates, create a list_layout and a detail_layout. These can be reused depending on the app, for displaying lists of councils or projects for example. The same purpose for the detail templates. For the app layouts - provide me an index.html, the main thing I want to test here is showing company information, and a section for a project list passed through. The project_list page should hold an input section where the user can filter on projects by name and council. As well as showing a list of projects. All app templates should extend from base templates. The core theme is sustainability - therefore use a natural color pallet. The main goals here are to test tailwind, and a basic inheritance system with templates. Tailwind was installed using CLI and outputs to static/dist/styles.css
                     </span>
-                </p>
-                <p>Date: 19-11-2025</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 19-11-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         The response provided the individual templates one by one, using Tailwind CSS, allowing me to confirm that Tailwind was installed and configured correctly. I had to adjust views.py to pass in recent projects to the index.html page - but the purpose of exploring Tailwind and template inheritance was met. I do not plan to keep this exact structure. Templates created were base.html, list_layout.html, detail_layout.html, index.html, project_list.html found on commit 5d52f88. Example:
 <pre>
@@ -933,210 +1251,237 @@ To achieve the separation of concerns and modularity found in Android Clean Arch
 
 &lt;{% block content %}&gt;
 
-    &lt;div class=&quot;min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden selection:bg-lime-400 selection:text-black&quot;&gt;
+    &lt;div class=&quot;min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden selection:bg-lime-400
+    selection:text-black&quot;&gt;
 
-        &lt;div class=&quot;fixed inset-0 z-0 pointer-events-none&quot;&gt;
-            &lt;div class=&quot;absolute top-[40%] left-[-10%] w-[50vw] h-[50vw] bg-lime-600/10 rounded-full blur-[100px] animate-pulse duration-[8s]&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-teal-600/10 rounded-full blur-[120px] animate-pulse duration-[12s]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;fixed inset-0 z-0 pointer-events-none&quot;&gt;
+    &lt;div class=&quot;absolute top-[40%] left-[-10%] w-[50vw] h-[50vw] bg-lime-600/10 rounded-full blur-[100px]
+    animate-pulse duration-[8s]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-teal-600/10 rounded-full blur-[120px]
+    animate-pulse duration-[12s]&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;main class=&quot;relative z-10&quot;&gt;
+
+    &lt;section
+    class=&quot;min-h-screen relative flex flex-col justify-center items-center pt-20 pb-32 px-4 border-b border-white/5
+    &quot;&gt;
+
+    &lt;h1 class=&quot;text-[18vw] leading-[0.75] font-black tracking-tighter text-center uppercase select-none
+    mix-blend-difference text-white z-20 pointer-events-none&quot;&gt;
+    Re—&lt;br&gt;Wild
+    &lt;/h1&gt;
+
+    &lt;figure class=&quot;absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] md:w-[40vw]
+    h-[60vh] z-10 grayscale contrast-125 hover:grayscale-0 transition-all duration-700 ease-in-out group&quot;&gt;
+    &lt;img src=&quot;https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&amp;w=2574&amp;auto=format&amp;
+    fit=crop&quot;
+    alt=&quot;Vertical Forest&quot;
+    class=&quot;w-full h-full object-cover border-4 border-lime-400 shadow-[10px_10px_0px_#84cc16]&quot;&gt;
+
+    &lt;figcaption
+    class=&quot;absolute -bottom-6 -right-6 bg-black text-lime-400 border border-lime-400 px-4 py-2 font-mono text-sm
+    uppercase font-bold&quot;&gt;
+    Projects for Ecological Integration
+    &lt;/figcaption&gt;
+    &lt;/figure&gt;
+
+    &lt;div class=&quot;absolute bottom-10 left-4 md:left-10 writing-mode-vertical text-xs font-mono uppercase
+    tracking-[0.5em] text-lime-400 animate-pulse&quot;&gt;
+    Scroll to in
+    &lt;/div&gt;
+
+    &lt;div class=&quot;absolute top-10 right-4 md:right-10 text-right&quot;&gt;
+    &lt;p class=&quot;text-xs font-mono uppercase tracking-widest mb-1&quot;&gt;System_Status&lt;/p&gt;
+    &lt;div class=&quot;inline-block px-3 py-1 bg-lime-400 text-black font-bold text-xs uppercase&quot;&gt;
+    Optimal
+    &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;/section&gt;
+
+
+    &lt;section class=&quot;relative py-32 px-4 md:px-12&quot;&gt;
+
+    &lt;div class=&quot;absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-lime-400 to-transparent
+    &quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;container mx-auto max-w-7xl&quot;&gt;
+
+    &lt;div class=&quot;grid grid-cols-1 lg:grid-cols-12 gap-16&quot;&gt;
+
+    &lt;div class=&quot;lg:col-span-5 flex flex-col justify-center&quot;&gt;
+    &lt;h2 class=&quot;text-5xl md:text-7xl font-black leading-none mb-8 text-transparent bg-clip-text bg-gradient-to-br
+    from-white to-white/20&quot;&gt;
+    Mandating&lt;br&gt;
+    &lt;span class=&quot;italic font-serif text-lime-400&quot;&gt;Symbiosis.&lt;/span&gt;
+    &lt;/h2&gt;
+    &lt;p class=&quot;text-lg text-slate-400 font-light leading-relaxed border-l-2 border-lime-400/50 pl-6&quot;&gt;
+    We operate as a strict ecological filter for public capital.
+    &lt;strong class=&quot;text-white block mt-2&quot;&gt;This platform exclusively lists tenders that foster biological
+    system integration and
+    sustainability.&lt;/strong&gt;
+    &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
+
+    &lt;div class=&quot;group bg-white/5 hover:bg-white/10 backdrop-blur-2xl border border-white/10 p-10 rounded-[3rem]
+    transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(132,204,22,0.1)]&quot;&gt;
+    &lt;div class=&quot;flex flex-col h-full justify-between&quot;&gt;
+    &lt;div class=&quot;w-12 h-12 rounded-full bg-lime-500/20 flex items-center justify-center text-lime-400 mb-8
+    group-hover:scale-110 transition-transform&quot;&gt;
+    &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24
+    &quot;&gt;
+    &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
+    d=&quot;M13 10V3L4 14h7v7l9-11h-7z&quot;&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+    &lt;span class=&quot;text-6xl font-black text-white block mb-2&quot;&gt;-12%&lt;/span&gt;
+    &lt;span class=&quot;text-xs font-mono uppercase tracking-widest text-lime-400&quot;&gt;Carbon_Efficiency&lt;/span
+    &gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;bg-gradient-to-br from-teal-900/40 to-slate-900/40 backdrop-blur-2xl border border-white/10 p-10
+    rounded-[3rem] transition-all duration-500 hover:-translate-y-2&quot;&gt;
+    &lt;div class=&quot;flex flex-col h-full justify-between&quot;&gt;
+    &lt;div class=&quot;w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 mb-8&quot;
+    &gt;
+    &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24
+    &quot;&gt;
+    &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
+    d=&quot;M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0
+    011 1h2a1 1 0 011 1v5m-4 0h4&quot;&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+    &lt;span class=&quot;text-6xl font-black text-white block mb-2&quot;&gt;{{ project_count|default:&quot;0&quot; }}
+    &lt;/span&gt;
+    &lt;span class=&quot;text-xs font-mono uppercase tracking-widest text-teal-400&quot;&gt;Active_Councils&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/section&gt;
+
+
+    &lt;section class=&quot;py-24 relative z-10&quot;&gt;
+
+    &lt;div class=&quot;container mx-auto px-4 md:px-12&quot;&gt;
+
+    &lt;div class=&quot;flex justify-between items-end mb-16 px-4&quot;&gt;
+    &lt;h3 class=&quot;text-2xl md:text-3xl font-mono uppercase tracking-widest text-white/50&quot;&gt;
+    // Live_Stream
+    &lt;/h3&gt;
+    &lt;a href=&quot;{% url 'supply_chain:project_list' %}&quot;
+    class=&quot;px-8 py-3 rounded-full bg-lime-400 text-black font-bold text-sm uppercase tracking-widest
+    hover:scale-105 transition-transform shadow-[0_0_20px_rgba(132,204,22,0.4)]&quot;&gt;
+    Enter Register
+    &lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;grid grid-cols-1 gap-6&quot;&gt;
+
+    &lt;{% for project in latest_projects %}&gt;
+        &lt;article
+        class=&quot;group relative w-full bg-white/[0.03] hover:bg-white/[0.08] backdrop-blur-xl border border-white/10
+        rounded-full p-2 transition-all duration-500 hover:scale-[1.01]&quot;&gt;
+
+        &lt;div class=&quot;flex flex-col md:flex-row items-center gap-6 md:gap-12 px-6 py-4&quot;&gt;
+
+        &lt;div class=&quot;w-12 h-12 shrink-0 rounded-full bg-black border border-white/20 flex items-center
+        justify-center text-xs font-mono text-white/50 group-hover:border-lime-400 group-hover:text-lime-400
+        transition-colors&quot;&gt;
+        {{ project.id }}
         &lt;/div&gt;
 
-        &lt;main class=&quot;relative z-10&quot;&gt;
+        &lt;div class=&quot;flex-1 text-center md:text-left&quot;&gt;
+        &lt;h4 class=&quot;text-2xl font-bold text-white mb-1 group-hover:text-lime-400 transition-colors&quot;&gt;
+        {{ project.title }}
+        &lt;/h4&gt;
+        &lt;div class=&quot;flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-white/40
+        uppercase tracking-wider&quot;&gt;
+        &lt;span&gt;{{ project.council.name }}&lt;/span&gt;
+        &lt;span class=&quot;w-1 h-1 bg-lime-500 rounded-full&quot;&gt;&lt;/span&gt;
+        &lt;span&gt;Processing&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
 
-            &lt;section
-                    class=&quot;min-h-screen relative flex flex-col justify-center items-center pt-20 pb-32 px-4 border-b border-white/5&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-8&quot;&gt;
+        &lt;span class=&quot;text-xl font-mono font-bold text-white&quot;&gt;£{{ project.budget }}&lt;/span&gt;
 
-                &lt;h1 class=&quot;text-[18vw] leading-[0.75] font-black tracking-tighter text-center uppercase select-none mix-blend-difference text-white z-20 pointer-events-none&quot;&gt;
-                    Re—&lt;br&gt;Wild
-                &lt;/h1&gt;
+        &lt;a href=&quot;#&quot;
+        class=&quot;w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white
+        group-hover:bg-lime-400 group-hover:text-black transition-all&quot;&gt;
+        &lt;svg class=&quot;w-4 h-4 transform group-hover:rotate-45 transition-transform&quot;
+        fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+        &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
+        d=&quot;M14 5l7 7m0 0l-7 7m7-7H3&quot;&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;/a&gt;
+        &lt;/div&gt;
 
-                &lt;figure class=&quot;absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] md:w-[40vw] h-[60vh] z-10 grayscale contrast-125 hover:grayscale-0 transition-all duration-700 ease-in-out group&quot;&gt;
-                    &lt;img src=&quot;https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&amp;w=2574&amp;auto=format&amp;fit=crop&quot;
-                         alt=&quot;Vertical Forest&quot;
-                         class=&quot;w-full h-full object-cover border-4 border-lime-400 shadow-[10px_10px_0px_#84cc16]&quot;&gt;
+        &lt;/div&gt;
+        &lt;/article&gt;
+        &lt;{% empty %}&gt;
+        &lt;div class=&quot;py-20 text-center opacity-40 font-mono uppercase&quot;&gt;
+        /// Stream_Offline ///
+        &lt;/div&gt;
+        &lt;{% endfor %}&gt;
 
-                    &lt;figcaption
-                            class=&quot;absolute -bottom-6 -right-6 bg-black text-lime-400 border border-lime-400 px-4 py-2 font-mono text-sm uppercase font-bold&quot;&gt;
-                            Projects for Ecological Integration
-                    &lt;/figcaption&gt;
-                &lt;/figure&gt;
+    &lt;/div&gt;
 
-                &lt;div class=&quot;absolute bottom-10 left-4 md:left-10 writing-mode-vertical text-xs font-mono uppercase tracking-[0.5em] text-lime-400 animate-pulse&quot;&gt;
-                    Scroll to in
-                &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/section&gt;
 
-                &lt;div class=&quot;absolute top-10 right-4 md:right-10 text-right&quot;&gt;
-                    &lt;p class=&quot;text-xs font-mono uppercase tracking-widest mb-1&quot;&gt;System_Status&lt;/p&gt;
-                    &lt;div class=&quot;inline-block px-3 py-1 bg-lime-400 text-black font-bold text-xs uppercase&quot;&gt;
-                        Optimal
-                    &lt;/div&gt;
-                &lt;/div&gt;
+    &lt;/main&gt;
 
-            &lt;/section&gt;
-
-
-            &lt;section class=&quot;relative py-32 px-4 md:px-12&quot;&gt;
-
-                &lt;div class=&quot;absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-lime-400 to-transparent&quot;&gt;&lt;/div&gt;
-
-                &lt;div class=&quot;container mx-auto max-w-7xl&quot;&gt;
-
-                    &lt;div class=&quot;grid grid-cols-1 lg:grid-cols-12 gap-16&quot;&gt;
-
-                        &lt;div class=&quot;lg:col-span-5 flex flex-col justify-center&quot;&gt;
-                            &lt;h2 class=&quot;text-5xl md:text-7xl font-black leading-none mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white to-white/20&quot;&gt;
-                                Mandating&lt;br&gt;
-                                &lt;span class=&quot;italic font-serif text-lime-400&quot;&gt;Symbiosis.&lt;/span&gt;
-                            &lt;/h2&gt;
-                            &lt;p class=&quot;text-lg text-slate-400 font-light leading-relaxed border-l-2 border-lime-400/50 pl-6&quot;&gt;
-                                We operate as a strict ecological filter for public capital.
-                                &lt;strong class=&quot;text-white block mt-2&quot;&gt;This platform exclusively lists tenders that foster biological system integration and
-                                sustainability.&lt;/strong&gt;
-                            &lt;/p&gt;
-                        &lt;/div&gt;
-
-                        &lt;div class=&quot;lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
-
-                            &lt;div class=&quot;group bg-white/5 hover:bg-white/10 backdrop-blur-2xl border border-white/10 p-10 rounded-[3rem] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(132,204,22,0.1)]&quot;&gt;
-                                &lt;div class=&quot;flex flex-col h-full justify-between&quot;&gt;
-                                    &lt;div class=&quot;w-12 h-12 rounded-full bg-lime-500/20 flex items-center justify-center text-lime-400 mb-8 group-hover:scale-110 transition-transform&quot;&gt;
-                                        &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-                                            &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
-                                                  d=&quot;M13 10V3L4 14h7v7l9-11h-7z&quot;&gt;&lt;/path&gt;
-                                        &lt;/svg&gt;
-                                    &lt;/div&gt;
-                                    &lt;div&gt;
-                                        &lt;span class=&quot;text-6xl font-black text-white block mb-2&quot;&gt;-12%&lt;/span&gt;
-                                        &lt;span class=&quot;text-xs font-mono uppercase tracking-widest text-lime-400&quot;&gt;Carbon_Efficiency&lt;/span&gt;
-                                    &lt;/div&gt;
-                                &lt;/div&gt;
-                            &lt;/div&gt;
-
-                            &lt;div class=&quot;bg-gradient-to-br from-teal-900/40 to-slate-900/40 backdrop-blur-2xl border border-white/10 p-10 rounded-[3rem] transition-all duration-500 hover:-translate-y-2&quot;&gt;
-                                &lt;div class=&quot;flex flex-col h-full justify-between&quot;&gt;
-                                    &lt;div class=&quot;w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 mb-8&quot;&gt;
-                                        &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-                                            &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
-                                                  d=&quot;M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011 1h2a1 1 0 011 1v5m-4 0h4&quot;&gt;&lt;/path&gt;
-                                        &lt;/svg&gt;
-                                    &lt;/div&gt;
-                                    &lt;div&gt;
-                                        &lt;span class=&quot;text-6xl font-black text-white block mb-2&quot;&gt;{{ project_count|default:&quot;0&quot; }}&lt;/span&gt;
-                                        &lt;span class=&quot;text-xs font-mono uppercase tracking-widest text-teal-400&quot;&gt;Active_Councils&lt;/span&gt;
-                                    &lt;/div&gt;
-                                &lt;/div&gt;
-                            &lt;/div&gt;
-
-                        &lt;/div&gt;
-
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/section&gt;
-
-
-            &lt;section class=&quot;py-24 relative z-10&quot;&gt;
-
-                &lt;div class=&quot;container mx-auto px-4 md:px-12&quot;&gt;
-
-                    &lt;div class=&quot;flex justify-between items-end mb-16 px-4&quot;&gt;
-                        &lt;h3 class=&quot;text-2xl md:text-3xl font-mono uppercase tracking-widest text-white/50&quot;&gt;
-                            // Live_Stream
-                        &lt;/h3&gt;
-                        &lt;a href=&quot;{% url 'supply_chain:project_list' %}&quot;
-                           class=&quot;px-8 py-3 rounded-full bg-lime-400 text-black font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(132,204,22,0.4)]&quot;&gt;
-                            Enter Register
-                        &lt;/a&gt;
-                    &lt;/div&gt;
-
-                    &lt;div class=&quot;grid grid-cols-1 gap-6&quot;&gt;
-
-                        &lt;{% for project in latest_projects %}&gt;
-                            &lt;article
-                                    class=&quot;group relative w-full bg-white/[0.03] hover:bg-white/[0.08] backdrop-blur-xl border border-white/10 rounded-full p-2 transition-all duration-500 hover:scale-[1.01]&quot;&gt;
-
-                                &lt;div class=&quot;flex flex-col md:flex-row items-center gap-6 md:gap-12 px-6 py-4&quot;&gt;
-
-                                    &lt;div class=&quot;w-12 h-12 shrink-0 rounded-full bg-black border border-white/20 flex items-center justify-center text-xs font-mono text-white/50 group-hover:border-lime-400 group-hover:text-lime-400 transition-colors&quot;&gt;
-                                        {{ project.id }}
-                                    &lt;/div&gt;
-
-                                    &lt;div class=&quot;flex-1 text-center md:text-left&quot;&gt;
-                                        &lt;h4 class=&quot;text-2xl font-bold text-white mb-1 group-hover:text-lime-400 transition-colors&quot;&gt;
-                                            {{ project.title }}
-                                        &lt;/h4&gt;
-                                        &lt;div class=&quot;flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-white/40 uppercase tracking-wider&quot;&gt;
-                                            &lt;span&gt;{{ project.council.name }}&lt;/span&gt;
-                                            &lt;span class=&quot;w-1 h-1 bg-lime-500 rounded-full&quot;&gt;&lt;/span&gt;
-                                            &lt;span&gt;Processing&lt;/span&gt;
-                                        &lt;/div&gt;
-                                    &lt;/div&gt;
-
-                                    &lt;div class=&quot;flex items-center gap-8&quot;&gt;
-                                        &lt;span class=&quot;text-xl font-mono font-bold text-white&quot;&gt;£{{ project.budget }}&lt;/span&gt;
-
-                                        &lt;a href=&quot;#&quot;
-                                           class=&quot;w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-lime-400 group-hover:text-black transition-all&quot;&gt;
-                                            &lt;svg class=&quot;w-4 h-4 transform group-hover:rotate-45 transition-transform&quot;
-                                                 fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-                                                &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
-                                                      d=&quot;M14 5l7 7m0 0l-7 7m7-7H3&quot;&gt;&lt;/path&gt;
-                                            &lt;/svg&gt;
-                                        &lt;/a&gt;
-                                    &lt;/div&gt;
-
-                                &lt;/div&gt;
-                            &lt;/article&gt;
-                        &lt;{% empty %}&gt;
-                            &lt;div class=&quot;py-20 text-center opacity-40 font-mono uppercase&quot;&gt;
-                                /// Stream_Offline ///
-                            &lt;/div&gt;
-                        &lt;{% endfor %}&gt;
-
-                    &lt;/div&gt;
-
-                &lt;/div&gt;
-            &lt;/section&gt;
-
-        &lt;/main&gt;
-
-        &lt;footer class=&quot;py-12 text-center border-t border-white/5 bg-black&quot;&gt;
-            &lt;p class=&quot;text-[10px] font-mono uppercase tracking-[0.3em] text-white/30&quot;&gt;
-                Leeds Beckett 2025 // Assessment 2
-            &lt;/p&gt;
-        &lt;/footer&gt;
+    &lt;footer class=&quot;py-12 text-center border-t border-white/5 bg-black&quot;&gt;
+    &lt;p class=&quot;text-[10px] font-mono uppercase tracking-[0.3em] text-white/30&quot;&gt;
+    Leeds Beckett 2025 // Assessment 2
+    &lt;/p&gt;
+    &lt;/footer&gt;
 
     &lt;/div&gt;
 
     &lt;style&gt;
-        .writing-mode-vertical {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-        }
+    .writing-mode-vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    }
     &lt;/style&gt;
 
-&lt;{% endblock %}&gt;
+    &lt;{% endblock %}&gt;
 </pre>
 
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
 
-<!-- Card for AI Prompt 25/10/25 -->
+    <!-- Card for AI Prompt 25/10/25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         Can we assign an index to each element in my .container
                         and use that index to display a single column in the order of 
                         1, 3, 4, 2, 5, 6? Is there any cleaner way to do this?
                     </span>
-                </p>
-                <p>Date: 25-10-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 25-10-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         <p>
                             It applied a data order as required and helped me with the CSS syntax, stating:
@@ -1169,26 +1514,26 @@ became more complex and dynamic, you would typically look towards JavaScript to 
 .container [data-order="5"] { order: 5; } 
 .container [data-order="6"] { order: 6; } 
 </pre>
-                        </p>
-                    </span>
-                </p>
-            </div>
+            </p>
+            </span>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 25/10/25 -->
+    <!-- Card for AI Prompt 25/10/25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         For each p element under h3 id=review in recipe-details, how do I 
                         display the image of class review-icon in-line with that p element cleanly?
                     </span>
-                </p>
-                <p>Date: 25-10-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 25-10-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         <p>Gemini used a span to hold the text and get 
                             out of the block context, to then pair an 
@@ -1210,23 +1555,23 @@ became more complex and dynamic, you would typically look towards JavaScript to 
 &lt;/p&gt;
 </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 25/10/25 -->
+    <!-- Card for AI Prompt 25/10/25 -->
 
-        <div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         How do I adjust recipe details so that when I reduce the size available to it - we always ensure that the top content is visible as currently its squishing out of the box?
                     </span>
-                </p>
-                <p>Date: 25-10-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 25-10-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         <p>Justify content to be changed to flex start. The container is flex-direction column so 
                             this refers to the horizontal alignment. By having it centered it looked good at full-screen
@@ -1243,33 +1588,38 @@ became more complex and dynamic, you would typically look towards JavaScript to 
 }
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 24/10/25 -->
+    <!-- Card for AI Prompt 24/10/25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         For the phase test, the key prompts I made were to help me break up the recipe name into a
                         column of single characters. I prompted it to generate the footer. Lastly
                         I prompted it to create the grid for me based on the HTML markup I had provided and format the cards.
                      
                     </span>
+            </p>
+            <p>Date: 24-10-25</p>
+        </div>
+        <div class="card-body">
+            <div class="answer_required">
+                <p>
+                    The code it generated for my grid and the cards was largely how I wanted it, and I just had to
+                    adjust the font family and sizing. However, I didn't realise in time that this grid structure put
+                    the method and ingredient cards out of their correct columns, likely due to how I had marked up the
+                    text.
                 </p>
-                <p>Date: 24-10-25</p>
-            </div>
-            <div class="card-body">
-                <div class="answer_required">
-                    <p>
-                        The code it generated for my grid and the cards was largely how I wanted it, and I just had to adjust the font family and sizing. However, I didn't realise in time that this grid structure put the method and ingredient cards out of their correct columns, likely due to how I had marked up the text.
-                    </p>
-                    <p>
-                        I then prompted to make the grid respond better to window size adjustments, but this broke everything. I quickly reversed the changes it made to the HTML but accidentally left the corresponding CSS code in the stylesheet. Below is the initial code returned that is functional.
-                    </p>
-<pre>
+                <p>
+                    I then prompted to make the grid respond better to window size adjustments, but this broke
+                    everything. I quickly reversed the changes it made to the HTML but accidentally left the
+                    corresponding CSS code in the stylesheet. Below is the initial code returned that is functional.
+                </p>
+                <pre>
 .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two columns, each taking equal space */
@@ -1304,10 +1654,11 @@ became more complex and dynamic, you would typically look towards JavaScript to 
     margin-bottom: 5px;
 }
 </pre>
-                    <p>The code it generated for the footer. Again all I tweaked to this was sizing and font-family (I now see it did
-                        actually put in a font-family which I missed). </p>
+                <p>The code it generated for the footer. Again all I tweaked to this was sizing and font-family (I now
+                    see it did
+                    actually put in a font-family which I missed). </p>
 
-<pre>
+                <pre>
     footer {
     border-top: 4px solid black;
     display: flex;
@@ -1325,10 +1676,11 @@ became more complex and dynamic, you would typically look towards JavaScript to 
     font-family: "Atkinson Hyperlegible Mono", sans-serif;
 }
 </pre>
-                    <p>The code it generated for making the recipe name into a column of single characters. I didn't check each declaration 
-                        and what it was doing - I saw that it looked to achieve the goal and moved on.
-                    </p>
-<pre>
+                <p>The code it generated for making the recipe name into a column of single characters. I didn't check
+                    each declaration
+                    and what it was doing - I saw that it looked to achieve the goal and moved on.
+                </p>
+                <pre>
 .recipe-name-header p {
     word-break: break-all;
     white-space: pre-wrap;
@@ -1336,17 +1688,17 @@ became more complex and dynamic, you would typically look towards JavaScript to 
     text-align: space-between;
 }
 </pre>
-                </div>
             </div>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 17/10/25 -->
+    <!-- Card for AI Prompt 17/10/25 -->
 
-    
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         Change logic of hovering on a card due to creation
                         of a new class for first items in a row of cards which had 
                         different functionality. <br>
@@ -1357,11 +1709,11 @@ became more complex and dynamic, you would typically look towards JavaScript to 
                         This specific class does not have overlay functionality.
                         Fix the code to stop hover triggering background to empty</q>
                     </span>
-                </p>
-                <p>Date: 17-10-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 17-10-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         Copilot applied the <pre>not()</pre> psuedo-class which 
                         was new to me. This meant that the overlay of a white background 
@@ -1386,24 +1738,24 @@ became more complex and dynamic, you would typically look towards JavaScript to 
 }
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 17/10/25 -->
+    <!-- Card for AI Prompt 17/10/25 -->
 
-        <div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         How would I style the first card occurance of each row with data-card-index of -1 
                         so that when we scroll across the row it always sticks to the same location on the screen
                     </span>
-                </p>
-                <p>Date: 17-10-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 17-10-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         Copilot used an attribute selector to match to the first items 
                         in each row. I removed the flex and optional background property 
@@ -1426,27 +1778,27 @@ became more complex and dynamic, you would typically look towards JavaScript to 
 }
 </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-        
-<!-- Card for AI Prompt 17/10/25 -->
 
-        <div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <!-- Card for AI Prompt 17/10/25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         I need CSS to create a custom horizontal scrollbar for a div with the class .custom_scrollbar.
                         It should use flexbox to align items in a row. The width should be 50vw.
                         It must scroll horizontally but hide any vertical scrollbar.
                         Make the background of the scrollbar red.
                     </span>
-                </p>
-                <p>Date: 17-10-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 17-10-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         The response was useful in stating that the elements of the scrollbar
                         should be displayed with flex as a row, then asserting the overflow-x as 
@@ -1497,26 +1849,26 @@ became more complex and dynamic, you would typically look towards JavaScript to 
 }
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 12/10/25 -->
+    <!-- Card for AI Prompt 12/10/25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         Various prompts entered for Week3 lab task. I marked up the text file and used Gemini to take pieces and style them in CSS. 
                         Example prompt: <br>
                          In CSS, how can I create a layout where a sidebar is positioned on the left side of the page, taking up 20% of the body's width and filling the full viewport height, while the main content occupies the remaining 80% on the right? The sidebar should remain visually isolated from the main content section.<br>
                         The main section should display a 2x2 grid of cards. Additionally, I want to add a title that sits above and aligned with the grid — visually in line with the cards
                     </span>
-                </p>
-                <p>Date: 12-10-25</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 12-10-25</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">
                         Gemini assigned an aside element to the class of 'left-column', and defined a new section containing the grid (.main-content).
                         Its solution worked for splitting the main content 20/80 however, for me, the .left-column was pinned to the top of the available space. 
@@ -1601,17 +1953,17 @@ became more complex and dynamic, you would typically look towards JavaScript to 
 
                         </pre>
                     </span>
-                </p>
-            </div>
+            </p>
         </div>
-        
+    </div>
 
-<!-- Card for AI Prompt 3/10/25 -->
 
-		<div class="card">
-            <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <!-- Card for AI Prompt 3/10/25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         (previously prompted ChatGPT with aethsetic ideas so it could format a prompt for copilot)
                         Create a semantic HTML page with an external CSS file using Flexbox for layout. The page should have a full-width header, a navigation bar below it, a main section, and a footer. Use a clean retro-futurist bakery café theme: think “the future that never was,” blending 1950s space-race chrome optimism with the warmth of a bakery.
 
@@ -1645,11 +1997,11 @@ Sample crumbles: Cosmic Berry, Rosemary-Pear Gorgonzola, Mango-Chili Coconut.
 
 Keep the HTML/CSS concise, clean, and responsive.
                     </span>
-                </p>
-                <p>Date: 03-10-2025</p>
-            </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 03-10-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">This was part of the week 2 lab exercise, using copilot to generate an html file with a linked stylesheet.
                         The index.html that it generated split out the header, nav, main and footer elements as required. 
                         To achieve the required segments of 1:4:1 weighting in the main section - it implemented a div with class `main-row`, inside
@@ -1657,8 +2009,8 @@ Keep the HTML/CSS concise, clean, and responsive.
                         This structure makes the CSS easy to understand. The `main-row` container has flex applied and all nested elements are referred
                         to by class and their corresponding flexible length is applied:
                     </span>
-                </p>
-                <pre>
+            </p>
+            <pre>
 /* CSS generated for main content flex application */
 
 .main-row {
@@ -1691,25 +2043,25 @@ Keep the HTML/CSS concise, clean, and responsive.
   border: 1px solid rgba(255, 255, 255, 0.02);
 }
                 </pre>
-            </div>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 1 -->
+    <!-- Card for AI Prompt 1 -->
 
-        <div class="card">
-  		    <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         (PROVIDED EXAMPLE) Optimise the css file so that the styles cascasde properly
                     </span>
-                </p>
-                <p>Date: 26-09-2025</p>
-  		    </div>
-            <div class="card-body">
-                <p>
-                    <span class="answer_required">The original style sheet didn't cascade the style optimally. Codepilot was used to make a suggestion and refactor the CSS. As an example:</span>
-                </p>
-                <pre>
+            </p>
+            <p>Date: 26-09-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">The original style sheet didn't cascade the style optimally. Codepilot was used to make a suggestion and refactor the CSS. As an example:</span>
+            </p>
+            <pre>
 /* Original CSS */
 #html .card {
   background-color:#ebfffc ;
@@ -1732,10 +2084,10 @@ Keep the HTML/CSS concise, clean, and responsive.
 /* Refactored CSS suggested by AI */
 #html .card { background-color: #ebfffc; }
                 </pre>
-                <p>
-                    <span class="answer_required">The refactor also introduced "composes: page-title;" which is a conceptual way to show reuse.</span>
-                </p>
-                <pre>
+            <p>
+                <span class="answer_required">The refactor also introduced "composes: page-title;" which is a conceptual way to show reuse.</span>
+            </p>
+            <pre>
 .page-title {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
@@ -1746,29 +2098,29 @@ Keep the HTML/CSS concise, clean, and responsive.
 }
 
 #html > h1 { composes: page-title; }
-                </pre>            
-                </p>
-            </div>
+                </pre>
+            </p>
         </div>
+    </div>
 
-<!-- Card for AI Prompt 2 -->
+    <!-- Card for AI Prompt 2 -->
 
-        <div class="card">
-  		    <div class="card-header">
-                <p>Prompt:             
-                    <span class="answer_required" style="color: #f1f5f9;">
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         (PROVIDED EXAMPLE) why does vscode say composes css(unknownProperties)
                     </span>
-                </p>
-                <p>Date: 26-09-2025</p>
-  		    </div>
-            <div class="card-body">
-                <p>
+            </p>
+            <p>Date: 26-09-2025</p>
+        </div>
+        <div class="card-body">
+            <p>
                     <span class="answer_required">AI includes compose in the css suggestion - on further examination, it appears that "composes" is not a standard CSS property, which is why VSCode flags it as unknown. AI suggested
                     new CSS syntax and just add the class attribute to the HTML. The new css flags a warning as empty style rule is left. This
                     is being kept should the need arise for future use.</span>
-                </p>
-                <pre>
+            </p>
+            <pre>
 #html > h1 { /* page-title styles applied via class */ }
 
 &lt;section id="html"&gt;
@@ -1776,8 +2128,8 @@ Keep the HTML/CSS concise, clean, and responsive.
 &lt;/section&gt;
 
                 </pre>
-            </div>
         </div>
+    </div>
 
 
 </section>
