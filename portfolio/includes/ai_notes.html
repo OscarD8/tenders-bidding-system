@@ -62,6 +62,64 @@
         <div class="card-header">
             <p>Prompt:
                 <span class="answer_required" style="color: #f1f5f9;">
+                        I am implementing full-screen background images for my landing pages using Django and Tailwind CSS.
+
+I initially tried using an inline style approach like this: section style="background-image: url('% static 'images/index_bg.jpeg' %');".
+
+However, I want to ensure my solution is:
+
+    Performant: I have read about lazy loading online and am currently having an issue where I load the page and the image pops in too late.
+
+    Modular: I want to reuse the styling (opacity, grayscale, gradients) across different pages without rewriting Tailwind classes.
+
+    Flexible: It needs to handle local static images.
+
+Could you critique the inline style approach and propose a reusable Django Template Component (components/bg_template_brown_gradient.html) that handles dynamic or static urls as an argument?
+                    </span>
+            </p>
+            <p>Date: 26-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    It suggested moving away from inline CSS background declarations if you are wanting to apply filters etc to the image.
+                    It implemented a component-based approach using an img tag positioned absolutely, with the component holding the static
+                    tag internally which it processes. This component handles the processing of the image that I was looking for, allowing
+                    me now to pass in the static url for a local image. For images that don't need any filters applied, it suggested using
+                    the CSS property background:image for the style attribute when declaring the section, then passing in the static URL for the local file
+                     (this combines with tailwind utility classes like bg-cover, bg-center, etc).
+
+                    <pre>
+{% load static %}
+
+&lt;div class="absolute inset-0 -z-10"&gt;
+    &lt;img
+        src="{% if static_path %}{% static static_path %}{% else %}{{ image_url }}{% endif %}"
+        sizes="100vw"
+        alt="{{ alt_text|default:'Background image' }}"
+        loading="lazy"
+        class="w-full h-full object-cover opacity-40 grayscale"
+    /&gt;
+
+    &lt;div class="absolute inset-0 bg-gradient-to-b from-stone-900 via-stone-900/50 to-stone-900"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;section class="snap-section bg-cover bg-center"
+         style="background-image:url('{% static &#39;images/index_bg.jpeg&#39; %}');"&gt;
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Card for AI Prompt 26-11-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
                         I have an issue with the way that a specific cards hover effect is not matching the exact shape of the card
                     itself, it overflows from the rounded corners. The effect is being applied to a div and then the actual card
                     has reduced opacity, overlaying the hover effect. Is a separate div purely for the effect clean code... is there
