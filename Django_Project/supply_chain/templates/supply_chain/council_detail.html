@@ -47,7 +47,7 @@
         <div>
             <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Bamboo Standard</p>
             <div class="flex items-center gap-2 text-bamboo-400 text-sm md:text-lg">
-                {% include "components/sustainability_icon.html" %}
+                {% include "components/svg_components/sustainability_icon.html" %}
                 <span>Going Green</span>
             </div>
         </div>
@@ -74,13 +74,13 @@
 {% endblock %}
 
 
-{% block action_card %}
+{% block sidebar_card_3 %}
     <h3 class="text-lg font-bold text-white mb-1">Have Questions?</h3>
     <p class="text-sm text-earth-400 mb-4">Contact the procurement team directly.</p>
 
     <a href="mailto:leedscouncil@proton.gov"
        class="btn btn-primary btn-xl">
-        {% include "components/email_icon.html" %}
+        {% include "components/svg_components/email_icon.html" %}
         Email Council
     </a>
 {% endblock %}
@@ -90,7 +90,7 @@
 {% block extended_content %}
     <section aria-labelledby="opportunities-heading" class="max-w-6xl mx-auto px-4 sm:px-8 pb-8 mt-16">
         <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">
-            <h2 class="text-1xl md:text-2xl font-bold text-earth-50">Open Opportunities</h2>
+            <h2 id="opportunities-heading" class="text-1xl md:text-2xl font-bold text-earth-50">Open Opportunities</h2>
             <p class="text-sm text-earth-500 text-right">Displaying all active tenders</p>
         </div>
 
@@ -101,7 +101,7 @@
 
             {% empty %}
                 <div class="col-span-full py-16 text-center border border-dashed border-earth-50/10 rounded-xl bg-white/5">
-                    {% include "components/folder_icon.html" %}
+                    {% include "components/svg_components/folder_icon.html" %}
                     <p class="text-earth-400 text-lg font-medium">No active tenders found</p>
                     <p class="text-sm text-earth-600 mt-1">This council has no open opportunities listed at the
                         moment.</p>

@@ -18,7 +18,7 @@
                         {% endblock %}
                     </nav>
 
-                    <h1 class="text-4xl md:text-5xl font-bold text-earth-50 mb-6 leading-tight">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                         {% block item_title %}Missing Title{% endblock %}
                     </h1>
 
@@ -35,24 +35,23 @@
 
             <!-- Sidebar Cards -->
             <aside class="flex flex-col gap-6">
-                <div class="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-1">
-                    <section
-                            class="glass-panel p-4 md:p-8">
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
+                    <section class="glass-panel p-4 md:p-8 flex flex-col items-center justify-center gap-4 text-center">
                         {% block sidebar_card_1 %}
                         {% endblock %}
                     </section>
 
-                    <section
-                            class="glass-panel p-4 md:p-8">
+                    <section class="glass-panel p-4 md:p-8 flex flex-col items-center justify-center gap-4 text-center">
                         {% block sidebar_card_2 %}
                         {% endblock %}
                     </section>
                 </div>
 
+
                 <div class="glass-panel p-8 flex-1 flex justify-center items-center text-center group hover-fill-bamboo">
                     <!-- Render content above the fill effect -->
                     <section class="relative z-10">
-                        {% block action_card %}
+                        {% block sidebar_card_3 %}
                         {% endblock %}
                     </section>
                 </div>
