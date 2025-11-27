@@ -1,5 +1,7 @@
 {% extends 'layouts/list_layout.html' %}
 
+{% block title %}Councils | Bamboo Tenders{% endblock %}
+
 {% block page_header %}
     <div class="flex flex-col justify-between">
         <div class="max-w-2xl">
@@ -50,7 +52,7 @@
 
 {% block list_items %}
 
-    <a href="{% url 'supply_chain:council_detail' 1 %}" class="group block">
+    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
@@ -86,7 +88,7 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:council_detail' 1 %}" class="group block h-full">
+    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block h-full">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
@@ -122,7 +124,7 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:council_detail' 1 %}" class="group block h-full">
+    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block h-full">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>

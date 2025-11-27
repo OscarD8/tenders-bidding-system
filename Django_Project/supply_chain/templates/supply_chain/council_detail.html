@@ -1,5 +1,6 @@
 {% extends 'layouts/detail_layout.html' %}
 
+{% block title %}Leeds City Council{% endblock %}
 
 <!-- Hero Detail Card -->
 {% block breadcrumb_parent %}
@@ -18,7 +19,7 @@
         West Yorkshire
     </p>
 
-    <blockquote class="text-earth-400 text-base mt-3 leading-relaxed border-l-2 border-bamboo-500/30 pl-4">
+    <blockquote class="text-earth-400 text-base mt-7 leading-relaxed border-l-2 border-bamboo-500/30 pl-4">
         <p>
             Climate Emergency
             <time datetime="2035">2035</time>
@@ -56,21 +57,20 @@
 
 <!-- Side Bar Cards -->
 {% block sidebar_card_1 %}
-    <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-2">Procurement Contact</h3>
-    <div class="flex items-center gap-3">
-        <div class="font-bold text-sm">
-            Amadeus Phillida
-        </div>
+    <div class="flex flex-col items-center justify-center text-center md:gap-2">
+        <h3 class="text-xs md:text-sm font-bold text-earth-500 uppercase tracking-widest mb-2">Procurement Contact</h3>
+        <div class="font-bold text-sm">Amadeus Phillida</div>
     </div>
 {% endblock %}
 
 
 {% block sidebar_card_2 %}
-    <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-3">Active Tenders</h3>
-    <div class="flex items-baseline gap-2">
-        <span class="text-3xl font-mono text-white">7</span>
-        <span class="text-sm text-earth-400">Live Projects</span>
-    </div>
+    <dl class="flex flex-col items-center justify-center text-center gap-2">
+        <dt class="text-xs md:text-sm font-bold text-earth-500 uppercase">Live Projects</dt>
+        <dd class="text-2xl font-bold font-mono">
+            <data value="7" aria-label="7 live projects">7</data>
+        </dd>
+    </dl>
 {% endblock %}
 
 

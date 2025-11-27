@@ -1,5 +1,7 @@
 {% extends 'layouts/list_layout.html' %}
 
+{% block title %}Tenders | Bamboo Tenders{% endblock %}
+
 {% block page_header %}
     <div class="flex flex-col md:flex-row justify-between items-end">
         <div class="max-w-2xl">
@@ -103,7 +105,9 @@
             <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
                 <div>
                     <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</span>
-                    <p class="text-earth-100 text-lg">£1,600,000</p>
+                    <data value="1600000" class="block text-earth-100 text-lg font-mono tabular-nums">
+                        £1,600,000
+                    </data>
                 </div>
 
                 {% include "components/circular_button.html" %}
@@ -138,7 +142,9 @@
             <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
                 <div>
                     <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</span>
-                    <p class="text-earth-100 text-lg">£600,000</p>
+                    <data value="600000" class="block text-earth-100 text-lg font-mono tabular-nums">
+                        £600,000
+                    </data>
                 </div>
 
                 {% include "components/circular_button.html" %}
@@ -174,7 +180,9 @@
             <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
                 <div>
                     <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</span>
-                    <p class="text-earth-100 text-lg">£820,000</p>
+                    <data value="450000" class="block text-earth-100 text-lg font-mono tabular-nums">
+                        £450,000
+                    </data>
                 </div>
 
                 {% include "components/circular_button.html" %}
@@ -210,7 +218,9 @@
             <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
                 <div>
                     <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</span>
-                    <p class="text-earth-100 text-lg">£450,000</p>
+                    <data value="2500000" class="block text-earth-100 text-lg font-mono tabular-nums">
+                        £2,500,000
+                    </data>
                 </div>
 
                 {% include "components/circular_button.html" %}
@@ -246,7 +256,9 @@
             <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
                 <div>
                     <span class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</span>
-                    <p class="text-earth-100 text-lg">£2,500,000</p>
+                    <data value="2500000" class="block text-earth-100 text-lg font-mono tabular-nums">
+                        £2,500,000
+                    </data>
                 </div>
 
                 {% include "components/circular_button.html" %}

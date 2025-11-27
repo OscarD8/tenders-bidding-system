@@ -70,5 +70,17 @@
       "created_at": "2025-11-25T20:30:45.000Z",
       "updated_at": "2025-11-25T20:30:45.000Z"
     }
+  },
+  {
+    "model": "supply_chain.council",
+    "pk": 7,
+    "fields": {
+      "name": "Leeds City Council",
+      "contact": "Gemma Geographer",
+      "contact_email": "g.geographer@leeds.gov.uk",
+      "slug": "leeds-city-council",
+      "created_at": "2025-11-26T22:23:11.000Z",
+      "updated_at": "2025-11-26T22:23:11.000Z"
+    }
   }
 ]

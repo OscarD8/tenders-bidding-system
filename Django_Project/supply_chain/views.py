@@ -18,5 +18,5 @@ def project_detail(request, project_id):
     return render(request, 'supply_chain/project_detail.html')
 
 
-def council_detail(request, council_id):
+def council_detail(request, slug):
     return render(request, 'supply_chain/council_detail.html')
