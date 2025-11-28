@@ -70,5 +70,149 @@
       "created_at": "2025-03-20T13:30:00Z",
       "updated_at": "2025-03-20T13:30:00Z"
     }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 7,
+    "fields": {
+      "title": "Riverside Flood Defense Wall",
+      "description": "Construction of a bio-engineered flood defense system using gabion baskets filled with local stone and interplanted with deep-rooting vegetation to stabilize the riverbank.",
+      "budget": 1200000,
+      "council": 3,
+      "created_at": "2025-03-21T09:00:00Z",
+      "updated_at": "2025-03-21T09:00:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 8,
+    "fields": {
+      "title": "District Heat Network Expansion (Phase 2)",
+      "description": "Civil engineering works to extend the underground district heating pipes to 500 new social housing units. Requires trenching, pipe laying, and heat exchanger installation.",
+      "budget": 3500000,
+      "council": 3,
+      "created_at": "2025-03-22T10:30:00Z",
+      "updated_at": "2025-03-22T10:30:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 9,
+    "fields": {
+      "title": "Electric Vehicle Hub - South Park & Ride",
+      "description": "Installation of 20 rapid-charge points powered by a dedicated solar canopy. Includes groundworks, cabling, and substation upgrades.",
+      "budget": 750000,
+      "council": 4,
+      "created_at": "2025-03-23T11:15:00Z",
+      "updated_at": "2025-03-23T11:15:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 10,
+    "fields": {
+      "title": "Harbourside Walkway Regeneration",
+      "description": "Replacing concrete paving with permeable resin-bound gravel to improve drainage. Includes installation of recycled plastic boardwalks and low-impact lighting.",
+      "budget": 450000,
+      "council": 4,
+      "created_at": "2025-03-24T14:00:00Z",
+      "updated_at": "2025-03-24T14:00:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 11,
+    "fields": {
+      "title": "Civic Centre Glazing Upgrade",
+      "description": "Retrofitting the main council offices with triple-glazed smart glass to reduce thermal loss. Project includes frame reinforcement and sealing.",
+      "budget": 920000,
+      "council": 6,
+      "created_at": "2025-03-25T08:45:00Z",
+      "updated_at": "2025-03-25T08:45:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 12,
+    "fields": {
+      "title": "Urban Vertical Garden Pilot",
+      "description": "Installation of a hydro-seeded living wall on the West Car Park exterior. Includes irrigation systems, structural steel support frame, and maintenance access walkways.",
+      "budget": 280000,
+      "council": 6,
+      "created_at": "2025-03-26T13:20:00Z",
+      "updated_at": "2025-03-26T13:20:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 13,
+    "fields": {
+      "title": "Cycle Superhighway - Route 4",
+      "description": "Construction of a segregated cycle lane using recycled rubber kerbs. Includes traffic signal reconfiguration and resurfacing with high-grip, low-noise asphalt.",
+      "budget": 1800000,
+      "council": 7,
+      "created_at": "2025-03-27T09:30:00Z",
+      "updated_at": "2025-03-27T09:30:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 14,
+    "fields": {
+      "title": "Community Wind Turbine Foundation",
+      "description": "Excavation and reinforced concrete foundation pouring for a single 1.5MW community wind turbine. Includes access road upgrades for heavy plant machinery.",
+      "budget": 550000,
+      "council": 7,
+      "created_at": "2025-03-28T15:00:00Z",
+      "updated_at": "2025-03-28T15:00:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 15,
+    "fields": {
+      "title": "School Playground Depaving",
+      "description": "Removing 500sqm of asphalt playground and replacing it with SUDS-compliant soft landscaping, rain gardens, and natural play equipment.",
+      "budget": 150000,
+      "council": 1,
+      "created_at": "2025-03-29T10:00:00Z",
+      "updated_at": "2025-03-29T10:00:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 16,
+    "fields": {
+      "title": "Historical Market Roof Restoration",
+      "description": "Repairing the slate roof of the Victorian covered market. Requires heritage-approved materials and insulation upgrades to meet modern thermal standards.",
+      "budget": 680000,
+      "council": 2,
+      "created_at": "2025-03-30T11:30:00Z",
+      "updated_at": "2025-03-30T11:30:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 17,
+    "fields": {
+      "title": "Smart Street Lighting Conversion",
+      "description": "Replacing 2,000 sodium street lamps with energy-efficient LED units integrated with CMS nodes for remote dimming and fault reporting.",
+      "budget": 2100000,
+      "council": 3,
+      "created_at": "2025-03-31T09:15:00Z",
+      "updated_at": "2025-03-31T09:15:00Z"
+    }
+  },
+  {
+    "model": "supply_chain.project",
+    "pk": 18,
+    "fields": {
+      "title": "Wetland Park Boardwalks",
+      "description": "Construction of raised timber walkways through the new urban wetland nature reserve. Materials must be FSC certified and untreated to protect water quality.",
+      "budget": 320000,
+      "council": 4,
+      "created_at": "2025-04-01T14:45:00Z",
+      "updated_at": "2025-04-01T14:45:00Z"
+    }
   }
 ]

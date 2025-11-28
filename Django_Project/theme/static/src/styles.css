@@ -104,24 +104,6 @@
     }
 
 
-    /* BAMBOO RANGE SLIDER STYLES */
-    /* The invisible slider track (we allow clicks through it) */
-    .range-input {
-        @apply absolute top-0 left-0 w-full h-2 appearance-none bg-transparent pointer-events-none;
-    }
-
-    /* Chrome/Safari Thumb */
-    .range-input::-webkit-slider-thumb {
-        @apply appearance-none w-5 h-5 rounded-full bg-earth-50 border-2 border-bamboo-500 cursor-pointer pointer-events-auto shadow-lg transform transition-transform hover:scale-110;
-        margin-top: -6px; /* Align vertical center */
-    }
-
-    /* Firefox Thumb */
-    .range-input::-moz-range-thumb {
-        @apply w-5 h-5 rounded-full bg-earth-50 border-2 border-bamboo-500 cursor-pointer pointer-events-auto shadow-lg border-none;
-    }
-
-
     /* Misc */
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
@@ -150,6 +132,10 @@
 
     .th-base {
         @apply px-6 py-4 text-left font-bold uppercase tracking-wider;
+    }
+
+    .extended-content-wrapper {
+        @apply w-full max-w-6xl mx-auto px-4 sm:px-8 pb-8 mt-12
     }
 }
 

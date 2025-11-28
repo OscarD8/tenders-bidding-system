@@ -1,5 +1,5 @@
 {% extends 'layouts/list_layout.html' %}
-
+{% load humanize %}
 
 {% block title %}Tenders | Bamboo Tenders{% endblock %}
 
@@ -16,7 +16,7 @@
         </div>
 
         <span class="px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium text-center">
-                [Amount] Active Tenders
+            {{ projects.count }} Active Tender{% if projects.count != 1 %}s{% endif %}
         </span>
     </div>
 {% endblock %}
@@ -25,7 +25,7 @@
 <!-- Sidebar used for Filter Section -->
 {% block layout_sidebar %}
     <div class="glass-panel sidebar-variant p-8"
-    aria-labelledby="sidebar-filter-label">
+         aria-labelledby="sidebar-filter-label">
 
         <h3 class="sidebar-title" id="sidebar-filter-label">Filter Results</h3>
 
@@ -74,203 +74,50 @@
 
 
 {% block list_items %}
-    <a href="{% url 'supply_chain:project_detail' 1 %}"
-       class="group block h-full"
-       aria-labelledby="project-urban-solar-corridor-installation">
-        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
+    {% if projects %}
+        {% for project in projects %}
+            <a href="{% url 'supply_chain:project_detail' project.pk %}"
+               class="group block h-full"
+               aria-labelledby="project-urban-solar-corridor-installation"> <!-- needs model extension for slug? -->
+                <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
-            <div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Active</span>
-                    <span class="text-xs text-earth-500">2 days ago</span>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Active</span>
+                        <span class="text-xs text-earth-500">{{ project.created_at|naturaltime }}</span>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
+                        id="{{ project.title }}"> <!-- needs to be a slug? -->
+                        {{ project.title }}
+                    </h3>
+
+                    <p class="text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2">
+                        {% include "components/svg_components/city_icon.html" %}
+                        {{ project.council.name }}
+                    </p>
+
+                    <p class="text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6">
+                        {{ project.description }}
+                    </p>
+
+                    <!-- List item footer -->
+                    <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
+                        <dl class="space-y-1">
+                            <dt class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</dt>
+                            <dd class="text-earth-100 text-lg font-mono">
+                                <data value="200000">{{ project.budget|intcomma }}</data>
+                            </dd>
+                        </dl>
+
+                        {% include "components/svg_components/circular_button.html" %}
+                    </div>
+
                 </div>
-
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
-                    id="project-urban-solar-corridor-installation">
-                    Urban Solar Corridor Installation
-                </h3>
-
-                <p class="text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2">
-                    {% include "components/svg_components/city_icon.html" %}
-                    Leeds City Council
-                </p>
-
-                <p class="text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6">
-                    Deployment of rooftop solar arrays along the A64 business corridor...
-                </p>
-            </div>
-
-            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
-                <dl class="space-y-1">
-                    <dt class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</dt>
-                    <dd class="text-earth-100 text-lg font-mono">
-                        <data value="200000">£200,000</data>
-                    </dd>
-                </dl>
-
-                {% include "components/svg_components/circular_button.html" %}
-            </div>
-        </div>
-    </a>
-
-    <a href="{% url 'supply_chain:project_detail' 1 %}"
-       class="group block h-full"
-       aria-labelledby="project-green-roof-retrofit-central-library">
-        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
-
-            <div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Active</span>
-                    <span class="text-xs text-earth-500">4 days ago</span>
-                </div>
-
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
-                    id="project-green-roof-retrofit-central-library">
-                    Green Roof Retrofit – Central Library
-                </h3>
-
-                <p class="text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2">
-                    {% include "components/svg_components/city_icon.html" %}
-                    Leeds City Council
-                </p>
-
-                <p class="text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6">
-                    Installation of a living green roof on the Grade II listed Central Library. Work includes specialist
-                    waterproofing, native wildflower planting, and improved rainwater harvesting to reduce runoff.
-                </p>
-            </div>
-
-            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
-                <dl class="space-y-1">
-                    <dt class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</dt>
-                    <dd class="text-earth-100 text-lg font-mono">
-                        <data value="2500000">£500,000</data>
-                    </dd>
-                </dl>
-
-
-                {% include "components/svg_components/circular_button.html" %}
-            </div>
-        </div>
-    </a>
-
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full"
-       aria-labelledby="project-micklegate-habitat-restoration-zone">
-        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
-
-            <div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Active</span>
-                    <span class="text-xs text-earth-500">6 days ago</span>
-                </div>
-
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
-                    id="project-micklegate-habitat-restoration-zone">
-                    Micklegate Habitat Restoration Zone
-                </h3>
-
-                <p class="text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2">
-                    {% include "components/svg_components/city_icon.html" %}
-                    York City Council
-                </p>
-
-                <p class="text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6">
-                    Creation of a biodiversity corridor around Micklegate Bar. Involves limestone wall conservation
-                    using low-impact materials, installation of pollinator-friendly planting, and habitat structures for
-                    bats and swifts.
-                </p>
-            </div>
-
-            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
-                <dl class="space-y-1">
-                    <dt class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</dt>
-                    <dd class="text-earth-100 text-lg font-mono">
-                        <data value="1500000">£1,500,000</data>
-                    </dd>
-                </dl>
-
-                {% include "components/svg_components/circular_button.html" %}
-            </div>
-        </div>
-    </a>
-
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full"
-       aria-labelledby="project-clifton-primary-eco-extension">
-        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
-
-            <div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Active</span>
-                    <span class="text-xs text-earth-500">1 week ago</span>
-                </div>
-
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
-                    id="project-clifton-primary-eco-extension">
-                    Clifton Primary Eco-Extension
-                </h3>
-
-                <p class="text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2">
-                    {% include "components/svg_components/city_icon.html" %}
-                    York City Council
-                </p>
-
-                <p class="text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6">
-                    Construction of a modular, energy-positive classroom using timber framing, heat-pump technology,
-                    solar panels, and natural ventilation. Includes installation of a mini-wildlife garden and outdoor
-                    learning space.
-                </p>
-            </div>
-
-            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
-                <dl class="space-y-1">
-                    <dt class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</dt>
-                    <dd class="text-earth-100 text-lg font-mono">
-                        <data value="2000000">£2,000,000</data>
-                    </dd>
-                </dl>
-
-                {% include "components/svg_components/circular_button.html" %}
-            </div>
-        </div>
-    </a>
-
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full"
-       aria-labelledby="project-deansgate-low-carbon-transit-upgrade">
-        <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
-
-            <div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Closing Soon</span>
-                    <span class="text-xs text-earth-500">1 week ago</span>
-                </div>
-
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
-                    id="project-deansgate-low-carbon-transit-upgrade">
-                    Deansgate Low-Carbon Transit Upgrade
-                </h3>
-
-                <p class="text-bamboo-200/80 text-sm mb-4 font-medium flex items-center gap-2">
-                    {% include "components/svg_components/city_icon.html" %}
-                    Leeds City Council
-                </p>
-
-                <p class="text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6">
-                    Revamp of Deansgate tram stop with fully LED solar-powered lighting, real-time digital signage
-                    powered by micro-grids, installation of green walls, and accessible routes designed with sustainable
-                    materials.
-                </p>
-            </div>
-
-            <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
-                <dl class="space-y-1">
-                    <dt class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</dt>
-                    <dd class="text-earth-100 text-lg font-mono">
-                        <data value="2500000">£2,500,000</data>
-                    </dd>
-                </dl>
-
-                {% include "components/svg_components/circular_button.html" %}
-            </div>
-        </div>
-    </a>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p class="text-earth-300 text-xl">
+            No tenders found matching your criteria. Please adjust your filters and try again.
+        </p>
+    {% endif %}
 {% endblock %}

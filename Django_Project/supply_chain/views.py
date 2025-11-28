@@ -11,19 +11,19 @@ def all_councils(request):
         .order_by('name')
     )
 
-    context = {
-        'councils': councils,
-    }
-
-    return render(request, 'supply_chain/council/all_councils_list.html', context)
+    return render(request, 'supply_chain/council/all_councils_list.html', { 'councils': councils})
 
 
 def all_projects(request):
-    return render(request, 'supply_chain/project/all_projects_list.html')
+    projects = Project.objects.all().order_by('-created_at')
+
+    return render(request, 'supply_chain/project/all_projects_list.html', {'projects': projects})
 
 
 def project_detail(request, project_id):
-    return render(request, 'supply_chain/project/project_detail.html')
+    project = get_object_or_404(Project, pk=project_id)
+
+    return render(request, 'supply_chain/project/project_detail.html', {'project': project})
 
 
 def council_detail(request, slug):

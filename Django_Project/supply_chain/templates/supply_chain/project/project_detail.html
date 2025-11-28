@@ -1,7 +1,8 @@
 {% extends 'layouts/detail_layout.html' %}
+{% load humanize %}
 
 
-{% block title %}Public Tender{% endblock %}
+{% block title %}{{ project.title }}{% endblock %}
 
 
 <!-- Hero Detail Card -->
@@ -10,17 +11,15 @@
 {% endblock %}
 
 {% block item_title %}
-    Urban Solar Corridor Installation
+{{ project.title }}
 {% endblock %}
 
 {% block item_main %}
     <h3 class="text-xl font-semibold text-earth-50 mb-4">Project Description</h3>
-    <p class="text-earth-300 leading-relaxed mb-8">
-        Deployment of rooftop solar arrays along the A64 business corridor. Includes PV installation, micro-inverter
-        setup, and battery storage integration to supply renewable power to surrounding council buildings.
-    </p>
 
-    <div class="glass-panel bg-bamboo-900/20 p-4 rounded-lg">
+    <p class="text-earth-300 leading-relaxed mb-8">{{ project.description }} </p>
+
+    <div class="glass-panel bg-bamboo-900/20 p-4 rounded-lg"> <!-- Model extension required -->
         <h4 class="text-bamboo-400 font-semibold mb-2 flex items-center gap-2">
             {% include "components/svg_components/sustainability_icon.html" %}
             Sustainability Impact
@@ -41,15 +40,17 @@
     <footer class="mt-4 pt-8 border-t border-earth-50/10 flex items-start gap-6">
         <div>
             <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Posted On</p>
-            <time datetime="2025-05-25" class="text-earth-200 text-sm md:text-lg" aria-label="20 May 2022">20-05-2025
+            <time datetime="{{ project.created_at|date:"d M Y" }}"
+                  class="text-earth-200 text-sm md:text-lg"
+                  aria-label="20 May 2022">{{ project.created_at|date:"d M Y" }}
             </time>
         </div>
         <div class="h-8 w-px bg-white/10"></div>
         <div>
             <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Council</p>
-            <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}"
+            <a href="{% url 'supply_chain:council_detail' project.council.slug %}"
                class="text-bamboo-400 hover:text-bamboo-300 font-medium hover:underline">
-                Leeds City Council
+                {{ project.council.name }}
             </a>
         </div>
     </footer>
@@ -60,9 +61,9 @@
 {% block sidebar_card_1 %}
     <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest">Total Project Cap</h3>
 
-    <data value="1600000" class="text-1xl md:text-2xl font-mono font-bold tabular-nums">£1,600,000</data>
+    <data value="{{ project.budget }}" class="text-1xl md:text-2xl font-mono font-bold tabular-nums">£{{ project.budget|intcomma }}</data>
 
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2"> <!-- Model extension required -->
         <div class="flex items-center text-xs">
             <span class="text-earth-400 mr-10">Source:</span>
             <span class="px-2 py-1 rounded bg-bamboo-900/30 border border-bamboo-500/20 text-bamboo-300 font-mono flex items-center">
@@ -92,10 +93,10 @@
         <div class="w-px hidden md:flex bg-white/10 self-stretch"></div>
 
         <div class="overflow-hidden">
-            <p class="text-md mb-2">Bob Builder</p>
-            <a href="mailto:bob@council.gov.uk"
+            <p class="text-md mb-2">{{ project.council.contact }}</p>
+            <a href="{{ project.council.contact_email }}"
                class="text-sm font-bold text-bamboo-400 hover:text-bamboo-300 flex items-center gap-1.5 transition-colors">
-                bob@council.gov.uk
+                {{ project.council.contact_email }}
             </a>
         </div>
     </div>
@@ -106,7 +107,7 @@
 {% block sidebar_card_3 %}
     <h3 class="text-lg font-bold mb-4">Financial Overview</h3>
 
-    <!-- Divs to create the allocation bar at design stage -->
+    <!-- Requires Requirements Model Extension -->
     <div class="w-full h-4 rounded-full overflow-hidden flex mb-2">
         <div class="h-full bg-bamboo-500 w-3/4" title="Tendered Work Packages"></div>
         <div class="h-full bg-earth-700 flex-grow" title="Client Retained Budget"></div>
@@ -120,12 +121,12 @@
     <div class="space-y-3 text-left w-full px-2">
         <div class="flex justify-between items-baseline">
             <span class="text-sm text-earth-300">Project Budget Cap</span>
-            <data value="1600000" class="font-mono text-white">£1,600,000</data>
+            <data value="{{ project.budget }}" class="font-mono text-white">£{{ project.budget|intcomma }}</data>
         </div>
 
         <div class="flex justify-between items-baseline">
             <span class="text-sm text-bamboo-400">Open for Tender</span>
-            <data value="1210000" class="font-mono text-bamboo-400">£1,210,000</data>
+            <data value="1210000" class="font-mono text-bamboo-400">£1,210,000</data> <!-- Needs Requirement model extension -->
         </div>
 
         <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
@@ -133,20 +134,22 @@
                 <span class="text-sm text-earth-400">Client Retained</span>
                 <span class="text-xs text-earth-600 mr-8">Design Fees, Surveys, Client Overheads, Risk Allowance...</span>
             </div>
-            <data value="290000" class="font-mono text-earth-400">£290,000</data>
+            <data value="290000" class="font-mono text-earth-400">£290,000</data> <!-- Needs Requirement model extension -->
         </div>
     </div>
 {% endblock %}
 
 
-<!-- Rquirements Section -->
+<!--    Requirements Section -->
 {% block extended_content %}
-    <section aria-labelledby="requirements-heading" class="w-full border-t border-earth-50/10 py-12 mt-12">
+    <section aria-labelledby="requirements-heading" class="extended-content-wrapper">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
 
-            <h2 id="requirements-heading" class="text-2xl md:text-3xl font-bold mb-12 text-center md:text-left">
-                Work Packages & Requirements
-            </h2>
+            <!-- Header -->
+            <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">
+                <h2 id="requirements-heading" class="text-1xl md:text-2xl font-bold text-earth-50">Work Packages and Requirements</h2>
+                <p class="text-xs md:text-sm text-earth-500 text-right">See Doc For Details</p>
+            </div>
 
             <!-- Requirements Table -->
             <div class="glass-panel">
@@ -154,7 +157,7 @@
                     <table class="w-full text-left text-sm text-earth-300" aria-describedby="requirements-caption">
                         <caption id="requirements-caption" class="sr-only">
                             Work package list showing CPV code, requirement, estimated value,
-                            deadlines, status, notes, and action options.
+                            deadlines, status, and action options.
                         </caption>
 
                         <thead class="bg-white/5 text-xs uppercase font-bold">
@@ -193,9 +196,7 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                    <span class="text-bamboo-400"
-                                          id="status-45233120-6"
-                                          aria-live="polite">Open</span>
+                                    <span id="status-45233120-6" aria-live="polite">Open</span>
                             </td>
 
                             <td class="px-4 py-4 text-right">
@@ -227,9 +228,7 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                    <span class="text-yellow-500"
-                                          id="status-45112000-5"
-                                          aria-live="polite">Reviewing</span>
+                                    <span id="status-45112000-5" aria-live="polite">Reviewing</span>
                             </td>
 
                             <td class="px-4 py-4 text-right">
@@ -259,7 +258,7 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <span class="text-earth-500 font-bold">Awarded</span>
+                                <span>Awarded</span>
                             </td>
 
                             <td class="px-4 py-4 text-right text-earth-600 text-xs uppercase">

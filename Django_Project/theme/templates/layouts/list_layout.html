@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}lg:w-3/4
 
 {% block content %}
     <div class="w-full bg-stone-900 relative pt-24 pb-12 px-4 sm:px-8">
@@ -18,11 +18,10 @@
                 </aside>
 
                 <!-- List Item Container - Expands to two columns on larger screens -->
-                <div class="w-full lg:w-3/4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {% block list_items %}
-                        {% endblock %}
-                    </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full lg:w-3/4">
+                    {% block list_items %}
+                    {% endblock %}
                 </div>
             </div>
         </div>

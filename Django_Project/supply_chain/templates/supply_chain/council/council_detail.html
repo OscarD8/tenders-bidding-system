@@ -1,7 +1,7 @@
 {% extends 'layouts/detail_layout.html' %}
+{% load humanize %}
 
-
-{% block title %}Leeds City Council{% endblock %}
+{% block title %}{{ council.name }}{% endblock %}
 
 
 <!-- Hero Detail Card -->
@@ -39,8 +39,8 @@
         <div>
             <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Member Since</p>
             <p>
-                <time datetime="{{ council.created_at }}" class="text-earth-200 text-sm md:text-lg" aria-label="{{ council.created_at }}">
-                    {{ council.created_at }}
+                <time datetime="{{ council.created_at|date:'Y-m-d' }}" class="text-sm md:text-lg">
+                    {{ council.created_at|date:"Y" }}
                 </time>
             </p>
         </div>
@@ -84,7 +84,7 @@
     <h3 class="text-lg font-bold text-white mb-1">Have Questions?</h3>
     <p class="text-sm text-earth-400 mb-4">Contact the procurement team directly.</p>
 
-    <a href="mailto:leedscouncil@proton.gov"
+    <a href="mailto:{{ council.contact_email }}"
        class="btn btn-primary btn-xl">
         {% include "components/svg_components/email_icon.html" %}
         Email Council
@@ -93,16 +93,50 @@
 
 
 {% block extended_content %}
-    <section aria-labelledby="opportunities-heading" class="max-w-6xl mx-auto px-4 sm:px-8 pb-8 mt-16">
+    <section aria-labelledby="opportunities-heading" class="extended-content-wrapper">
+        <!-- Header -->
         <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">
             <h2 id="opportunities-heading" class="text-1xl md:text-2xl font-bold text-earth-50">Open Opportunities</h2>
-            <p class="text-sm text-earth-500 text-right">Displaying all active tenders</p>
+            <p class="text-sm text-earth-500 text-right">Displaying all open tenders</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- List of Projects -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {% for project in council.project_set.all %}
 
-                <!-- Projects related to council to go here -->
+                <a href="{% url 'supply_chain:project_detail' project.pk %}"
+                   class="group block h-full"
+                   aria-labelledby="project-urban-solar-corridor-installation"> <!-- needs model extension for slug? -->
+                    <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
+
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Active</span>
+                            <span class="text-xs text-earth-500">{{ project.created_at|naturaltime }}</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
+                            id="{{ project.title }}"> <!-- needs to be a slug? -->
+                            {{ project.title }}
+                        </h3>
+
+                        <p class="text-earth-300 text-sm line-clamp-3 leading-relaxed mb-6">
+                            {{ project.description }}
+                        </p>
+
+                        <!-- List item footer -->
+                        <div class="pt-6 border-t border-earth-50/10 flex items-center justify-between">
+                            <dl class="space-y-1">
+                                <dt class="text-xs text-earth-500 uppercase font-bold tracking-wider">Est. Budget</dt>
+                                <dd class="text-earth-100 text-lg font-mono">
+                                    <data value="200000">£{{ project.budget|intcomma }}</data>
+                                </dd>
+                            </dl>
+
+                            {% include "components/svg_components/circular_button.html" %}
+                        </div>
+
+                    </div>
+                </a>
 
             {% empty %}
                 <div class="col-span-full py-16 text-center border border-dashed border-earth-50/10 rounded-xl bg-white/5">
@@ -111,7 +145,6 @@
                     <p class="text-sm text-earth-600 mt-1">This council has no open opportunities listed at the
                         moment.</p>
                 </div>
-
             {% endfor %}
         </div>
     </section>

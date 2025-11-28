@@ -70,7 +70,7 @@
 
                             <span class="shrink-0 px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium">
                                 {% if council.projects_count == 0 %}
-                                    No Current Tenders
+                                    Pending
                                 {% else %}
                                     {{ council.projects_count }} Tender{% if council.projects_count > 1 %}s{% endif %}
                                 {% endif %}
@@ -84,7 +84,7 @@
                             </p>
                             <p class="text-earth-300 text-sm flex items-center gap-2">
                                 <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Email</span>
-                                <span class="text-earth-200 truncate">{{ council.contact_email }}</span>
+                                <span class="text-earth-200 truncate" title="{{ council.contact_email }}">{{ council.contact_email }}</span>
                             </p>
                         </div>
                     </div>
