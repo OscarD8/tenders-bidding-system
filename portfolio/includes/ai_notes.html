@@ -56,6 +56,146 @@
         </div>
     </div>
 
+    <!-- Card for AI Prompt 27-11-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        For my project_detail page, I want to replace the current card that just marks for submitting a general proposal with a financial overview card. A core theme of the brand is visibility and publicising processes. Therefore, it should provide a high-level overview of the total budget for the project, and the allocations to tenders vs any internal operational costs. How best to achieve this? If you were a contractor looking to get a quick overview of a tender and its budget status, what would you look for?
+Ensure that you use my global tailwind components in any code generated.
+                    </span>
+            </p>
+            <p>Date: 27-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    The initial prompt back missed that I am listing specific requirements elsewhere and focused more on a granular level of seeing individual requirements and their allocations, as well as the status of those individual requirements and budget estimates. I took two things away from it - to create a 'tender documentation' button that simplifies the concept of capturing the complexities of each requirement for that tender for the scope of this assignment. I also prompted again at how to create a simple visual indicator of budget allocations... to which it provided a two divs using flex to create a fill that can potentially be improved with python to be dynamic based on project information related to their requirements when the model is extended in stage 3. The prompt led to further discussion on what a tender is vs a project, vs a requirement, and what exactly contractors look for from a tender/requirement. What a bid means if accepted for the budget, and why I don't see estimated values for requirements on real examples etc.
+                    This has informed the elements used on the project_detail page and the overhaul made to it.
+
+                    Key points from response:
+
+                    <pre>
+Total budget, work package estimate, and reserves are good high-level figures. But they lack context:
+
+What exactly is included in each category?
+
+Which portions are committed internally, versus going to tender?
+
+How firm are the estimates?
+
+Numbers alone aren’t enough — contractors need breakdown of work packages, stages, and risk allocation to make an informed bid.
+                    </pre>
+
+                    <pre>
+&lt;div class="w-full h-4 rounded-full overflow-hidden flex mb-2"&gt;
+    &lt;div class="h-full bg-bamboo-500 w-3/4" title="Tendered Work Packages"&gt;&lt;/div&gt;
+    &lt;div class="h-full bg-earth-700 flex-grow" title="Client Retained Budget"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Card for AI Prompt 27-11-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        I need to create a realistic table based on these column headings, that fits the global theme and displays as a glass-panel.
+                    It must be a scroll-able container on mobile devices: CPV, Requirement, Est.Value, Deadline, Status, Action. Action must be a button and the markup must follow best practice for data values, dates. Provide me notes on each step taken to make this table accessible.
+                    </span>
+            </p>
+            <p>Date: 27-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    Its summary on accessibility introduced me to aria-live for dynamic updates, and the use of a data field that makes
+                    sense for identifying the row, linking that with the unique identifier of the requirement whilst establishing ids
+                    on status and name fields to allow for the button to be linked to semantic fields. The original code it provided used
+                    an aria-label attribute on the button, which I removed as it meant the established ids were not used, reducing
+                    readability (I think). It also put in a notes section that didn't make sense to me and seemed hard to model,
+                    as well as a documents section which for the scope of this assignment I assume the single documentation option
+                    for the tender as a whole holds that information (so removed those). I like the styling but created
+                    a tailwind class to make the header definitions less WET. Original result:
+
+                    <pre>
+&lt;div class="glass-panel overflow-hidden"&gt;
+    &lt;div class="overflow-x-auto"&gt;
+        &lt;table class="w-full text-left text-sm text-earth-300" aria-describedby="requirements-caption"&gt;
+            &lt;caption id="requirements-caption" class="sr-only"&gt;
+                Work package list showing CPV code, requirement, estimated value,
+                deadlines, status, notes and action options.
+            &lt;/caption&gt;
+
+            &lt;thead class="bg-white/5 text-xs uppercase font-bold text-bamboo-400"&gt;
+                &lt;tr&gt;
+                    &lt;th scope="col" class="px-6 py-4"&gt;CPV&lt;/th&gt;
+                    &lt;th scope="col" class="px-6 py-4"&gt;Requirement&lt;/th&gt;
+                    &lt;th scope="col" class="px-6 py-4"&gt;Est. Value&lt;/th&gt;
+                    &lt;th scope="col" class="px-6 py-4 whitespace-nowrap"&gt;Closes&lt;/th&gt;
+                    &lt;th scope="col" class="px-6 py-4"&gt;Status&lt;/th&gt;
+                    &lt;th scope="col" class="px-6 py-4"&gt;Notes&lt;/th&gt;
+                    &lt;th scope="col" class="px-6 py-4 text-right"&gt;Action&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+
+            &lt;tbody class="divide-y divide-white/5"&gt;
+
+                &lt;!-- ROW 1 — OPEN PACKAGE --&gt;
+                &lt;tr class="hover:bg-white/10 transition-colors group"&gt;
+
+                    &lt;td class="px-6 py-4 font-mono" title="Road resurfacing services"&gt;
+                        45233120-6
+                    &lt;/td&gt;
+
+                    &lt;th scope="row" id="req-45233120"
+                        class="px-6 py-4 font-medium text-earth-100"&gt;
+                        Road Resurfacing &amp; Line Marking
+                    &lt;/th&gt;
+
+                    &lt;td class="px-6 py-4"&gt;
+                        &lt;data value="500000"&gt;£500,000&lt;/data&gt;
+                    &lt;/td&gt;
+
+                    &lt;td class="px-6 py-4 whitespace-nowrap"&gt;
+                        &lt;span class="text-earth-400"&gt;14 Feb 2025&lt;/span&gt;
+                    &lt;/td&gt;
+
+                    &lt;td class="px-6 py-4"&gt;
+                        &lt;span class="text-bamboo-400 font-bold"
+                              id="status-45233120"
+                              aria-live="polite"&gt;Open&lt;/span&gt;
+                    &lt;/td&gt;
+
+                    &lt;td class="px-6 py-4 text-xs text-earth-500"&gt;
+                        Night works required&lt;br&gt;
+                        Traffic management included
+                    &lt;/td&gt;
+
+                    &lt;td class="px-6 py-4 text-right"&gt;
+                        &lt;button type="button"
+                                class="text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider"
+                                aria-label="Place bid for Road Resurfacing &amp; Line Marking"&gt;
+                            Place Bid
+                        &lt;/button&gt;
+                    &lt;/td&gt;
+
+                &lt;/tr&gt;
+
+                &lt;!-- ROW 2 — CLOSED PACKAGE --&gt;   .....
+                    </pre>
+
+                </span>
+            </p>
+        </div>
+    </div>
+
     <!-- Card for AI Prompt 26-11-25 -->
 
     <div class="card">
