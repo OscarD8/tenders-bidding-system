@@ -11,14 +11,14 @@
 
 
 {% block item_title %}
-    Leeds City Council
+    {{ council.name }}
 {% endblock %}
 
 
 {% block item_main %} <!-- Future model extension to include sustainability policy and region -->
     <p class="text-xl font-medium text-earth-100 flex items-center gap-2">
         {% include 'components/svg_components/location_icon.html' %}
-        West Yorkshire
+        Region On Model Extension
     </p>
 
     <blockquote class="text-earth-400 text-base mt-7 leading-relaxed border-l-2 border-bamboo-500/30 pl-4">
@@ -39,13 +39,14 @@
         <div>
             <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Member Since</p>
             <p>
-                <time datetime="2022-05-20" class="text-earth-200 text-sm md:text-lg" aria-label="20 May 2022">
-                    20-05-2022
+                <time datetime="{{ council.created_at }}" class="text-earth-200 text-sm md:text-lg" aria-label="{{ council.created_at }}">
+                    {{ council.created_at }}
                 </time>
             </p>
         </div>
 
         <div class="h-8 w-px bg-white/10"></div>
+
         <div>
             <!-- Model extension here for sustainability metric on councils -->
             <div>
@@ -64,7 +65,7 @@
 {% block sidebar_card_1 %}
     <div class="flex flex-col items-center justify-center text-center md:gap-2">
         <h3 class="text-xs md:text-sm font-bold text-earth-500 uppercase tracking-widest mb-2">Procurement Contact</h3>
-        <div class="font-bold text-sm">Amadeus Phillida</div>
+        <div class="font-bold text-sm">{{ council.contact }}</div>
     </div>
 {% endblock %}
 
@@ -73,7 +74,7 @@
     <dl class="flex flex-col items-center justify-center text-center gap-2">
         <dt id="live-projects-label" class="text-xs md:text-sm font-bold text-earth-500 uppercase">Live Projects</dt>
         <dd class="text-2xl font-bold font-mono">
-            <data value="0">0</data>
+            <data value="0">{{ council.projects_count }}</data>
         </dd>
     </dl>
 {% endblock %}
