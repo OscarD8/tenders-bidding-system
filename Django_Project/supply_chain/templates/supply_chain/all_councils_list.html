@@ -1,6 +1,8 @@
 {% extends 'layouts/list_layout.html' %}
 
+
 {% block title %}Councils | Bamboo Tenders{% endblock %}
+
 
 {% block page_header %}
     <div class="flex flex-col justify-between">
@@ -15,8 +17,9 @@
     </div>
 {% endblock %}
 
+
 {% block layout_sidebar %}
-        <div class="glass-panel sidebar-variant p-8">
+    <div class="glass-panel sidebar-variant p-8">
 
         <h3 class="sidebar-title text-earth-500">Search</h3>
 
@@ -50,15 +53,17 @@
     </div>
 {% endblock %}
 
-{% block list_items %}
 
-    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block">
+{% block list_items %}
+    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block"
+       aria-labelledby="council-poppleton-council">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-6 gap-4">
 
-                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors">
+                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors"
+                        id="council-poppleton-council">
                         Poppleton Council
                     </h3>
 
@@ -88,13 +93,15 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block h-full">
+    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block h-full"
+       aria-labelledby="council-leeds-city-council">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-6 gap-4">
 
-                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors">
+                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors"
+                        id="council-leeds-city-council">
                         Leeds City Council
                     </h3>
 
@@ -124,13 +131,15 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block h-full">
+    <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}" class="group block h-full"
+       aria-labelledby="council-manchester-council">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
                 <div class="flex justify-between items-start mb-6 gap-4">
 
-                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors">
+                    <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors"
+                        id="council-manchester-council">
                         Manchester Council
                     </h3>
 
@@ -159,5 +168,4 @@
 
         </div>
     </a>
-
 {% endblock %}

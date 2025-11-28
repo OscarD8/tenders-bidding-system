@@ -30,7 +30,7 @@
 }
 
 @layer components {
-    /* 1. THE BASE CARD (Used everywhere - Sidebar, Detail, Lists) */
+    /* 1. Base card (Used everywhere - Sidebar, Detail, Lists) */
     .glass-panel {
         @apply bg-earth-900/25 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl;
     }
@@ -39,7 +39,11 @@
         @apply bg-earth-900/25 h-full backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl p-8 flex flex-col justify-between
     }
 
-    /* 2. THE INTERACTIVE BEHAVIOR (Used only for clickable cards) */
+    .sidebar-variant {
+        @apply sticky top-28 border-earth-50/10 bg-earth-800/20;
+    }
+
+    /* 2. Card Interaction Behaviour (Used only for clickable cards) */
     /* Notice we use 'group-hover' here. */
     .hover-lift {
         @apply transition-all duration-500 ease-out transform group-hover:-translate-y-2;
@@ -49,12 +53,10 @@
         @apply group-hover:bg-earth-800/30 group-hover:border-bamboo-400/30;
     }
 
-    /* Hover effect applies to the parent.
-       It automatically creates the child layer using CSS.
-    */
+    /* Hover effect applies to the parent.It automatically creates the child layer using CSS. */
     .hover-fill-bamboo {
         @apply relative overflow-hidden;
-        /* Essential for containing the fill */
+        /* Necessary for containing the fill */
     }
 
     .hover-fill-bamboo::before {
@@ -69,6 +71,8 @@
         @apply scale-x-100;
     }
 
+
+    /* Global button styles */
     .btn {
         @apply inline-flex items-center justify-center gap-2 font-bold transition-all transform hover:scale-105 cursor-pointer text-center;
     }
@@ -89,14 +93,8 @@
         @apply py-3 px-6 rounded-lg text-sm;
     }
 
-    .title-large {
-        @apply text-4xl md:text-5xl font-bold text-earth-200 mb-4
-    }
 
-    .bullet-point {
-        @apply mt-1 w-2 h-2 rounded-full bg-bamboo-500
-    }
-
+    /* Snap Containers */
     .snap-container {
         @apply snap-y snap-mandatory h-screen overflow-y-scroll;
     }
@@ -105,6 +103,26 @@
         @apply snap-start h-screen w-full flex items-center justify-center relative overflow-hidden;
     }
 
+
+    /* BAMBOO RANGE SLIDER STYLES */
+    /* The invisible slider track (we allow clicks through it) */
+    .range-input {
+        @apply absolute top-0 left-0 w-full h-2 appearance-none bg-transparent pointer-events-none;
+    }
+
+    /* Chrome/Safari Thumb */
+    .range-input::-webkit-slider-thumb {
+        @apply appearance-none w-5 h-5 rounded-full bg-earth-50 border-2 border-bamboo-500 cursor-pointer pointer-events-auto shadow-lg transform transition-transform hover:scale-110;
+        margin-top: -6px; /* Align vertical center */
+    }
+
+    /* Firefox Thumb */
+    .range-input::-moz-range-thumb {
+        @apply w-5 h-5 rounded-full bg-earth-50 border-2 border-bamboo-500 cursor-pointer pointer-events-auto shadow-lg border-none;
+    }
+
+
+    /* Misc */
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
@@ -112,10 +130,6 @@
     .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
-    }
-
-    .sidebar-variant {
-        @apply sticky top-28 border-earth-50/10 bg-earth-800/20;
     }
 
     .sidebar-title {
@@ -128,6 +142,14 @@
 
     .sub-heading-earth-400 {
         @apply block text-xs font-bold uppercase tracking-wider mb-2 text-earth-400;
+    }
+
+    .bullet-point {
+        @apply mt-1 w-2 h-2 rounded-full bg-bamboo-500
+    }
+
+    .th-base {
+        @apply px-6 py-4 text-left font-bold uppercase tracking-wider;
     }
 }
 

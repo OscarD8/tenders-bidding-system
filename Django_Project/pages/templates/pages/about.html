@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block title %}Our Mission | Bamboo Tenders{% endblock %}
 
+
 {% block content %}
-
     <div class="snap-container">
-
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             {% include "components/bg_template_brown_gradient.html" with static_path="images/mycelium_manufacture.jpeg" alt_text="About Background" %}
@@ -14,9 +14,7 @@
 
         <!-- Mission Statement -->
         <section class="snap-section relative z-10">
-
             <div class="max-w-6xl px-4 sm:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 ">
-
                 <!-- Detail -->
                 <div class="space-y-6 md:space-y-8">
                     <span class="text-bamboo-400 font-mono text-sm tracking-widest uppercase">The Origin</span>
@@ -46,16 +44,12 @@
                         {% include "components/svg_components/bamboo_growing_svg.html" %}
                     </div>
                 </div>
-
             </div>
-
         </section>
 
         <!-- Measurement Impact Section -->
         <section class="snap-section relative z-10 overflow-hidden">
-
             <div class="relative z-10 max-w-7xl mx-auto px-4 w-full">
-
                 <!-- Header -->
                 <div class="hidden md:block text-center mb-16">
                     <h2 class="text-4xl font-bold text-earth-50">Measured Impact</h2>
@@ -63,7 +57,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[500px]">
-
                     <!-- Capture Metric -->
                     <div class="glass-panel p-4 md:p-8 flex flex-col justify-center md:col-span-1 hover-lift group gap-3">
                         <div>
@@ -108,8 +101,8 @@
                             {% include "components/svg_components/root_structures_svg.html" %}
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </section>
 
@@ -117,7 +110,6 @@
         <section class="snap-section relative z-10">
             <div class="max-w-5xl mx-auto px-4 sm:px-8 w-full">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-
                     <!-- Animation Card -->
                     <div class="relative flex items-center justify-center">
                         <div class="glass-panel w-60 md:w-sm p-6 md:p-12 aspect-square">
@@ -135,26 +127,23 @@
                             real-time.
                         </p>
 
-                        <ul class="space-y-4 mt-4">
-
+                        <ul class="space-y-4 ml-8">
                             {% with monitoring_point="flex items-center gap-3" %}
                                 <li class="monitoring-point {{ monitoring_point }}">
                                     <span class="bullet-point"></span>
-                                    <span class="text-earth-200">Direct Albedo Measurement via satellite uplink.</span>
+                                    <span>Direct Albedo Measurement via satellite uplink.</span>
                                 </li>
                                 <li class="monitoring-point {{ monitoring_point }}">
                                     <span class="bullet-point"></span>
-                                    <span class="text-earth-200">Soil microbiome health tracking for agro-forestry projects.</span>
+                                    <span>Soil microbiome health tracking for agro-forestry projects.</span>
                                 </li>
                                 <li class="monitoring-point {{ monitoring_point }}">
                                     <span class="bullet-point"></span>
-                                    <span class="text-earth-200">Supply chain transparency ledger (Blockchain verified).</span>
+                                    <span>Supply chain transparency ledger (Blockchain verified).</span>
                                 </li>
                             {% endwith %}
-
                         </ul>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -171,7 +160,6 @@
                 </h2>
 
                 <figure class="max-w-4xl mx-auto my-12">
-
                     <blockquote
                             class="text-lg md:text-2xl text-earth-200 text-center relative z-10">
                         <p>
@@ -195,9 +183,7 @@
                                 <cite>The Regenerative City Whitepaper (2030)</cite>
                             </div>
                         </div>
-
                     </figcaption>
-
                 </figure>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mx-auto w-3/4 md:px-10">
@@ -222,4 +208,5 @@
             {% include "components/footer.html" with extra_classes="bg-stone-900/60 backdrop-blur-md border-t border-white/10" %}
         </div>
     {% endblock %}
+
 {% endblock %}

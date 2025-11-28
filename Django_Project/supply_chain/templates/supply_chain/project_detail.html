@@ -1,65 +1,68 @@
 {% extends 'layouts/detail_layout.html' %}
 
-{% block title %}Project Name{% endblock %}
+
+{% block title %}Public Tender{% endblock %}
+
 
 <!-- Hero Detail Card -->
 {% block breadcrumb_parent %}
-    <a href="{% url 'supply_chain:projects' %}" class="hover:text-bamboo-400 transition-colors">Projects</a>
+    <a href="{% url 'supply_chain:projects' %}" class="hover:text-bamboo-400 transition-colors">Tenders</a>
 {% endblock %}
-
 
 {% block item_title %}
     Urban Solar Corridor Installation
 {% endblock %}
 
+{% block item_main %}
+    <h3 class="text-xl font-semibold text-earth-50 mb-4">Project Description</h3>
+    <p class="text-earth-300 leading-relaxed mb-8">
+        Deployment of rooftop solar arrays along the A64 business corridor. Includes PV installation, micro-inverter
+        setup, and battery storage integration to supply renewable power to surrounding council buildings.
+    </p>
 
-{% block item_description %}
-    <div class="prose prose-invert max-w-none">
-        <h3 class="text-xl font-semibold text-earth-50 mb-4">Project Description</h3>
-        <p class="text-earth-300 leading-relaxed mb-8">
-            Deployment of rooftop solar arrays along the A64 business corridor. Includes PV installation, micro-inverter
-            setup, and battery storage integration to supply renewable power to surrounding council buildings.
+    <div class="glass-panel bg-bamboo-900/20 p-4 rounded-lg">
+        <h4 class="text-bamboo-400 font-semibold mb-2 flex items-center gap-2">
+            {% include "components/svg_components/sustainability_icon.html" %}
+            Sustainability Impact
+        </h4>
+        <p class="text-sm text-earth-400">
+            This project has been flagged for high ecological value. Detailed impact metrics will be available in
+            Phase 2.
         </p>
-
-        <div class="glass-panel bg-bamboo-900/20 p-4 rounded-lg mb-6">
-            <h4 class="text-bamboo-400 font-semibold mb-2 flex items-center gap-2">
-                {% include "components/svg_components/sustainability_icon.html" %}
-                Sustainability Impact
-            </h4>
-            <p class="text-sm text-earth-400">
-                This project has been flagged for high ecological value. Detailed impact metrics will be available in
-                Phase 2.
-            </p>
-        </div>
     </div>
-{% endblock %}
 
+    <a href="#" class="btn btn-outline btn-md w-full text-xs my-8">
+        {% include 'components/svg_components/download_icon.html' %}
+        Tender Documentation
+    </a>
+{% endblock %}
 
 {% block hero_footer %}
-    <div>
-        <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Posted On</p>
-        <time datetime="2022-05-25" class="text-earth-200 text-sm md:text-lg" aria-label="20 May 2022">20-05-2022
-        </time>
-    </div>
-    <div class="h-8 w-px bg-white/10"></div>
-    <div>
-        <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Council</p>
-        <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}"
-           class="text-bamboo-400 hover:text-bamboo-300 font-medium hover:underline">
-            Leeds City Council
-        </a>
-    </div>
+    <footer class="mt-4 pt-8 border-t border-earth-50/10 flex items-start gap-6">
+        <div>
+            <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Posted On</p>
+            <time datetime="2025-05-25" class="text-earth-200 text-sm md:text-lg" aria-label="20 May 2022">20-05-2025
+            </time>
+        </div>
+        <div class="h-8 w-px bg-white/10"></div>
+        <div>
+            <p class="text-xs text-earth-500 uppercase tracking-widest mb-1">Council</p>
+            <a href="{% url 'supply_chain:council_detail' 'leeds-city-council' %}"
+               class="text-bamboo-400 hover:text-bamboo-300 font-medium hover:underline">
+                Leeds City Council
+            </a>
+        </div>
+    </footer>
 {% endblock %}
 
 
-<!-- Side Bar Cards -->
+<!-- Project Cap Card -->
 {% block sidebar_card_1 %}
     <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest">Total Project Cap</h3>
 
     <data value="1600000" class="text-1xl md:text-2xl font-mono font-bold tabular-nums">£1,600,000</data>
 
     <div class="flex flex-col gap-2">
-
         <div class="flex items-center text-xs">
             <span class="text-earth-400 mr-10">Source:</span>
             <span class="px-2 py-1 rounded bg-bamboo-900/30 border border-bamboo-500/20 text-bamboo-300 font-mono flex items-center">
@@ -73,11 +76,11 @@
                 Net Zero 2030
             </span>
         </div>
-
     </div>
 {% endblock %}
 
 
+<!-- Procurement Lead Card -->
 {% block sidebar_card_2 %}
     <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest mb-2">Procurement Lead</h3>
 
@@ -89,9 +92,9 @@
         <div class="w-px hidden md:flex bg-white/10 self-stretch"></div>
 
         <div class="overflow-hidden">
-            <p class="text-sm mb-2">Bob Builder</p>
+            <p class="text-md mb-2">Bob Builder</p>
             <a href="mailto:bob@council.gov.uk"
-               class="text-xs font-bold text-bamboo-400 hover:text-bamboo-300 flex items-center gap-1.5 transition-colors">
+               class="text-sm font-bold text-bamboo-400 hover:text-bamboo-300 flex items-center gap-1.5 transition-colors">
                 bob@council.gov.uk
             </a>
         </div>
@@ -99,96 +102,168 @@
 {% endblock %}
 
 
+<!-- Financial Overview Card -->
 {% block sidebar_card_3 %}
     <h3 class="text-lg font-bold mb-4">Financial Overview</h3>
 
-    <div class="w-full h-4 bg-earth-800 rounded-full overflow-hidden flex mb-2">
-        <div class="h-full bg-bamboo-500" style="width: 75%" title="Value Open for Tender"></div>
-        <div class="h-full bg-earth-600 opacity-50 flex-grow" title="Retained for Management & Contingency"></div>
+    <!-- Divs to create the allocation bar at design stage -->
+    <div class="w-full h-4 rounded-full overflow-hidden flex mb-2">
+        <div class="h-full bg-bamboo-500 w-3/4" title="Tendered Work Packages"></div>
+        <div class="h-full bg-earth-700 flex-grow" title="Client Retained Budget"></div>
     </div>
 
     <div class="flex justify-between text-xs text-earth-400 uppercase tracking-widest mb-6">
-        <span>Tender Value</span>
+        <span>Open to Tender</span>
         <span>Retained</span>
     </div>
 
-    <div class="space-y-3 mb-8 text-left w-full px-2">
-
+    <div class="space-y-3 text-left w-full px-2">
         <div class="flex justify-between items-baseline">
-            <span class="text-sm text-earth-300">Total Budget Cap</span>
+            <span class="text-sm text-earth-300">Project Budget Cap</span>
             <data value="1600000" class="font-mono text-white">£1,600,000</data>
         </div>
 
         <div class="flex justify-between items-baseline">
-            <span class="text-sm text-bamboo-400">Open Work Packages</span>
-            <data value="1200000" class="font-mono text-bamboo-400">£1,200,000</data>
+            <span class="text-sm text-bamboo-400">Open for Tender</span>
+            <data value="1210000" class="font-mono text-bamboo-400">£1,210,000</data>
         </div>
 
         <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
             <div class="flex flex-col">
-                <span class="text-sm text-earth-500">Reserves</span>
-                <span class="text-xs text-earth-600 mr-4">Mgmt, Contingency & Overheads</span>
+                <span class="text-sm text-earth-400">Client Retained</span>
+                <span class="text-xs text-earth-600 mr-8">Design Fees, Surveys, Client Overheads, Risk Allowance...</span>
             </div>
-            <data value="400,000" class="font-mono text-earth-400">£400,000</data>
+            <data value="290000" class="font-mono text-earth-400">£290,000</data>
         </div>
     </div>
-
-    <a href="#" class="btn btn-outline btn-md w-full text-xs">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-        Download Breakdown
-    </a>
 {% endblock %}
 
 
-
-<!-- Extended Content -->
+<!-- Rquirements Section -->
 {% block extended_content %}
-    <section aria-labelledby="requirements-heading" class="w-full border-t border-earth-50/10 py-12  mt-12">
+    <section aria-labelledby="requirements-heading" class="w-full border-t border-earth-50/10 py-12 mt-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
 
-            <h2 id="requirements-heading" class="text-2xl font-bold text-earth-200 mb-6">
+            <h2 id="requirements-heading" class="text-2xl md:text-3xl font-bold mb-12 text-center md:text-left">
                 Work Packages & Requirements
             </h2>
 
-            <div class="glass-panel overflow-hidden">
+            <!-- Requirements Table -->
+            <div class="glass-panel">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-earth-300">
+                    <table class="w-full text-left text-sm text-earth-300" aria-describedby="requirements-caption">
+                        <caption id="requirements-caption" class="sr-only">
+                            Work package list showing CPV code, requirement, estimated value,
+                            deadlines, status, notes, and action options.
+                        </caption>
+
                         <thead class="bg-white/5 text-xs uppercase font-bold text-bamboo-400">
                         <tr>
-                            <th scope="col" class="px-6 py-4">CPV Code</th>
-                            <th scope="col" class="px-6 py-4">Requirement</th>
-                            <th scope="col" class="px-6 py-4">Est. Value</th>
-                            <th scope="col" class="px-6 py-4">Status</th>
-                            <th scope="col" class="px-6 py-4 text-right">Action</th>
+                            <th scope="col" class="th-base">CPV</th>
+                            <th scope="col" class="th-base">Requirement</th>
+                            <th scope="col" class="th-base">Est. Value</th>
+                            <th scope="col" class="th-base">Deadline</th>
+                            <th scope="col" class="th-base">Status</th>
+                            <th scope="col" class="th-base text-right">Action</th>
                         </tr>
                         </thead>
+
                         <tbody class="divide-y divide-white/5">
+
+                        <!-- ROW 1 — OPEN PACKAGE -->
                         <tr class="hover:bg-white/10 transition-colors group">
-                            <td class="px-6 py-4 font-mono">45233120-6</td>
-                            <td class="px-6 py-4 font-medium text-earth-100">Road Resurfacing & Line Marking</td>
+                            <td class="px-6 py-4 font-mono" title="Road resurfacing services">
+                                45233120-6
+                            </td>
+
+                            <th scope="row" id="req-45233120"
+                                class="px-6 py-4 font-medium text-earth-100">
+                                Road Resurfacing & Line Marking
+                            </th>
+
                             <td class="px-6 py-4">
                                 <data value="500000">£500,000</data>
                             </td>
-                            <td class="px-6 py-4"><span class="text-bamboo-400">Open</span></td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider">
-                                    Place Bid
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <time datetime="2025-06-14" class="text-earth-400"
+                                      aria-label="Deadline 14 June 2025">
+                                    14 Jun 2025
+                                </time>
+                            </td>
+
+                            <td class="px-6 py-4">
+                                    <span class="text-bamboo-400 font-bold"
+                                          id="status-45233120"
+                                          aria-live="polite">Open</span>
+                            </td>
+
+                            <td class="px-4 py-4 text-right">
+                                <button type="button"
+                                        class="text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider"
+                                        aria-label="Place bid for Road Resurfacing & Line Marking">
+                                    Bid Now
                                 </button>
                             </td>
                         </tr>
 
-                        <tr class="hover:bg-white/5 transition-colors group">
-                            <td class="px-6 py-4 font-mono">45112000-5</td>
-                            <td class="px-6 py-4 font-medium text-earth-100">Excavation & Earthmoving</td>
+                        <!-- ROW 2 — REVIEWING PACKAGE -->
+                        <tr class="hover:bg-white/10 transition-colors group">
+                            <td class="px-6 py-4 font-mono" title="Excavation and earthmoving works">
+                                45112000-5
+                            </td>
+
+                            <th scope="row" id="req-45112000"
+                                class="px-6 py-4 font-medium text-earth-100">
+                                Excavation & Earthmoving
+                            </th>
+
                             <td class="px-6 py-4">
                                 <data value="700000">£700,000</data>
                             </td>
-                            <td class="px-6 py-4"><span class="text-yellow-500">Reviewing</span></td>
-                            <td class="px-6 py-4 text-right">
-                                <span class="text-earth-600 cursor-not-allowed">Closed</span>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-earth-600">Closed</span>
+                            </td>
+
+                            <td class="px-6 py-4">
+                                    <span class="text-yellow-500 font-bold"
+                                          id="status-45112000"
+                                          aria-live="polite">Reviewing</span>
+                            </td>
+
+                            <td class="px-4 py-4 text-right">
+                                <button class="text-yellow-500 hover:text-yellow-100 text-xs uppercase font-bold"
+                                        aria-label="Register interest for Excavation & Earthmoving">
+                                    Inspect
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- ROW 3 — AWARDED EXAMPLE -->
+                        <tr class="hover:bg-white/10 transition-colors group">
+
+                            <td class="px-6 py-4 font-mono">45316100-9</td>
+
+                            <th scope="row" id="req-45316100"
+                                class="px-6 py-4 font-medium text-earth-100">
+                                Facilities & Catering
+                            </th>
+
+                            <td class="px-6 py-4">
+                                <data value="10000">£10,000</data>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-earth-600">Closed</span>
+                            </td>
+
+                            <td class="px-6 py-4">
+                                <span class="text-earth-500 font-bold">Awarded</span>
+                            </td>
+
+                            <td class="px-4 py-4 text-right text-earth-600 text-xs uppercase">
+                                —
                             </td>
                         </tr>
                         </tbody>
@@ -199,3 +274,4 @@
         </div>
     </section>
 {% endblock %}
+

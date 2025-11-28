@@ -4,7 +4,6 @@
     <div class="w-full bg-stone-900 relative pt-24 pb-12 px-4 sm:px-8">
 
         <div class="relative z-10 max-w-7xl mx-auto">
-
             <!-- Header -->
             <div class="mb-12 border-b border-earth-50/10 pb-8">
                 {% block page_header %}
@@ -12,7 +11,7 @@
             </div>
 
             <div class="flex flex-col lg:flex-row gap-8">
-
+                <!-- Sidebar to display above list items up to md - shrinks to 1/4 on lg and switches to row -->
                 <aside class="w-full lg:w-1/4 shrink-0">
                     {% block layout_sidebar %}
                     {% endblock %}
@@ -25,8 +24,8 @@
                         {% endblock %}
                     </div>
                 </div>
-
             </div>
         </div>
+
     </div>
 {% endblock %}

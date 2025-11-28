@@ -1,6 +1,8 @@
 {% extends 'layouts/detail_layout.html' %}
 
+
 {% block title %}Leeds City Council{% endblock %}
+
 
 <!-- Hero Detail Card -->
 {% block breadcrumb_parent %}
@@ -13,7 +15,7 @@
 {% endblock %}
 
 
-{% block item_description %} <!-- Future model extension to include sustainability policy and region -->
+{% block item_main %} <!-- Future model extension to include sustainability policy and region -->
     <p class="text-xl font-medium text-earth-100 flex items-center gap-2">
         {% include 'components/svg_components/location_icon.html' %}
         West Yorkshire
@@ -33,25 +35,28 @@
 
 
 {% block hero_footer %}
-    <div>
-        <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Member Since</p>
-        <p>
-            <time datetime="2022-05-20" class="text-earth-200 text-sm md:text-lg" aria-label="20 May 2022">20-05-2022
-            </time>
-        </p>
-    </div>
-
-    <div class="h-8 w-px bg-white/10"></div>
-    <div>
-        <!-- Model extension here for sustainability metric on councils -->
+    <footer class="mt-8 pt-8 border-t border-earth-50/10 flex items-start gap-6">
         <div>
-            <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Bamboo Standard</p>
-            <div class="flex items-center gap-2 text-bamboo-400 text-sm md:text-lg">
-                {% include "components/svg_components/sustainability_icon.html" %}
-                <span>Going Green</span>
+            <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Member Since</p>
+            <p>
+                <time datetime="2022-05-20" class="text-earth-200 text-sm md:text-lg" aria-label="20 May 2022">
+                    20-05-2022
+                </time>
+            </p>
+        </div>
+
+        <div class="h-8 w-px bg-white/10"></div>
+        <div>
+            <!-- Model extension here for sustainability metric on councils -->
+            <div>
+                <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Bamboo Standard</p>
+                <div class="flex items-center gap-2 text-bamboo-400 text-sm md:text-lg">
+                    {% include "components/svg_components/sustainability_icon.html" %}
+                    <span>Going Green</span>
+                </div>
             </div>
         </div>
-    </div>
+    </footer>
 {% endblock %}
 
 
@@ -66,9 +71,9 @@
 
 {% block sidebar_card_2 %}
     <dl class="flex flex-col items-center justify-center text-center gap-2">
-        <dt class="text-xs md:text-sm font-bold text-earth-500 uppercase">Live Projects</dt>
+        <dt id="live-projects-label" class="text-xs md:text-sm font-bold text-earth-500 uppercase">Live Projects</dt>
         <dd class="text-2xl font-bold font-mono">
-            <data value="7" aria-label="7 live projects">7</data>
+            <data value="0">0</data>
         </dd>
     </dl>
 {% endblock %}
@@ -86,7 +91,6 @@
 {% endblock %}
 
 
-<!-- Extended Content -->
 {% block extended_content %}
     <section aria-labelledby="opportunities-heading" class="max-w-6xl mx-auto px-4 sm:px-8 pb-8 mt-16">
         <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">

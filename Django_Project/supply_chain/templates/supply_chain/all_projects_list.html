@@ -1,39 +1,35 @@
 {% extends 'layouts/list_layout.html' %}
 
+
 {% block title %}Tenders | Bamboo Tenders{% endblock %}
 
+
 {% block page_header %}
-    <div class="flex flex-col md:flex-row justify-between items-end">
-        <div class="max-w-2xl">
-            <h1 class="title-large">
-                Open <span class="text-bamboo-400">Projects</span>
+    <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
+        <div>
+            <h1 class="text-xl">
+                Open <span class="text-bamboo-400">Tenders</span>
             </h1>
             <p class="text-earth-300 text-lg leading-relaxed">
                 Explore sustainable tender opportunities from our partner councils.
-                Filter by scope, budget, or authority.
             </p>
         </div>
 
-        <div class="flex gap-2 mt-4 md:mt-0">
-            <span class="px-3 py-1 rounded-full border border-bamboo-500/30 bg-bamboo-500/10 text-bamboo-300 text-xs font-medium text-center">
-                (Amount) Active
-            </span>
-            <span class="px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium text-center">
-                Renewable Focus
-            </span>
-        </div>
+        <span class="px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium text-center">
+                [Amount] Active Tenders
+        </span>
     </div>
 {% endblock %}
 
 
 <!-- Sidebar used for Filter Section -->
 {% block layout_sidebar %}
-    <div class="glass-panel sidebar-variant p-8">
+    <div class="glass-panel sidebar-variant p-8"
+    aria-labelledby="sidebar-filter-label">
 
-        <h3 class="sidebar-title">Filter Results</h3>
+        <h3 class="sidebar-title" id="sidebar-filter-label">Filter Results</h3>
 
         <form method="get" class="space-y-6">
-
             <div>
                 <label for="q"
                        class="sub-heading-earth-400">Keywords</label>
@@ -71,7 +67,6 @@
             <button type="submit" class="btn btn-primary btn-md">
                 Update Results
             </button>
-
         </form>
 
     </div>
@@ -79,7 +74,9 @@
 
 
 {% block list_items %}
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
+    <a href="{% url 'supply_chain:project_detail' 1 %}"
+       class="group block h-full"
+       aria-labelledby="project-urban-solar-corridor-installation">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
@@ -88,7 +85,8 @@
                     <span class="text-xs text-earth-500">2 days ago</span>
                 </div>
 
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2">
+                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
+                    id="project-urban-solar-corridor-installation">
                     Urban Solar Corridor Installation
                 </h3>
 
@@ -115,7 +113,9 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
+    <a href="{% url 'supply_chain:project_detail' 1 %}"
+       class="group block h-full"
+       aria-labelledby="project-green-roof-retrofit-central-library">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
@@ -124,7 +124,8 @@
                     <span class="text-xs text-earth-500">4 days ago</span>
                 </div>
 
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2">
+                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
+                    id="project-green-roof-retrofit-central-library">
                     Green Roof Retrofit – Central Library
                 </h3>
 
@@ -153,7 +154,8 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
+    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full"
+       aria-labelledby="project-micklegate-habitat-restoration-zone">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
@@ -162,7 +164,8 @@
                     <span class="text-xs text-earth-500">6 days ago</span>
                 </div>
 
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2">
+                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
+                    id="project-micklegate-habitat-restoration-zone">
                     Micklegate Habitat Restoration Zone
                 </h3>
 
@@ -191,7 +194,8 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
+    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full"
+       aria-labelledby="project-clifton-primary-eco-extension">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
@@ -200,7 +204,8 @@
                     <span class="text-xs text-earth-500">1 week ago</span>
                 </div>
 
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2">
+                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
+                    id="project-clifton-primary-eco-extension">
                     Clifton Primary Eco-Extension
                 </h3>
 
@@ -229,7 +234,8 @@
         </div>
     </a>
 
-    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full">
+    <a href="{% url 'supply_chain:project_detail' 1 %}" class="group block h-full"
+       aria-labelledby="project-deansgate-low-carbon-transit-upgrade">
         <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
             <div>
@@ -238,7 +244,8 @@
                     <span class="text-xs text-earth-500">1 week ago</span>
                 </div>
 
-                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2">
+                <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
+                    id="project-deansgate-low-carbon-transit-upgrade">
                     Deansgate Low-Carbon Transit Upgrade
                 </h3>
 
@@ -266,5 +273,4 @@
             </div>
         </div>
     </a>
-
 {% endblock %}
