@@ -56,6 +56,54 @@
         </div>
     </div>
 
+
+    <!-- Card for AI Prompt 28-11-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        I am passing all council objects from the Council model as the context for my all_councils_list.html.
+
+How do I attach to the context the count of all projects per council? For example, if a council has 7 projects, it should pass 7 as a value attached to that specific council object in the list.
+
+It must also handle the edge case where a council has no projects—that object must return 0, not null.
+
+Please point me in the direction of any documentation that may help explain concepts?
+                    </span>
+            </p>
+            <p>Date: 28-11-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    Copilot suggested Django annotations, which seem to dynamically add calculated fields to each object in a database query.
+                    I can use Count to count the related projects for each council, and it automatically handles the zero case.
+
+                    <pre>
+  You should use Django's annotate() function combined with Count. This pushes the calculation to the database (SQL level) rather than looping through them in Python, which is much faster.
+
+    Import: from django.db.models import Count
+
+    Query: Update your view to annotate the queryset. Django's Count automatically handles the zero/null case, returning 0 by default.
+
+Documentation:
+
+    Django Docs: Aggregation
+
+    Django Docs: annotate()
+
+Code Solution:
+    def all_councils(request):
+    # 'project' refers to the lowercase name of the related model
+    councils = Council.objects.annotate(projects_count=Count('project')).order_by('name')
+    return render(request, '...', {'councils': councils})
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
     <!-- Card for AI Prompt 27-11-25 -->
 
     <div class="card">
