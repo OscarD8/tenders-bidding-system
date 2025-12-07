@@ -57,6 +57,183 @@
     </div>
 
 
+    <!-- Card for Blank AI Prompt -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        Please write your prompt here
+                    </span>
+            </p>
+            <p>Date: ??-??-????</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">Please write your answer here</span>
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Card for AI Prompt 7/12/25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        Please write your prompt here
+                    </span>
+            </p>
+            <p>Date: ??-??-????</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">Please write your answer here</span>
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Card for AI Prompt 7/12/25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        I need to restrict CPV entries in the Django Admin page to take the standard of 8 digits followed by a hypen and ending in one digit. e.g.
+45261420-. How best to achieve this when defining the attribute itself on the model?
+                    </span>
+            </p>
+            <p>Date: ??-??-????</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    This code block defines a validator in a Django model field that uses a Regular Expression to enforce the correct format. It specifically ensures that any input saved to the database must consist of eight digits, immediately followed by a hyphen and then one final digit, otherwise, the specified error message is shown.
+                    <br>
+                    validators=[
+                    RegexValidator(
+                    regex=r'^\d{8}-\d$',  # The Pattern: 8 numbers, 1 dash, 1 number
+                    message="CPV code must be in the format XXXXXXXX-Y (e.g. 45233120-6)")
+                    ]
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Card for AI Prompt 7/12/25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        Update the section for extended_content keeping the table formatting the same, but adjusting the tbody to dynamically display a table row for each requirement linked to a project. If no requirements added, display logical text. Ensure that the table meets Web Content Accessibility Guidelines (WCAG).
+                    </span>
+            </p>
+            <p>Date: 7/12/25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    The table provided removed aria-live attribute on status. Not using JavaScript to dynamically update this data so copilot argued this is not necessary (DOM gets refreshed on each full reload). The original table did not include any reference to the description of the requirement model, so further query on this and copilot included this in the title column but as toggle for view description using summary element for concise code and accessibility. The way copilot handled different font styles and actions for different status was if, elif, else blocks, declaring relevant components in each block. It also added a screen reader only span for when there is no action available, and an aria-label attribute to buttons. Lastly it added an abbreviation for CPV code which actually explained to me what it meant so this was useful.
+
+<pre>
+
+    &lt;tbody class=&quot;divide-y divide-white/5&quot;&gt;
+    {% for req in project.requirements.all %}
+        &lt;tr class=&quot;hover:bg-white/10 transition-colors group&quot;&gt;
+
+            &lt;td class=&quot;px-6 py-4 font-mono relative&quot;&gt;
+                &lt;abbr title=&quot;Common Procurement Vocabulary&quot;&gt;{{ req.cpv_code }}&lt;/abbr&gt;
+            &lt;/td&gt;
+
+            &lt;th scope=&quot;row&quot; class=&quot;px-6 py-4 text-left&quot;&gt;
+                &lt;div class=&quot;flex flex-col gap-1&quot;&gt;
+                    &lt;span class=&quot;font-medium text-earth-100 text-base&quot;&gt;
+                        {{ req.title }}
+                    &lt;/span&gt;
+
+                    &lt;details class=&quot;group/details&quot;&gt;
+                        &lt;summary
+                                class=&quot;text-xs font-normal text-earth-400 hover:text-bamboo-400 cursor-pointer transition-colors list-none&quot;&gt;
+                            &lt;span class=&quot;underline decoration-dotted underline-offset-2&quot;&gt;View Description&lt;/span&gt;
+                        &lt;/summary&gt;
+                        &lt;div class=&quot;mt-2 text-sm font-normal text-earth-300 bg-black/20 p-3 rounded border-l-2 border-bamboo-400/50&quot;&gt;
+                            {{ req.description }}
+                        &lt;/div&gt;
+                    &lt;/details&gt;
+                &lt;/div&gt;
+            &lt;/th&gt;
+
+            &lt;td class=&quot;px-6 py-4 font-mono&quot;&gt;
+                &lt;data value=&quot;{{ req.estimated_value }}&quot;&gt;£{{ req.estimated_value|intcomma }}&lt;/data&gt;
+            &lt;/td&gt;
+
+            &lt;td class=&quot;px-6 py-4 whitespace-nowrap&quot;&gt;
+                {% if req.status == 'OPEN' %}
+                    &lt;time datetime=&quot;{{ req.deadline|date:'Y-m-d' }}&quot; class=&quot;text-earth-400&quot;
+                          aria-label=&quot;Deadline {{ req.deadline|date:'d F Y' }}&quot;&gt;
+                        {{ req.deadline|date:&quot;d M Y&quot; }}
+                    &lt;/time&gt;
+                {% else %}
+                    &lt;span class=&quot;text-earth-600&quot;&gt;Closed&lt;/span&gt;
+                {% endif %}
+            &lt;/td&gt;
+
+            &lt;td class=&quot;px-6 py-4&quot;&gt;
+                &lt;span id=&quot;status-{{ req.pk }}&quot; class=&quot;inline-flex items-center gap-2&quot;&gt;
+                    {% if req.status == 'OPEN' %}
+                        &lt;span class=&quot;h-2 w-2 rounded-full bg-bamboo-400&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;text-bamboo-400&quot;&gt;Open&lt;/span&gt;
+                    {% elif req.status == 'REVIEW' %}
+                        &lt;span class=&quot;h-2 w-2 rounded-full bg-yellow-500&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;text-yellow-500&quot;&gt;Reviewing&lt;/span&gt;
+                    {% else %}
+                        &lt;span class=&quot;text-earth-500&quot;&gt;Awarded&lt;/span&gt;
+                    {% endif %}
+                &lt;/span&gt;
+            &lt;/td&gt;
+
+            &lt;td class=&quot;px-4 py-4 text-right&quot;&gt;
+                {% if req.status == 'OPEN' %}
+                    &lt;button type=&quot;button&quot;
+                            id=&quot;btn-bid-{{ req.pk }}&quot;
+                            class=&quot;text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider focus:ring-2 focus:ring-bamboo-400 focus:outline-none rounded px-2 py-1&quot;
+                            aria-label=&quot;Bid on {{ req.title }}&quot;&gt;
+                        Bid Now
+                    &lt;/button&gt;
+                {% elif req.status == 'REVIEW' %}
+                    &lt;button type=&quot;button&quot;
+                            id=&quot;btn-inspect-{{ req.pk }}&quot;
+                            class=&quot;text-yellow-500 hover:text-yellow-100 text-xs uppercase font-bold focus:ring-2 focus:ring-yellow-500 focus:outline-none rounded px-2 py-1&quot;
+                            aria-label=&quot;Inspect {{ req.title }}&quot;&gt;
+                        Inspect
+                    &lt;/button&gt;
+
+                {% else %}
+                    &lt;span class=&quot;text-earth-600 text-xs uppercase&quot;&gt;—&lt;/span&gt;
+                    &lt;span class=&quot;sr-only&quot;&gt;No actions available&lt;/span&gt;
+                {% endif %}
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    {% empty %}
+        &lt;tr&gt;
+            &lt;td colspan=&quot;6&quot; class=&quot;px-6 py-8 text-center text-earth-500 italic&quot;&gt;
+                No specific work packages are listed yet. Check back soon.
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    {% endfor %}
+    &lt;/tbody&gt;
+
+</pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
     <!-- Card for AI Prompt 28-11-25 -->
 
     <div class="card">
