@@ -1,0 +1,262 @@
+[
+  {
+    "model": "supply_chain.requirement",
+    "pk": 1,
+    "fields": {
+      "project": 1,
+      "cpv_code": "45233120-6",
+      "title": "Road Resurfacing & Line Marking",
+      "description": "Full resurfacing of the A64 corridor section using 40% recycled asphalt aggregate. Includes thermoplastic line marking with high retro-reflectivity for safety.",
+      "estimated_value": 500000,
+      "deadline": "2025-06-14",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 2,
+    "fields": {
+      "project": 1,
+      "cpv_code": "09331000-8",
+      "title": "Solar Panel Supply & Install",
+      "description": "Supply and installation of monocrystalline solar panels for 2km of corridor roofing. Must include micro-inverters and smart grid tie-in capabilities.",
+      "estimated_value": 750000,
+      "deadline": "2025-06-20",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 3,
+    "fields": {
+      "project": 1,
+      "cpv_code": "45310000-3",
+      "title": "Electrical Grid Integration Works",
+      "description": "High-voltage cabling and substation upgrades to handle solar output. Works include trenching and connection to the local distribution network operator (DNO).",
+      "estimated_value": 300000.50,
+      "deadline": "2025-07-01",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 4,
+    "fields": {
+      "project": 2,
+      "cpv_code": "45261420-4",
+      "title": "Waterproofing Layer Application",
+      "description": "Application of root-resistant waterproofing membrane to Grade II listed roof structure. Must offer 25-year guarantee and compatibility with green roof substrate.",
+      "estimated_value": 120000,
+      "deadline": "2025-05-10",
+      "status": "REVIEW"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 5,
+    "fields": {
+      "project": 2,
+      "cpv_code": "03451000-6",
+      "title": "Native Wildflower Plug Planting",
+      "description": "Supply and planting of 5,000 native provenance wildflower plugs. Species mix must support local pollinators (bees/butterflies) identified in the BAP.",
+      "estimated_value": 45000.90,
+      "deadline": "2025-05-15",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 6,
+    "fields": {
+      "project": 3,
+      "cpv_code": "45262620-3",
+      "title": "Limestone Wall Conservation",
+      "description": "Specialist masonry repairs to historic limestone walls using traditional lime mortar. Contractors must be heritage accredited.",
+      "estimated_value": 180000,
+      "deadline": "2025-08-01",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 7,
+    "fields": {
+      "project": 3,
+      "cpv_code": "77310000-6",
+      "title": "Biodiversity Habitat Installation",
+      "description": "Fabrication and installation of 50 bat boxes and 30 swift bricks into existing structures. Includes ecological clerk of works supervision.",
+      "estimated_value": 25000.20,
+      "deadline": "2025-08-15",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 8,
+    "fields": {
+      "project": 4,
+      "cpv_code": "44211100-3",
+      "title": "Modular Timber Frame Supply",
+      "description": "Off-site fabrication of structural timber panels for eco-classroom. Timber must be FSC/PEFC certified and delivered for rapid assembly.",
+      "estimated_value": 220000,
+      "deadline": "2025-04-20",
+      "status": "CLOSED"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 9,
+    "fields": {
+      "project": 4,
+      "cpv_code": "45331000-6",
+      "title": "Air Source Heat Pump System",
+      "description": "Installation of 12kW ASHP system including underfloor heating manifold and commissioning. Must meet MCS standards.",
+      "estimated_value": 35000,
+      "deadline": "2025-05-01",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 10,
+    "fields": {
+      "project": 5,
+      "cpv_code": "34993000-4",
+      "title": "Smart Street Lighting (Solar LED)",
+      "description": "Supply of 40 standalone solar-powered LED streetlights with motion-dimming sensors and IoT remote monitoring capability.",
+      "estimated_value": 200000,
+      "deadline": "2025-09-10",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 11,
+    "fields": {
+      "project": 5,
+      "cpv_code": "45233293-9",
+      "title": "Permeable Paving Installation",
+      "description": "Resurfacing of tram stop walkways with resin-bound permeable aggregate to improve SUDS performance.",
+      "estimated_value": 150000,
+      "deadline": "2025-09-15",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 12,
+    "fields": {
+      "project": 6,
+      "cpv_code": "77211500-7",
+      "title": "Tree Planting (Whips & Standards)",
+      "description": "Planting of 1,500 native saplings (whips) and 50 semi-mature standards. Includes rabbit guards, staking, and 2-year maintenance watering.",
+      "estimated_value": 90000,
+      "deadline": "2025-11-01",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 13,
+    "fields": {
+      "project": 6,
+      "cpv_code": "45240000-1",
+      "title": "Pond Excavation & Lining",
+      "description": "Excavation of 3 wildlife ponds with varied depth profiles. Installation of clay liner and aquatic marginal planting shelves.",
+      "estimated_value": 65000,
+      "deadline": "2025-10-15",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 14,
+    "fields": {
+      "project": 7,
+      "cpv_code": "45246000-3",
+      "title": "Gabion Basket Wall Construction",
+      "description": "Installation of 200m of gabion baskets filled with locally sourced limestone. Includes geo-textile backing and toe reinforcement.",
+      "estimated_value": 450000,
+      "deadline": "2025-07-20",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 15,
+    "fields": {
+      "project": 8,
+      "cpv_code": "45231110-9",
+      "title": "District Heating Pipe Laying",
+      "description": "Trenching and installation of pre-insulated twin pipes for district heating network. High-precision welding and x-ray testing required.",
+      "estimated_value": 1200000,
+      "deadline": "2025-12-01",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 16,
+    "fields": {
+      "project": 9,
+      "cpv_code": "31681500-8",
+      "title": "EV Rapid Chargers (50kW+)",
+      "description": "Supply and commissioning of 20 DC rapid charging units. Must support contactless payment and OCRP protocols.",
+      "estimated_value": 500000,
+      "deadline": "2025-06-30",
+      "status": "REVIEW"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 17,
+    "fields": {
+      "project": 11,
+      "cpv_code": "45441000-0",
+      "title": "Glazing Replacement Works",
+      "description": "Removal of existing single-pane windows and installation of triple-glazed units. Includes making good of internal reveals and sills.",
+      "estimated_value": 600000,
+      "deadline": "2025-08-20",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 18,
+    "fields": {
+      "project": 13,
+      "cpv_code": "45233162-2",
+      "title": "Cycle Lane Surfacing (Coloured)",
+      "description": "Laying of high-friction blue surfacing for segregated cycle lane. Must adhere to LTN 1/20 design standards.",
+      "estimated_value": 850000,
+      "deadline": "2025-09-01",
+      "status": "OPEN"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 19,
+    "fields": {
+      "project": 15,
+      "cpv_code": "45112000-5",
+      "title": "Asphalt Removal & Disposal",
+      "description": "Break out and removal of playground asphalt. Disposal must be via certified recycling facility (crushing for re-use).",
+      "estimated_value": 40000,
+      "deadline": "2025-05-30",
+      "status": "CLOSED"
+    }
+  },
+  {
+    "model": "supply_chain.requirement",
+    "pk": 20,
+    "fields": {
+      "project": 16,
+      "cpv_code": "45261210-9",
+      "title": "Heritage Slate Roofing",
+      "description": "Re-roofing using reclaimed Welsh slate. Includes lead flashing renewal and timber batten replacement.",
+      "estimated_value": 250000,
+      "deadline": "2025-07-15",
+      "status": "OPEN"
+    }
+  }
+]

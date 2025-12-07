@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Council, Project
+from .models import Council, Project, Requirement
 
 
 class CouncilAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class CouncilAdmin(admin.ModelAdmin):
 
 admin.site.register(Council, CouncilAdmin)
 admin.site.register(Project)
+admin.site.register(Requirement)

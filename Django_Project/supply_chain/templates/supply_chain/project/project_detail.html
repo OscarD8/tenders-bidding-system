@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block item_title %}
-{{ project.title }}
+    {{ project.title }}
 {% endblock %}
 
 {% block item_main %}
@@ -61,7 +61,8 @@
 {% block sidebar_card_1 %}
     <h3 class="text-xs font-bold text-earth-500 uppercase tracking-widest">Total Project Cap</h3>
 
-    <data value="{{ project.budget }}" class="text-1xl md:text-2xl font-mono font-bold tabular-nums">£{{ project.budget|intcomma }}</data>
+    <data value="{{ project.budget }}" class="text-1xl md:text-2xl font-mono font-bold tabular-nums">
+        £{{ project.budget|intcomma }}</data>
 
     <div class="flex flex-col gap-2"> <!-- Model extension required -->
         <div class="flex items-center text-xs">
@@ -126,7 +127,8 @@
 
         <div class="flex justify-between items-baseline">
             <span class="text-sm text-bamboo-400">Open for Tender</span>
-            <data value="1210000" class="font-mono text-bamboo-400">£1,210,000</data> <!-- Needs Requirement model extension -->
+            <data value="1210000" class="font-mono text-bamboo-400">£1,210,000</data>
+            <!-- Needs Requirement model extension -->
         </div>
 
         <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
@@ -134,7 +136,8 @@
                 <span class="text-sm text-earth-400">Client Retained</span>
                 <span class="text-xs text-earth-600 mr-8">Design Fees, Surveys, Client Overheads, Risk Allowance...</span>
             </div>
-            <data value="290000" class="font-mono text-earth-400">£290,000</data> <!-- Needs Requirement model extension -->
+            <data value="290000" class="font-mono text-earth-400">£290,000</data>
+            <!-- Needs Requirement model extension -->
         </div>
     </div>
 {% endblock %}
@@ -145,16 +148,15 @@
     <section aria-labelledby="requirements-heading" class="extended-content-wrapper">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
 
-            <!-- Header -->
-            <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">
-                <h2 id="requirements-heading" class="text-1xl md:text-2xl font-bold text-earth-50">Work Packages and Requirements</h2>
-                <p class="text-xs md:text-sm text-earth-500 text-right">See Doc For Details</p>
-            </div>
+            <h2 id="requirements-heading"
+                class="text-1xl md:text-2xl font-bold text-earth-50 mb-6 border-b border-earth-50/10 pb-4 w-full">Work
+                Packages and Requirements</h2>
 
-            <!-- Requirements Table -->
-            <div class="glass-panel">
+            <div class="glass-panel overflow-hidden">
                 <div class="overflow-x-auto">
+
                     <table class="w-full text-left text-sm text-earth-300" aria-describedby="requirements-caption">
+
                         <caption id="requirements-caption" class="sr-only">
                             Work package list showing CPV code, requirement, estimated value,
                             deadlines, status, and action options.
@@ -172,100 +174,91 @@
                         </thead>
 
                         <tbody class="divide-y divide-white/5">
+                        {% for req in project.requirements.all %}
+                            <tr class="hover:bg-white/10 transition-colors group">
 
-                        <!-- ROW 1 — OPEN PACKAGE -->
-                        <tr class="hover:bg-white/10 transition-colors group">
-                            <td class="px-6 py-4 font-mono" title="Road resurfacing services">
-                                45233120-6
-                            </td>
+                                <td class="px-6 py-4 font-mono relative">
+                                    <abbr title="Common Procurement Vocabulary">{{ req.cpv_code }}</abbr>
+                                </td>
 
-                            <th scope="row" id="req-45233120-6"
-                                class="px-6 py-4 font-medium text-earth-100">
-                                Road Resurfacing & Line Marking
-                            </th>
+                                <th scope="row" class="px-6 py-4 text-left">
+                                    <div class="flex flex-col gap-1">
+                                        <span class="font-medium text-earth-100 text-base">
+                                            {{ req.title }}
+                                        </span>
 
-                            <td class="px-6 py-4 font-mono">
-                                <data value="500000">£500,000</data>
-                            </td>
+                                        <details class="group/details">
+                                            <summary
+                                                    class="text-xs font-normal text-earth-400 hover:text-bamboo-400 cursor-pointer transition-colors list-none">
+                                                <span class="underline decoration-dotted underline-offset-2">View Description</span>
+                                            </summary>
+                                            <div class="mt-2 text-sm font-normal text-earth-300 bg-black/20 p-3 rounded border-l-2 border-bamboo-400/50">
+                                                {{ req.description }}
+                                            </div>
+                                        </details>
+                                    </div>
+                                </th>
 
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <time datetime="2025-06-14" class="text-earth-400"
-                                      aria-label="Deadline 14 June 2025">
-                                    14 Jun 2025
-                                </time>
-                            </td>
+                                <td class="px-6 py-4 font-mono">
+                                    <data value="{{ req.estimated_value }}">£{{ req.estimated_value|intcomma }}</data>
+                                </td>
 
-                            <td class="px-6 py-4">
-                                    <span id="status-45233120-6" aria-live="polite">Open</span>
-                            </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {% if req.status == 'OPEN' %}
+                                        <time datetime="{{ req.deadline|date:'Y-m-d' }}" class="text-earth-400"
+                                              aria-label="Deadline {{ req.deadline|date:'d F Y' }}">
+                                            {{ req.deadline|date:"d M Y" }}
+                                        </time>
+                                    {% else %}
+                                        <span class="text-earth-600">Closed</span>
+                                    {% endif %}
+                                </td>
 
-                            <td class="px-4 py-4 text-right">
-                                <button type="button"
-                                        class="text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider"
-                                        aria-labelledby="req-45233120-6 status-45233120-6">
-                                    Bid Now
-                                </button>
-                            </td>
-                        </tr>
+                                <td class="px-6 py-4">
+                                    <span id="status-{{ req.pk }}" class="inline-flex items-center gap-2">
+                                        {% if req.status == 'OPEN' %}
+                                            <span class="h-2 w-2 rounded-full bg-bamboo-400" aria-hidden="true"></span>
+                                            <span class="text-bamboo-400">Open</span>
+                                        {% elif req.status == 'REVIEW' %}
+                                            <span class="h-2 w-2 rounded-full bg-yellow-500" aria-hidden="true"></span>
+                                            <span class="text-yellow-500">Reviewing</span>
+                                        {% else %}
+                                            <span class="text-earth-500">Awarded</span>
+                                        {% endif %}
+                                    </span>
+                                </td>
 
-                        <!-- ROW 2 — REVIEWING PACKAGE -->
-                        <tr class="hover:bg-white/10 transition-colors group">
-                            <td class="px-6 py-4 font-mono" title="Excavation and earthmoving works">
-                                45112000-5
-                            </td>
+                                <td class="px-4 py-4 text-right">
+                                    {% if req.status == 'OPEN' %}
+                                        <button type="button"
+                                                id="btn-bid-{{ req.pk }}"
+                                                class="text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider focus:ring-2 focus:ring-bamboo-400 focus:outline-none rounded px-2 py-1"
+                                                aria-label="Bid on {{ req.title }}">
+                                            Bid Now
+                                        </button>
+                                    {% elif req.status == 'REVIEW' %}
+                                        <button type="button"
+                                                id="btn-inspect-{{ req.pk }}"
+                                                class="text-yellow-500 hover:text-yellow-100 text-xs uppercase font-bold focus:ring-2 focus:ring-yellow-500 focus:outline-none rounded px-2 py-1"
+                                                aria-label="Inspect {{ req.title }}">
+                                            Inspect
+                                        </button>
 
-                            <th scope="row" id="req-45112000-5"
-                                class="px-6 py-4 font-medium text-earth-100">
-                                Excavation & Earthmoving
-                            </th>
-
-                            <td class="px-6 py-4 font-mono">
-                                <data value="700000">£700,000</data>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-earth-600">Closed</span>
-                            </td>
-
-                            <td class="px-6 py-4">
-                                    <span id="status-45112000-5" aria-live="polite">Reviewing</span>
-                            </td>
-
-                            <td class="px-4 py-4 text-right">
-                                <button class="text-yellow-500 hover:text-yellow-100 text-xs uppercase font-bold"
-                                        aria-labelledby="req-45112000-5 status-45112000-5">
-                                    Inspect
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- ROW 3 — AWARDED EXAMPLE -->
-                        <tr class="hover:bg-white/10 transition-colors group">
-
-                            <td class="px-6 py-4 font-mono">45316100-9</td>
-
-                            <th scope="row" id="req-45316100-9"
-                                class="px-6 py-4 font-medium text-earth-100">
-                                Facilities & Catering
-                            </th>
-
-                            <td class="px-6 py-4 font-mono">
-                                <data value="10000">£10,000</data>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-earth-600">Closed</span>
-                            </td>
-
-                            <td class="px-6 py-4">
-                                <span>Awarded</span>
-                            </td>
-
-                            <td class="px-4 py-4 text-right text-earth-600 text-xs uppercase">
-                                —
-                            </td>
-                        </tr>
+                                    {% else %}
+                                        <span class="text-earth-600 text-xs uppercase">—</span>
+                                        <span class="sr-only">No actions available</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="px-6 py-8 text-center text-earth-500 italic">
+                                    No specific work packages are listed yet. Check back soon.
+                                </td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
+
                     </table>
                 </div>
             </div>

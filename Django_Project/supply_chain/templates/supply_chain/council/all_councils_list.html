@@ -72,7 +72,7 @@
                                 {% if council.projects_count == 0 %}
                                     Pending
                                 {% else %}
-                                    {{ council.projects_count }} Tender{% if council.projects_count > 1 %}s{% endif %}
+                                    {{ council.projects_count }} Tender{{ council.projects_count|pluralize }}
                                 {% endif %}
                             </span>
                         </div>
@@ -84,7 +84,8 @@
                             </p>
                             <p class="text-earth-300 text-sm flex items-center gap-2">
                                 <span class="text-earth-500 text-xs uppercase tracking-wide w-16">Email</span>
-                                <span class="text-earth-200 truncate" title="{{ council.contact_email }}">{{ council.contact_email }}</span>
+                                <span class="text-earth-200 truncate"
+                                      title="{{ council.contact_email }}">{{ council.contact_email }}</span>
                             </p>
                         </div>
                     </div>
