@@ -104,7 +104,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {% for project in council.project_set.all %}
 
-                <a href="{% url 'supply_chain:project_detail' project.pk %}"
+                <a href="{% url 'supply_chain:project_detail' project.council.slug project.slug %}"
                    class="group block h-full"
                    aria-labelledby="project-urban-solar-corridor-installation"> <!-- needs model extension for slug? -->
                     <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">

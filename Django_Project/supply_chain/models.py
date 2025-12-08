@@ -1,5 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
+from autoslug import AutoSlugField
 
 
 class Council(models.Model):
@@ -8,7 +9,7 @@ class Council(models.Model):
     contact = models.CharField(max_length=100)
     contact_email = models.EmailField()
 
-    slug = models.SlugField(max_length=100)
+    slug = AutoSlugField(populate_from='name', always_update=True, unique=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -24,7 +25,8 @@ class Council(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    budget = models.IntegerField()
+    slug = AutoSlugField(populate_from='title', unique_with=['council'], always_update=True)
+    budget = models.DecimalField(max_digits=12, decimal_places=2)
 
     council = models.ForeignKey(Council, on_delete=models.CASCADE)
 

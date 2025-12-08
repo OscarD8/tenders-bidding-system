@@ -5,6 +5,7 @@
     "fields": {
       "title": "Urban Solar Corridor Installation",
       "description": "Deployment of rooftop solar arrays along the A64 business corridor. Includes PV installation, micro-inverter setup, and battery storage integration to supply renewable power to surrounding council buildings.",
+      "slug": "urban-solar-corridor-installation",
       "budget": 1600000,
       "council": 1,
       "created_at": "2025-03-10T08:30:00Z",
@@ -17,6 +18,7 @@
     "fields": {
       "title": "Green Roof Retrofit – Central Library",
       "description": "Installation of a living green roof on the Grade II listed Central Library. Work includes specialist waterproofing, native wildflower planting, and improved rainwater harvesting to reduce runoff.",
+      "slug": "green-roof-retrofit-central-library",
       "budget": 600000,
       "council": 1,
       "created_at": "2025-03-12T14:15:00Z",
@@ -29,6 +31,7 @@
     "fields": {
       "title": "Micklegate Habitat Restoration Zone",
       "description": "Creation of a biodiversity corridor around Micklegate Bar. Involves limestone wall conservation using low-impact materials, installation of pollinator-friendly planting, and habitat structures for bats and swifts.",
+      "slug": "micklegate-habitat-restoration-zone",
       "budget": 820000,
       "council": 2,
       "created_at": "2025-03-14T09:00:00Z",
@@ -41,6 +44,7 @@
     "fields": {
       "title": "Clifton Primary Eco-Extension",
       "description": "Construction of a modular, energy-positive classroom using timber framing, heat-pump technology, solar panels, and natural ventilation. Includes installation of a mini-wildlife garden and outdoor learning space.",
+      "slug": "clifton-primary-eco-extension",
       "budget": 450000,
       "council": 2,
       "created_at": "2025-03-15T11:45:00Z",
@@ -53,6 +57,7 @@
     "fields": {
       "title": "Deansgate Low-Carbon Transit Upgrade",
       "description": "Revamp of Deansgate tram stop with fully LED solar-powered lighting, real-time digital signage powered by micro-grids, installation of green walls, and accessible routes designed with sustainable materials.",
+      "slug": "deansgate-low-carbon-transit-upgrade",
       "budget": 2500000,
       "council": 1,
       "created_at": "2025-03-18T10:00:00Z",
@@ -65,6 +70,7 @@
     "fields": {
       "title": "Heaton Park Re-Wilding & Climate Buffer",
       "description": "Large-scale re-wilding of Heaton Park. Includes planting 1,500 native trees, wildflower meadow creation, pond restoration for amphibian habitat, and drainage redesign to improve climate resilience.",
+      "slug": "heaton-park-re-wilding-climate-buffer",
       "budget": 300000,
       "council": 2,
       "created_at": "2025-03-20T13:30:00Z",
@@ -77,6 +83,7 @@
     "fields": {
       "title": "Riverside Flood Defense Wall",
       "description": "Construction of a bio-engineered flood defense system using gabion baskets filled with local stone and interplanted with deep-rooting vegetation to stabilize the riverbank.",
+      "slug": "riverside-flood-defense-wall",
       "budget": 1200000,
       "council": 3,
       "created_at": "2025-03-21T09:00:00Z",
@@ -89,6 +96,7 @@
     "fields": {
       "title": "District Heat Network Expansion (Phase 2)",
       "description": "Civil engineering works to extend the underground district heating pipes to 500 new social housing units. Requires trenching, pipe laying, and heat exchanger installation.",
+      "slug": "district-heat-network-expansion-phase-2",
       "budget": 3500000,
       "council": 3,
       "created_at": "2025-03-22T10:30:00Z",
@@ -101,6 +109,7 @@
     "fields": {
       "title": "Electric Vehicle Hub - South Park & Ride",
       "description": "Installation of 20 rapid-charge points powered by a dedicated solar canopy. Includes groundworks, cabling, and substation upgrades.",
+      "slug": "electric-vehicle-hub-south-park-ride",
       "budget": 750000,
       "council": 4,
       "created_at": "2025-03-23T11:15:00Z",
@@ -113,6 +122,7 @@
     "fields": {
       "title": "Harbourside Walkway Regeneration",
       "description": "Replacing concrete paving with permeable resin-bound gravel to improve drainage. Includes installation of recycled plastic boardwalks and low-impact lighting.",
+      "slug": "harbourside-walkway-regeneration",
       "budget": 450000,
       "council": 4,
       "created_at": "2025-03-24T14:00:00Z",
@@ -125,6 +135,7 @@
     "fields": {
       "title": "Civic Centre Glazing Upgrade",
       "description": "Retrofitting the main council offices with triple-glazed smart glass to reduce thermal loss. Project includes frame reinforcement and sealing.",
+      "slug": "civic-centre-glazing-upgrade",
       "budget": 920000,
       "council": 6,
       "created_at": "2025-03-25T08:45:00Z",
@@ -137,6 +148,7 @@
     "fields": {
       "title": "Urban Vertical Garden Pilot",
       "description": "Installation of a hydro-seeded living wall on the West Car Park exterior. Includes irrigation systems, structural steel support frame, and maintenance access walkways.",
+      "slug": "urban-vertical-garden-pilot",
       "budget": 280000,
       "council": 6,
       "created_at": "2025-03-26T13:20:00Z",
@@ -149,6 +161,7 @@
     "fields": {
       "title": "Cycle Superhighway - Route 4",
       "description": "Construction of a segregated cycle lane using recycled rubber kerbs. Includes traffic signal reconfiguration and resurfacing with high-grip, low-noise asphalt.",
+      "slug": "cycle-superhighway-route-4",
       "budget": 1800000,
       "council": 7,
       "created_at": "2025-03-27T09:30:00Z",
@@ -161,6 +174,7 @@
     "fields": {
       "title": "Community Wind Turbine Foundation",
       "description": "Excavation and reinforced concrete foundation pouring for a single 1.5MW community wind turbine. Includes access road upgrades for heavy plant machinery.",
+      "slug": "community-wind-turbine-foundation",
       "budget": 550000,
       "council": 7,
       "created_at": "2025-03-28T15:00:00Z",
@@ -173,6 +187,7 @@
     "fields": {
       "title": "School Playground Depaving",
       "description": "Removing 500sqm of asphalt playground and replacing it with SUDS-compliant soft landscaping, rain gardens, and natural play equipment.",
+      "slug": "school-playground-depaving",
       "budget": 150000,
       "council": 1,
       "created_at": "2025-03-29T10:00:00Z",
@@ -185,6 +200,7 @@
     "fields": {
       "title": "Historical Market Roof Restoration",
       "description": "Repairing the slate roof of the Victorian covered market. Requires heritage-approved materials and insulation upgrades to meet modern thermal standards.",
+      "slug": "historical-market-roof-restoration",
       "budget": 680000,
       "council": 2,
       "created_at": "2025-03-30T11:30:00Z",
@@ -197,6 +213,7 @@
     "fields": {
       "title": "Smart Street Lighting Conversion",
       "description": "Replacing 2,000 sodium street lamps with energy-efficient LED units integrated with CMS nodes for remote dimming and fault reporting.",
+      "slug": "smart-street-lighting-conversion",
       "budget": 2100000,
       "council": 3,
       "created_at": "2025-03-31T09:15:00Z",
@@ -209,6 +226,7 @@
     "fields": {
       "title": "Wetland Park Boardwalks",
       "description": "Construction of raised timber walkways through the new urban wetland nature reserve. Materials must be FSC certified and untreated to protect water quality.",
+      "slug": "wetland-park-boardwalks",
       "budget": 320000,
       "council": 4,
       "created_at": "2025-04-01T14:45:00Z",
