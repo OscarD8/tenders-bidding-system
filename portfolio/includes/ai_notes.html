@@ -57,20 +57,92 @@
     </div>
 
 
-    <!-- Card for Blank AI Prompt -->
+    <!-- Card for AI Prompt 8/12/25 -->
 
     <div class="card">
         <div class="card-header">
             <p>Prompt:
                 <span class="answer_required" style="color: #f1f5f9;">
-                        Please write your prompt here
+                        Considering the principle of Separation of Concerns, and avoiding fat views, provide concise, clean code that enables the project_detail page financial card to access the total estimated_value of all linked requirement objects to that project. I also need to display a bar that gives a high-level visual of requirement total estimated value against the project budget to see what is retained.
+
+What is the cleanest implementation you would suggest and explain your reasoning.
                     </span>
             </p>
-            <p>Date: ??-??-????</p>
+            <p>Date: 8/12/25</p>
         </div>
         <div class="card-body">
             <p>
-                <span class="answer_required">Please write your answer here</span>
+                <span class="answer_required">
+                    Copilot recommended a Custom Manager to attach a method to the model. This meant not using the view to perform calculations, keeping this clean. The method named with_financials() can then be fetched in the view using Project.objects.with_financials(). The method annotates instead of aggregates, meaning it creates a temporary virtual column in the database itself for 'total_allocated' (amount calculated by traversing to the requirements table using the relationship between the models and summing specified attribute). Copilot mentioned that F() expressions allow calculations to be performed directly in the database which is more efficient that loading data into Python memory to perform calculations. However, it explained that for calculating the percentage_allocated, using a property on the model itself and not performing this in the database was due to handling divide by zero issues (easier to handle in Python), and the fact that this is a visual UI metric, not core business data, and therefore it belongs in the model. Main benefit of this approach is the custom manager executes 1 database query that fetches all project info and the calculated sums simultaneously. This approach of a Custom Manager allowed me to clean up the views of council detail and lists by extracting out the project count linked to a council to the manager in the model itself.
+
+                    <pre>
+from django.db import models
+from django.db.models import Sum, F, Value, DecimalField
+from django.db.models.functions import Coalesce
+from autoslug import AutoSlugField
+from django.core.validators import RegexValidator
+
+# 1. Define the Custom Manager
+class ProjectManager(models.Manager):
+    def with_financials(self):
+        """
+        Annotates the query with 'total_allocated' and 'retained_budget'
+        calculated directly in the database.
+        """
+        return self.get_queryset().annotate(
+            # Coalesce ensures if there are NO requirements, we get 0 instead of None (null)
+            total_allocated=Coalesce(
+                Sum('requirements__estimated_value'),
+                Value(0, output_field=DecimalField())
+            ),
+
+            # Calculate Retained: Budget - Allocated
+            retained_budget=F('budget') - F('total_allocated')
+        )
+
+class Project(models.Model):
+    # ... (Your existing fields) ...
+
+    # 2. Attach the Custom Manager
+    objects = ProjectManager()
+
+    # ... (Your existing Meta and __str__) ...
+
+    # 3. Add a helper property for the percentage visual
+    # Calculating this in Python is safer for Decimal/Division precision than SQL
+    @property
+    def percentage_allocated(self):
+        if self.budget == 0:
+            return 0
+
+        # Use the annotated value if available, or fetch it if missing
+        allocated = getattr(self, 'total_allocated', None)
+        if allocated is None:
+             allocated = self.requirements.aggregate(t=Sum('estimated_value'))['t'] or 0
+
+        return (allocated / self.budget) * 100
+
+                        def project_detail(request, project_id):
+                            # Use the custom manager method
+                            project = get_object_or_404(
+                                Project.objects.with_financials(),
+                                pk=project_id
+                            )
+
+                            return render(request, 'supply_chain/project/project_detail.html', {'project': project})
+
+
+// The high-level visual:
+&lt;div class="w-full h-4 rounded-full overflow-hidden flex mb-2 bg-earth-800"&gt;
+    &lt;div class="h-full bg-bamboo-500 transition-all duration-500"
+         style="width: {% if project.percentage_allocated > 100 %}100{% else %}{{ project.percentage_allocated }}{% endif %}%"
+         title="Tendered Work Packages"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+                    </pre>
+                </span>
             </p>
         </div>
     </div>
