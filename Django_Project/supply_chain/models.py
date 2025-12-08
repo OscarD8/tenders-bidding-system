@@ -1,6 +1,14 @@
-from django.core.validators import RegexValidator
 from django.db import models
+from django.db.models import Sum, F, Value, DecimalField, Count
+from django.db.models.functions import Coalesce
 from autoslug import AutoSlugField
+from django.core.validators import RegexValidator
+
+class CouncilManager(models.Manager):
+    def with_counts(self):
+        return self.get_queryset().annotate(
+            projects_count=Count('project')
+        )
 
 
 class Council(models.Model):
@@ -14,12 +22,32 @@ class Council(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    objects = CouncilManager()
+
     class Meta:
         verbose_name_plural = "Councils"
         ordering = ['name']
 
     def __str__(self):
         return f'{self.name} Council'
+
+
+class ProjectManager(models.Manager):
+    def with_financials(self):
+        """
+        Annotates the query with 'total_allocated' and 'retained_budget'
+        calculated directly in the database.
+        """
+        return self.get_queryset().annotate(
+            # Coalesce ensures if there are NO requirements, we get 0 instead of None (null)
+            total_allocated=Coalesce(
+                Sum('requirements__estimated_value'),
+                Value(0, output_field=DecimalField())
+            ),
+
+            # Calculate Retained: Budget - Allocated
+            retained_budget=F('budget') - F('total_allocated')
+        )
 
 
 class Project(models.Model):
@@ -33,12 +61,29 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    objects = ProjectManager()
+
     class Meta:
         ordering = ['-created_at']
         verbose_name_plural = "Projects"
 
     def __str__(self):
         return f'{self.title}'
+
+    @property # Treat this function like a variable. Don't make me use brackets () to call it.
+    def percentage_allocated(self): # this is like an interface
+        if self.budget == 0:
+            return 0
+
+        # 1. Try to get the pre-calculated value from our custom manager (Fast)
+        allocated = getattr(self, 'total_allocated', None)
+
+        # 2. Fallback: If 'total_allocated' is missing (e.g. accessed via Admin or basic .get())
+        # we must query the database now to ensure the property doesn't break.
+        if allocated is None:
+            allocated = self.requirements.aggregate(total=Sum('estimated_value'))['total'] or 0
+
+        return (allocated / self.budget) * 100
 
 
 class Requirement(models.Model):

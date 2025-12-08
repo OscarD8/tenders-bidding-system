@@ -108,36 +108,46 @@
 {% block sidebar_card_3 %}
     <h3 class="text-lg font-bold mb-4">Financial Overview</h3>
 
-    <!-- Requires Requirements Model Extension -->
-    <div class="w-full h-4 rounded-full overflow-hidden flex mb-2">
-        <div class="h-full bg-bamboo-500 w-3/4" title="Tendered Work Packages"></div>
-        <div class="h-full bg-earth-700 flex-grow" title="Client Retained Budget"></div>
+    <div class="w-full h-4 rounded-full overflow-hidden flex mb-2 bg-earth-800">
+        <div class="h-full bg-bamboo-500 transition-all duration-500"
+             style="width: {% if project.percentage_allocated > 100 %}100{% else %}{{ project.percentage_allocated }}{% endif %}%"
+             title="Tendered Work Packages">
+        </div>
     </div>
 
     <div class="flex justify-between text-xs text-earth-400 uppercase tracking-widest mb-6">
-        <span>Open to Tender</span>
+        <span>Open to Tender ({{ project.percentage_allocated|floatformat:0 }}%)</span>
         <span>Retained</span>
     </div>
 
     <div class="space-y-3 text-left w-full px-2">
+
         <div class="flex justify-between items-baseline">
             <span class="text-sm text-earth-300">Project Budget Cap</span>
-            <data value="{{ project.budget }}" class="font-mono text-white">£{{ project.budget|intcomma }}</data>
+            <data value="{{ project.budget }}" class="font-mono text-white">
+                £{{ project.budget|intcomma }}
+            </data>
         </div>
 
         <div class="flex justify-between items-baseline">
             <span class="text-sm text-bamboo-400">Open for Tender</span>
-            <data value="1210000" class="font-mono text-bamboo-400">£1,210,000</data>
-            <!-- Needs Requirement model extension -->
+            <data value="{{ project.total_allocated }}" class="font-mono text-bamboo-400">
+                £{{ project.total_allocated|intcomma }}
+            </data>
         </div>
 
         <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
             <div class="flex flex-col">
                 <span class="text-sm text-earth-400">Client Retained</span>
-                <span class="text-xs text-earth-600 mr-8">Design Fees, Surveys, Client Overheads, Risk Allowance...</span>
+                <span class="text-xs text-earth-600 mr-8">
+                    Design Fees, Surveys, Client Overheads...
+                </span>
             </div>
-            <data value="290000" class="font-mono text-earth-400">£290,000</data>
-            <!-- Needs Requirement model extension -->
+
+            <data value="{{ project.retained_budget }}"
+                  class="font-mono {% if project.retained_budget < 0 %}text-red-400{% else %}text-earth-400{% endif %}">
+                £{{ project.retained_budget|intcomma }}
+            </data>
         </div>
     </div>
 {% endblock %}
