@@ -82,20 +82,27 @@
         <div class="card-header">
             <p>Prompt:
                 <span class="answer_required" style="color: #f1f5f9;">
-                        Please write your prompt here
+                        I need to change using PKs of a project as the identifier for navigating to project_detail. Should I use a slug like the Council model, and if so can I make the slug unique only within the scope of a specific council so that a project can have the same name under different councils, but not under the same council?
                     </span>
             </p>
-            <p>Date: ??-??-????</p>
+            <p>Date: 7/12/25</p>
         </div>
         <div class="card-body">
             <p>
-                <span class="answer_required">Please write your answer here</span>
+                <span class="answer_required">
+                    Copilot suggested importing django-autoslug to generate a slug using the argument 'unique-with' to ensure that the slug is unique within the scope of a specific council. I therefore don't need to classify the slug field as unique=True in the case of a project.
+                    <pre>
+                        from autoslug import AutoSlugField
+
+                        class Project(models.Model): # ... slug = AutoSlugField(populate_from='title', unique_with=['council'], always_update=True)
+                    </pre>
+                </span>
             </p>
         </div>
     </div>
 
 
-    <!-- Card for AI Prompt 7/12/25 -->
+    <!-- Card for AI Prompt 08/12/25 -->
 
     <div class="card">
         <div class="card-header">
@@ -105,7 +112,7 @@
 45261420-. How best to achieve this when defining the attribute itself on the model?
                     </span>
             </p>
-            <p>Date: ??-??-????</p>
+            <p>Date: 08/12/25</p>
         </div>
         <div class="card-body">
             <p>
