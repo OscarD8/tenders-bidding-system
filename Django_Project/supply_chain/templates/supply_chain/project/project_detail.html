@@ -116,7 +116,7 @@
     </div>
 
     <div class="flex justify-between text-xs text-earth-400 uppercase tracking-widest mb-6">
-        <span>Open to Tender ({{ project.percentage_allocated|floatformat:0 }}%)</span>
+        <span>Open to Tender ({{ project.percentage_allocated|floatformat:2|intcomma }}%)</span>
         <span>Retained</span>
     </div>
 
@@ -132,7 +132,7 @@
         <div class="flex justify-between items-baseline">
             <span class="text-sm text-bamboo-400">Open for Tender</span>
             <data value="{{ project.total_allocated }}" class="font-mono text-bamboo-400">
-                £{{ project.total_allocated|intcomma }}
+                £{{ project.total_allocated|floatformat:2|intcomma }}
             </data>
         </div>
 
@@ -146,7 +146,7 @@
 
             <data value="{{ project.retained_budget }}"
                   class="font-mono {% if project.retained_budget < 0 %}text-red-400{% else %}text-earth-400{% endif %}">
-                £{{ project.retained_budget|intcomma }}
+                £{{ project.retained_budget|floatformat:2|intcomma }}
             </data>
         </div>
     </div>
