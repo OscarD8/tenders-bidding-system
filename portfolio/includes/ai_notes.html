@@ -56,6 +56,51 @@
         </div>
     </div>
 
+    <!-- Card for AI Prompt 11/12/25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                        I need to extend the Council model to include a 'Region' field (e.g., North East, London). What is Django best practice to restrict these values to a fixed list of UK regions, rather than letting users type random text? How do I achieve this mapping automatically without writing complex if/else statements in my HTML templates? Should I define these options globally or keep them inside the Model class? This feels like asking what the Django equivelent of ENUMS are?
+                    </span>
+            </p>
+            <p>Date: 11-12-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+Copilot suggested models.TextChoices (Django's enumeration class). You define a class inside the model for encapsulation, then use tuples
+                    the first value of which is what is stored in the database. Django then automatically generates a get_fieldname_display() method for any field choices.
+                    This method means there is no need for if else statements, and any update to the choices is abstracted out to the model itself. I found this useful and
+                    implemented the same logic for further model extensions on sustainability information. The drop down on the admin page also appears to be working
+                    as intended.
+
+                    <pre>
+    # --- REGION EXTENSION ---
+    class Region(models.TextChoices):
+        NORTH_EAST = 'NE', 'North East'
+        NORTH_WEST = 'NW', 'North West'
+        YORKSHIRE = 'YH', 'Yorkshire and the Humber'
+        EAST_MIDLANDS = 'EM', 'East Midlands'
+        WEST_MIDLANDS = 'WM', 'West Midlands'
+        EAST_ENGLAND = 'EE', 'East of England'
+        LONDON = 'LDN', 'London'
+        SOUTH_EAST = 'SE', 'South East'
+        SOUTH_WEST = 'SW', 'South West'
+        SCOTLAND = 'SCT', 'Scotland'
+        WALES = 'WLS', 'Wales'
+
+    region = models.CharField(
+        max_length=5,
+        choices=Region.choices,
+        default=Region.YORKSHIRE
+    )
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
 
     <!-- Card for AI Prompt 8/12/25 -->
 
