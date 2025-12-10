@@ -3,84 +3,120 @@
     "model": "supply_chain.council",
     "pk": 1,
     "fields": {
-      "name": "Poppleton",
-      "contact": "Bob Builder",
-      "contact_email": "bob@poppleton.gov.uk",
-      "slug": "poppleton",
-      "created_at": "2025-09-15T09:09:13.495Z",
-      "updated_at": "2025-09-15T09:09:13.495Z"
+      "name": "Leeds City Council",
+      "contact": "Sarah Green",
+      "contact_email": "procurement@leeds.gov.uk",
+      "slug": "leeds-city-council",
+      "created_at": "2024-01-10T09:00:00Z",
+      "updated_at": "2025-01-10T09:00:00Z",
+      "bamboo_standard": "REGEN",
+      "region": "YH",
+      "sustainability_mission": "Pioneering the 'Circular Yorkshire' initiative to eliminate waste from construction by 2035 through mandatory material passports."
     }
   },
   {
     "model": "supply_chain.council",
     "pk": 2,
     "fields": {
-      "name": "Huddersfield",
-      "contact": "Derek Digger",
-      "contact_email": "d.digger@huddersfield.gov.uk",
-      "slug": "huddersfield",
-      "created_at": "2025-09-15T09:33:05.600Z",
-      "updated_at": "2025-09-15T09:33:05.600Z"
+      "name": "Manchester City Council",
+      "contact": "David Attenborough (Hon)",
+      "contact_email": "green.future@manchester.gov.uk",
+      "slug": "manchester-city-council",
+      "created_at": "2024-02-15T11:30:00Z",
+      "updated_at": "2025-01-12T10:00:00Z",
+      "bamboo_standard": "LEADER",
+      "region": "NW",
+      "sustainability_mission": "To become a zero-carbon city by 2038, prioritizing the retrofitting of social housing and the electrification of all public transport."
     }
   },
   {
     "model": "supply_chain.council",
     "pk": 3,
     "fields": {
-      "name": "Manchester",
-      "contact": "Sarah Surveyor",
-      "contact_email": "sarah.surveyor@manchester.gov.uk",
-      "slug": "manchester",
-      "created_at": "2025-11-25T20:30:00.000Z",
-      "updated_at": "2025-11-25T20:30:00.000Z"
+      "name": "Bristol City Council",
+      "contact": "Elena Rodriguez",
+      "contact_email": "eco.tenders@bristol.gov.uk",
+      "slug": "bristol-city-council",
+      "created_at": "2024-03-01T08:45:00Z",
+      "updated_at": "2025-01-15T14:20:00Z",
+      "bamboo_standard": "REGEN",
+      "region": "SW",
+      "sustainability_mission": "Integrating nature into the urban fabric. Our mandate requires a 10% Biodiversity Net Gain on every single procurement contract."
     }
   },
   {
     "model": "supply_chain.council",
     "pk": 4,
     "fields": {
-      "name": "Bristol",
-      "contact": "Paul Planner",
-      "contact_email": "p.planner@bristol.gov.uk",
-      "slug": "bristol",
-      "created_at": "2025-11-25T20:30:15.000Z",
-      "updated_at": "2025-11-25T20:30:15.000Z"
+      "name": "Nottingham City Council",
+      "contact": "Marcus Thorne",
+      "contact_email": "procure@nottingham.gov.uk",
+      "slug": "nottingham-city-council",
+      "created_at": "2024-03-20T10:00:00Z",
+      "updated_at": "2025-02-01T11:00:00Z",
+      "bamboo_standard": "LEADER",
+      "region": "EM",
+      "sustainability_mission": "Leading the UK with our Carbon Neutral 2028 pledge, focusing on district heating networks powered by waste-to-energy technology."
     }
   },
   {
     "model": "supply_chain.council",
     "pk": 5,
     "fields": {
-      "name": "Glasgow City",
-      "contact": "Fiona Fielder",
-      "contact_email": "fiona.f@glasgow.gov.uk",
-      "slug": "glasgow-city",
-      "created_at": "2025-11-25T20:30:30.000Z",
-      "updated_at": "2025-11-25T20:30:30.000Z"
+      "name": "Newcastle City Council",
+      "contact": "Dr. Aris Thorne",
+      "contact_email": "innovation@newcastle.gov.uk",
+      "slug": "newcastle-city-council",
+      "created_at": "2024-04-05T13:15:00Z",
+      "updated_at": "2025-02-05T09:15:00Z",
+      "bamboo_standard": "AWARE",
+      "region": "NE",
+      "sustainability_mission": "Revitalizing the River Tyne corridor through blue-green infrastructure projects that combine flood defense with public leisure spaces."
     }
   },
   {
     "model": "supply_chain.council",
     "pk": 6,
     "fields": {
-      "name": "Cardiff",
-      "contact": "Rhys Regulator",
-      "contact_email": "rhys.r@cardiff.gov.uk",
-      "slug": "cardiff",
-      "created_at": "2025-11-25T20:30:45.000Z",
-      "updated_at": "2025-11-25T20:30:45.000Z"
+      "name": "Camden Council",
+      "contact": "Lisa Wu",
+      "contact_email": "tenders@camden.gov.uk",
+      "slug": "camden-council",
+      "created_at": "2024-05-10T16:45:00Z",
+      "updated_at": "2025-02-10T16:45:00Z",
+      "bamboo_standard": "GREEN",
+      "region": "LDN",
+      "sustainability_mission": "Reducing the embodied carbon of London's built environment by prioritizing refurbishment and retrofit over demolition."
     }
   },
   {
     "model": "supply_chain.council",
     "pk": 7,
     "fields": {
-      "name": "Leeds City Council",
-      "contact": "Gemma Geographer",
-      "contact_email": "g.geographer@leeds.gov.uk",
-      "slug": "leeds-city-council",
-      "created_at": "2025-11-26T22:23:11.000Z",
-      "updated_at": "2025-11-26T22:23:11.000Z"
+      "name": "Cardiff Council",
+      "contact": "Gareth Jones",
+      "contact_email": "procurement@cardiff.gov.uk",
+      "slug": "cardiff-council",
+      "created_at": "2024-06-01T09:30:00Z",
+      "updated_at": "2025-02-20T08:30:00Z",
+      "bamboo_standard": "AWARE",
+      "region": "WLS",
+      "sustainability_mission": "One Planet Cardiff: Transforming our energy, transport, and food systems to safeguard the well-being of future generations."
+    }
+  },
+  {
+    "model": "supply_chain.council",
+    "pk": 8,
+    "fields": {
+      "name": "Glasgow City Council",
+      "contact": "Fiona Campbell",
+      "contact_email": "sustainable.city@glasgow.gov.uk",
+      "slug": "glasgow-city-council",
+      "created_at": "2024-06-15T10:00:00Z",
+      "updated_at": "2025-03-01T10:00:00Z",
+      "bamboo_standard": "LEADER",
+      "region": "SCT",
+      "sustainability_mission": "Building on the COP26 legacy by investing in large-scale renewable heat networks and massive urban re-greening projects."
     }
   }
 ]

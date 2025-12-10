@@ -15,20 +15,18 @@
 {% endblock %}
 
 
-{% block item_main %} <!-- Future model extension to include sustainability policy and region -->
+{% block item_main %}
     <p class="text-xl font-medium text-earth-100 flex items-center gap-2">
         {% include 'components/svg_components/location_icon.html' %}
-        Region On Model Extension
+        {{ council.get_region_display }}
     </p>
 
     <blockquote class="text-earth-400 text-base mt-7 leading-relaxed border-l-2 border-bamboo-500/30 pl-4">
         <p>
-            Climate Emergency
-            <time datetime="2035">2035</time>
-            Strategy: Mandating a circular construction economy with a requirement for 100% renewable energy on sites.
+            {{ council.sustainability_mission }}
         </p>
         <footer class="mt-2 text-sm text-earth-500">
-            <cite>Leeds City Council</cite>
+            <cite>{{ council.name }}</cite>
         </footer>
     </blockquote>
 {% endblock %}
@@ -48,12 +46,11 @@
         <div class="h-8 w-px bg-white/10"></div>
 
         <div>
-            <!-- Model extension here for sustainability metric on councils -->
             <div>
                 <p class="text-xs text-earth-500 uppercase tracking-widest mb-2">Bamboo Standard</p>
                 <div class="flex items-center gap-2 text-bamboo-400 text-sm md:text-lg">
                     {% include "components/svg_components/sustainability_icon.html" %}
-                    <span>Going Green</span>
+                    <span>{{ council.get_bamboo_standard_display }}</span>
                 </div>
             </div>
         </div>
@@ -72,7 +69,7 @@
 
 {% block sidebar_card_2 %}
     <dl class="flex flex-col items-center justify-center text-center gap-2">
-        <dt id="live-projects-label" class="text-xs md:text-sm font-bold text-earth-500 uppercase">Live Projects</dt>
+        <dt id="live-projects-label" class="text-xs md:text-sm font-bold text-earth-500 uppercase">Impact Opportunities</dt>
         <dd class="text-2xl font-bold font-mono">
             <data value="{{ council.projects_count }}">{{ council.projects_count }}</data>
         </dd>
@@ -96,8 +93,8 @@
     <section aria-labelledby="opportunities-heading" class="extended-content-wrapper">
         <!-- Header -->
         <div class="flex items-end justify-between mb-6 border-b border-earth-50/10 pb-4 w-full">
-            <h2 id="opportunities-heading" class="text-1xl md:text-2xl font-bold text-earth-50">Open Opportunities</h2>
-            <p class="text-sm text-earth-500 text-right">Displaying All Open Tenders</p>
+            <h2 id="opportunities-heading" class="text-1xl md:text-2xl font-bold text-earth-50">Opportunities</h2>
+            <p class="text-sm text-earth-500 text-right">Displaying All Tenders</p>
         </div>
 
         <!-- List of Projects -->
@@ -106,7 +103,7 @@
 
                 <a href="{% url 'supply_chain:project_detail' project.council.slug project.slug %}"
                    class="group block h-full"
-                   aria-labelledby="project-urban-solar-corridor-installation"> <!-- needs model extension for slug? -->
+                   aria-labelledby="{{ project.slug }}">
                     <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
                         <div class="flex justify-between items-start mb-4">

@@ -4,6 +4,7 @@ from django.db.models.functions import Coalesce
 from autoslug import AutoSlugField
 from django.core.validators import RegexValidator
 
+
 class CouncilManager(models.Manager):
     def with_counts(self):
         return self.get_queryset().annotate(
@@ -21,6 +22,47 @@ class Council(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # --- BAMBOO STANDARD EXTENSION ---
+    class BambooStandard(models.TextChoices):
+        GOING_GREEN = 'GREEN', 'Going Green'
+        ECO_AWARE = 'AWARE', 'Eco-Conscious'
+        CLIMATE_LEADER = 'LEADER', 'Climate Leader'
+        REGENERATIVE = 'REGEN', 'Regenerative Pioneer'
+
+    bamboo_standard = models.CharField(
+        max_length=10,
+        choices=BambooStandard.choices,
+        default=BambooStandard.GOING_GREEN,
+        help_text="The sustainability rating of this council within the network."
+    )
+
+    # --- REGION EXTENSION ---
+    class Region(models.TextChoices):
+        NORTH_EAST = 'NE', 'North East'
+        NORTH_WEST = 'NW', 'North West'
+        YORKSHIRE = 'YH', 'Yorkshire and the Humber'
+        EAST_MIDLANDS = 'EM', 'East Midlands'
+        WEST_MIDLANDS = 'WM', 'West Midlands'
+        EAST_ENGLAND = 'EE', 'East of England'
+        LONDON = 'LDN', 'London'
+        SOUTH_EAST = 'SE', 'South East'
+        SOUTH_WEST = 'SW', 'South West'
+        SCOTLAND = 'SCT', 'Scotland'
+        WALES = 'WLS', 'Wales'
+
+    region = models.CharField(
+        max_length=5,
+        choices=Region.choices,
+        default=Region.YORKSHIRE
+    )
+
+    # --- MISSION EXTENSION ---
+    sustainability_mission = models.TextField(
+        blank=True,
+        default="Committed to reducing carbon emissions and promoting circular economy principles in all local infrastructure projects.",
+        help_text="The council's key sustainability quote or mission statement."
+    )
 
     objects = CouncilManager()
 
@@ -61,6 +103,42 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # --- SUSTAINABILITY GOAL EXTENSION ---
+    sustainability_goal = models.TextField(
+        blank=True,
+        help_text="Describe the specific ecological impact metrics (e.g., 'Reduces carbon by 40%...').",
+        default="This project aims to significantly reduce local carbon emissions and improve biodiversity."
+    )
+
+    # --- FUNDING SOURCE EXTENSION ---
+    class FundingSource(models.TextChoices):
+        UK_GREEN_LEVY = 'LEVY', 'UK Green Levy'
+        DIRECT_GRANT = 'GRANT', 'Direct Council Grant'
+        PRIVATE_PARTNERSHIP = 'PPP', 'Private-Public Partnership'
+        LOTTERY_FUND = 'LOTTERY', 'National Lottery Heritage Fund'
+        RESILIENCE_FUND = 'RESILIENCE', 'Climate Resilience Fund'
+
+    funding_source = models.CharField(
+        max_length=20,
+        choices=FundingSource.choices,
+        default=FundingSource.UK_GREEN_LEVY,
+        verbose_name="Funding Source"
+    )
+
+    # --- MANDATE EXTENSION ---
+    class Mandate(models.TextChoices):
+        NET_ZERO_2030 = 'NZ30', 'Net Zero 2030'
+        BIODIVERSITY_2025 = 'BIO25', 'Biodiversity Gain 2025'
+        CLEAN_AIR = 'AIR', 'Clean Air Zone (CAZ)'
+        HOUSING_STD = 'FHS', 'Future Homes Standard'
+
+    policy_mandate = models.CharField(
+        max_length=20,
+        choices=Mandate.choices,
+        default=Mandate.NET_ZERO_2030,
+        verbose_name="Policy Mandate"
+    )
+
     objects = ProjectManager()
 
     class Meta:
@@ -70,8 +148,8 @@ class Project(models.Model):
     def __str__(self):
         return f'{self.title}'
 
-    @property # Treat this function like a variable. Don't make me use brackets () to call it.
-    def percentage_allocated(self): # this is like an interface
+    @property  # Treat this function like a variable. Don't make me use brackets () to call it.
+    def percentage_allocated(self):  # this is like an interface
         if self.budget == 0:
             return 0
 

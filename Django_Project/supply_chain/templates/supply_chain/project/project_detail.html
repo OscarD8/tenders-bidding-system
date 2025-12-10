@@ -25,8 +25,7 @@
             Sustainability Impact
         </h4>
         <p class="text-sm text-earth-400">
-            This project has been flagged for high ecological value. Detailed impact metrics will be available in
-            Phase 2.
+            {{ project.sustainability_goal }}
         </p>
     </div>
 
@@ -68,14 +67,14 @@
         <div class="flex items-center text-xs">
             <span class="text-earth-400 mr-10">Source:</span>
             <span class="px-2 py-1 rounded bg-bamboo-900/30 border border-bamboo-500/20 text-bamboo-300 font-mono flex items-center">
-                UK Green Levy
+                {{ project.get_funding_source_display }}
             </span>
         </div>
 
         <div class="flex items-center text-xs">
             <span class="text-earth-400 mr-8">Mandate:</span>
             <span class="px-2 py-1 rounded bg-earth-800 border border-earth-50/10 text-earth-200 ">
-                Net Zero 2030
+                {{ project.get_policy_mandate_display }}
             </span>
         </div>
     </div>
@@ -130,7 +129,7 @@
         </div>
 
         <div class="flex justify-between items-baseline">
-            <span class="text-sm text-bamboo-400">Open for Tender</span>
+            <span class="text-sm text-bamboo-400">For Tender</span>
             <data value="{{ project.total_allocated }}" class="font-mono text-bamboo-400">
                 £{{ project.total_allocated|floatformat:2|intcomma }}
             </data>
