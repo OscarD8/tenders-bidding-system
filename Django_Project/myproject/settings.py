@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'pages',
     'supply_chain',
     'django.contrib.admin',
@@ -132,3 +133,31 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 STATICFILES_DIRS = [BASE_DIR / 'theme' / 'static']
+
+# --- JAZZMIN SETTINGS (Admin Theme) ---
+JAZZMIN_SETTINGS = {
+    "site_title": "Bamboo Tenders Admin",
+
+    "site_header": "Bamboo Tenders",
+
+    "site_brand": "Bamboo Tenders",
+
+    "welcome_sign": "Welcome to the Bamboo Tenders Network",
+
+    # Copyright on the footer
+    "copyright": "Bamboo Tenders Ltd",
+
+    "show_ui_builder": False,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+
+    "navbar": "navbar-dark",
+
+    "sidebar": "sidebar-dark-success",
+
+    "brand_colour": "navbar-success",
+
+    "accent": "accent-success",
+}
