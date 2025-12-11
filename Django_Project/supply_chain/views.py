@@ -1,5 +1,5 @@
-from django.db.models import Count, Q
-from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
 
 from supply_chain.forms import ProjectFilterForm, CouncilFilterForm
 from supply_chain.models import Council, Project
@@ -51,6 +51,7 @@ def all_projects(request):
         # Filter by Council
         council = form.cleaned_data.get('council')
         if council:
+            # Checks against the named field of a council
             projects = projects.filter(council=council)
 
     context = {'projects': projects, 'form': form}
