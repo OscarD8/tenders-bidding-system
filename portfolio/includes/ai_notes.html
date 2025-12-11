@@ -56,6 +56,151 @@
         </div>
     </div>
 
+
+    <!-- Card for AI Prompt 11-12-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+                         I need to implement the form for the all_projects_list. A user should be able to search by keywords related to the title of a project... e.g. Solar, Decarbonisation.
+They need to be able to use the drop down menu to also filter by the council selected from the options. Provide a form implementation following WCAG guidelines and Django best practice. Notify on any code that may be extracted out to global components to promote DRY code and (as other list_templates also use filters), and follow the brand styling reusing components where possible. Suggest the best approach and explain your reasoning.
+                    </span>
+            </p>
+            <p>Date: 11-12-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    Copilot suggested the filtering system should use Django’s standard Forms API rather than writing raw HTML inputs, partly because of security and because it works well regarding separating concerns. By defining the fields in forms.py, I can access Django’s built-in state preservation, which ensures that a user’s search terms remain 'sticky' in the input boxes after the page reloads. In terms of separation of concerns, the Form handles input control and widget styling, the View manages the actual database filtering rules (which columns to search the query string against in the database), and the Template acts purely as a layout container. Two changes needed from its initial response, which were to ensure that when a user cleared their text input, it didn't also clear their selected council or other parts of the query string (there is as specific button for resetting all filters). The fix was to change the url path logic on reset to check if 'request.GET.council'. The actual reset all filters option it initially tried to navigate to '.' which was a url path that didn't exist. Changed this to 'a href="{{ request.path }}"' which seems to effectively take the current route but clear the query string.
+
+                The response ultimately split the code out into what to be entered into views.py, forms.py, and the templates themselves. Unrevised initial response:
+
+                    <pre>
+// forms.py
+from django import forms
+from .models import Council
+
+class ProjectFilterForm(forms.Form):
+    # Keyword Search Field
+    q = forms.CharField(
+        required=False,
+        label='Keywords',
+        widget=forms.TextInput(attrs={
+            'class': 'focus-input',
+            'placeholder': 'Solar, Roof, etc...',
+            'autocomplete': 'off',
+            'aria-label': 'Search projects by keywords'
+        })
+    )
+
+    # Council Dropdown Field
+    council = forms.ModelChoiceField(
+        queryset=Council.objects.all(), # Populates the dropdown automatically
+        required=False,
+        label='Council',
+        empty_label="All Authorities", # The default "Select All" option
+        widget=forms.Select(attrs={
+            'class': 'focus-input cursor-pointer appearance-none'
+            # Note: appearance-none is needed to hide default browser arrow so your SVG works
+        })
+)
+
+
+// views.py
+from django.db.models import Q
+from .forms import ProjectFilterForm
+
+def all_projects_list(request):
+    # 1. Start with all projects (using your custom financial manager)
+    projects = Project.objects.with_financials().all()
+
+    # 2. Instantiate the form with GET data (or None if page first loads)
+    form = ProjectFilterForm(request.GET)
+
+    # 3. Apply Filters
+    if form.is_valid():
+        # Filter by Keyword (Title or Description)
+        query = form.cleaned_data.get('q')
+        if query:
+            projects = projects.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query)
+            )
+
+        # Filter by Council
+        council = form.cleaned_data.get('council')
+        if council:
+            projects = projects.filter(council=council)
+
+    context = {
+        'projects': projects,
+        'form': form, # Pass the form to the template
+    }
+    return render(request, 'supply_chain/project/all_projects_list.html', context)
+
+
+// html template
+{% block layout_sidebar %}
+    &lt;div class="glass-panel sidebar-variant p-8" aria-labelledby="sidebar-filter-label"&gt;
+
+        &lt;h3 class="sidebar-title" id="sidebar-filter-label"&gt;Filter Results&lt;/h3&gt;
+
+        &lt;form method="get" class="space-y-6"&gt;
+
+            &lt;div&gt;
+                &lt;label for="{{ form.q.id_for_label }}" class="sub-heading-earth-400"&gt;
+                    {{ form.q.label }}
+                &lt;/label&gt;
+                &lt;div class="relative"&gt;
+                    {{ form.q }}
+
+                    {% if form.q.value %}
+                        &lt;a href="?"
+                           class="absolute right-5 top-1/2 transform -translate-y-1/2 text-earth-500 hover:text-white"
+                           aria-label="Clear search"&gt;
+                            &amp;times;
+                        &lt;/a&gt;
+                    {% endif %}
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div&gt;
+                &lt;label for="{{ form.council.id_for_label }}" class="sub-heading-earth-400"&gt;
+                    {{ form.council.label }}
+                &lt;/label&gt;
+                &lt;div class="relative"&gt;
+                    {{ form.council }}
+
+                    &lt;div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-earth-500"&gt;
+                         {% include "components/svg_components/drop_arrow_icon.html" %}
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;button type="submit" class="btn btn-primary btn-md w-full"&gt;
+                Update Results
+            &lt;/button&gt;
+
+            {% if request.GET %}
+                &lt;div class="text-center mt-4"&gt;
+                    &lt;a href="." class="text-xs text-earth-400 hover:text-bamboo-400 border-b border-transparent hover:border-bamboo-400 transition-colors"&gt;
+                        Reset Filters
+                    &lt;/a&gt;
+                &lt;/div&gt;
+            {% endif %}
+
+        &lt;/form&gt;
+
+    &lt;/div&gt;
+{% endblock %}
+
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
     <!-- Card for AI Prompt 11/12/25 -->
 
     <div class="card">
