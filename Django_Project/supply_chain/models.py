@@ -148,7 +148,7 @@ class Project(models.Model):
     def __str__(self):
         return f'{self.title}'
 
-    @property  # Treat this function like a variable. Don't make me use brackets () to call it.
+    @property  # Treat this function like a variable. Don't use brackets () to call it.
     def percentage_allocated(self):  # this is like an interface
         if self.budget == 0:
             return 0

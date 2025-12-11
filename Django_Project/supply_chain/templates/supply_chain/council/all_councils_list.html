@@ -7,7 +7,7 @@
 {% block page_header %}
     <div class="flex flex-col justify-between">
         <div class="max-w-2xl">
-            <h1 class="text-xl text-white">
+            <h1 class="text-3xl text-earth-100">
                 Partner <span class="text-bamboo-400">Councils</span>
             </h1>
             <p class="text-earth-300 text-lg leading-relaxed">
@@ -18,35 +18,61 @@
 {% endblock %}
 
 
+<!-- Sidebar used for Filter Section -->
 {% block layout_sidebar %}
-    <div class="glass-panel sidebar-variant p-8">
+    <div class="glass-panel sidebar-variant p-8" aria-labelledby="sidebar-filter-label">
 
-        <h3 class="sidebar-title text-earth-500">Search</h3>
+        <h3 class="sidebar-title" id="sidebar-filter-label">Filter Partners</h3>
 
         <form method="get" class="space-y-6">
 
+            <!-- Keyword Search -->
             <div>
+                <label for="{{ form.q.id_for_label }}" class="sub-heading-earth-400">
+                    {{ form.q.label }}
+                </label>
                 <div class="relative">
-                    <input type="text" name="q" id="q" value="{{ request.GET.q }}"
-                           placeholder="Council, contact..."
-                           class="focus-input"
-                           autocomplete="off"
-                           aria-label="Search projects by keywords"
-                    />
-                    <button
-                            type="button"
-                            class="absolute right-5 top-1/2 transform -translate-y-1/2 text-earth-500"
-                            aria-label="Clear search"
-                            onclick="this.closest('form').q.value = '';"
-                    >
-                        &times;
-                    </button>
+                    {{ form.q }}
+
+                    {% if form.q.value %}
+                        <a href="{{ request.path }}?{% if request.GET.region %}region={{ request.GET.region }}{% endif %}"
+                           class="absolute right-5 top-1/2 transform -translate-y-1/2 text-earth-500 hover:text-earth-700 focus:outline-none focus:ring-2 focus:ring-earth-500"
+                           aria-label="Clear search">
+
+                            <span aria-hidden="true" class="text-xl">×</span>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md">
+            <!-- Region Dropdown menu -->
+            <div>
+                <label for="{{ form.region.id_for_label }}" class="sub-heading-earth-400">
+                    {{ form.region.label }}
+                </label>
+                <div class="relative">
+                    {{ form.region }}
+
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-earth-500">
+                        {% include "components/svg_components/drop_arrow_icon.html" %}
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-md w-full">
                 Update Results
             </button>
+
+            <!-- Display if there is a query string e.g. '?q=derek&council=leeds' -->
+            {% if request.GET %}
+                <div class="text-center">
+                <!-- reloads page in original state, removing query string -->
+                    <a href="{{ request.path }}"
+                       class="text-xs text-earth-400 hover:text-bamboo-400 border-b border-transparent hover:border-bamboo-400 transition-colors">
+                        Reset Filters
+                    </a>
+                </div>
+            {% endif %}
 
         </form>
 
@@ -63,7 +89,7 @@
 
                     <div>
                         <div class="flex justify-between items-start mb-6 gap-4">
-                            <h3 class="text-2xl font-bold text-earth-50 group-hover:text-bamboo-400 transition-colors"
+                            <h3 class="text-2xl font-bold text-earth-100 group-hover:text-bamboo-400 transition-colors"
                                 id="{{ council.name }}">
                                 {{ council.name }}
                             </h3>

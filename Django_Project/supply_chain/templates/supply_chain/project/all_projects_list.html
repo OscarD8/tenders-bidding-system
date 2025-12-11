@@ -7,7 +7,7 @@
 {% block page_header %}
     <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
         <div>
-            <h1 class="text-xl text-white">
+            <h1 class="text-3xl text-earth-100">
                 Tender <span class="text-bamboo-400">Network</span>
             </h1>
             <p class="text-earth-300 text-lg leading-relaxed">
@@ -16,7 +16,7 @@
         </div>
 
         <span class="px-3 py-1 rounded-full border border-earth-500/30 bg-earth-500/10 text-earth-300 text-xs font-medium text-center">
-            {{ projects.count }} Active Tender{% if projects.count != 1 %}s{% endif %}
+            {{ projects.count }} Total Tender{% if projects.count != 1 %}s{% endif %}
         </span>
     </div>
 {% endblock %}
@@ -24,49 +24,59 @@
 
 <!-- Sidebar used for Filter Section -->
 {% block layout_sidebar %}
-    <div class="glass-panel sidebar-variant p-8"
-         aria-labelledby="sidebar-filter-label">
+    <div class="glass-panel sidebar-variant p-8" aria-labelledby="sidebar-filter-label">
 
         <h3 class="sidebar-title" id="sidebar-filter-label">Filter Results</h3>
 
         <form method="get" class="space-y-6">
+
+            <!-- Keyword Search -->
             <div>
-                <label for="q"
-                       class="sub-heading-earth-400">Keywords</label>
+                <label for="{{ form.q.id_for_label }}" class="sub-heading-earth-400">
+                    {{ form.q.label }}
+                </label>
                 <div class="relative">
-                    <input type="text" name="q" id="q" value="{{ request.GET.q }}"
-                           placeholder="Solar, Roof, etc..."
-                           class="focus-input"
-                           autocomplete="off"
-                           aria-label="Search projects by keywords"
-                    />
-                    <button
-                            type="button"
-                            class="absolute right-5 top-1/2 transform -translate-y-1/2 text-earth-500"
-                            aria-label="Clear search"
-                            onclick="this.closest('form').q.value = '';"
-                    >
-                        &times;
-                    </button>
+                    {{ form.q }}
+
+                    {% if form.q.value %}
+                        <a href="{{ request.path }}?{% if request.GET.council %}council={{ request.GET.council }}{% endif %}"
+                           class="absolute right-5 top-1/2 transform -translate-y-1/2 text-earth-500 hover:text-earth-700 focus:outline-none focus:ring-2 focus:ring-earth-500"
+                           aria-label="Clear search terms">
+
+                            <span aria-hidden="true" class="text-xl">×</span>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
 
+            <!-- Council dropdown menu -->
             <div>
-                <label for="council" class="sub-heading-earth-400">Council</label>
+                <label for="{{ form.council.id_for_label }}" class="sub-heading-earth-400">
+                    {{ form.council.label }}
+                </label>
                 <div class="relative">
-                    <select name="council" id="council"
-                            class="focus-input cursor-pointer appearance-none">
-                        <option value="">All Authorities</option>
-                        <!-- Councils to go here -->
-                    </select>
+                    {{ form.council }}
 
-                    {% include "components/svg_components/drop_arrow_icon.html" %}
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-earth-500">
+                        {% include "components/svg_components/drop_arrow_icon.html" %}
+                    </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md">
+            <button type="submit" class="btn btn-primary btn-md w-full">
                 Update Results
             </button>
+
+            <!-- Display if there is a query string e.g. '?q=solar&council=leeds' -->
+            {% if request.GET %}
+                <div class="text-center">
+                    <a href="{{ request.path }}"
+                       class="text-sm text-earth-400 hover:text-bamboo-400 border-b border-transparent hover:border-bamboo-400 transition-colors">
+                        Reset Filters
+                    </a>
+                </div>
+            {% endif %}
+
         </form>
 
     </div>
@@ -77,17 +87,16 @@
     {% if projects %}
         {% for project in projects %}
             <a href="{% url 'supply_chain:project_detail' project.council.slug project.slug %}"
-               class="group block h-full"
-               aria-labelledby="project-urban-solar-corridor-installation"> <!-- needs model extension for slug? -->
+               class="group block h-full">
+
                 <div class="glass-panel-list-variant hover-lift hover-glow-bamboo">
 
                     <div class="flex justify-between items-start mb-4">
-                        <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Active</span>
+                        <span class="inline-flex items-center rounded-md bg-bamboo-400/10 px-2 py-1 text-xs font-medium text-bamboo-400 ring-1 ring-inset ring-bamboo-400/20">Total</span>
                         <span class="text-xs text-earth-500">{{ project.created_at|naturaltime }}</span>
                     </div>
 
-                    <h3 class="text-xl font-bold text-earth-50 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2"
-                        id="{{ project.title }}"> <!-- needs to be a slug? -->
+                    <h3 class="text-xl font-bold text-earth-100 mb-2 group-hover:text-bamboo-400 transition-colors line-clamp-2">
                         {{ project.title }}
                     </h3>
 
