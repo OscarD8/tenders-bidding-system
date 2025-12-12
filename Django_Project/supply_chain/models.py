@@ -183,6 +183,7 @@ class Requirement(models.Model):
         ]
     )
     title = models.CharField(max_length=200, help_text="e.g. Road Resurfacing")
+    slug = AutoSlugField(populate_from='title', unique_with='project', always_update=True)
     description = models.TextField()
 
     estimated_value = models.DecimalField(
@@ -200,3 +201,16 @@ class Requirement(models.Model):
 
     def __str__(self):
         return f"{self.cpv_code} - {self.title}"
+
+
+class Bid(models.Model):
+    requirement = models.ForeignKey(Requirement, on_delete=models.CASCADE, related_name='bids')
+
+    company_name = models.CharField(max_length=100)
+    contact_email = models.EmailField()
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"£{self.amount} - {self.company_name}"

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="mt-20 md:mt-30 w-full max-w-xl mx-auto px-4 sm:px-8">
+
+        <!-- Bidding Form Header -->
+        <header class="mb-6 text-center">
+            <h1 class="text-3xl font-bold text-earth-100">Submit Proposal</h1>
+            <p class="text-earth-300 mt-2">Bidding for: <span class="text-bamboo-400">{{ requirement.title }}</span></p>
+            <p class="text-sm text-earth-500 font-mono mt-1">
+                {{ requirement.cpv_code }}
+
+                <span class="block">
+                    {{ council.name }} <br> {{ project.title }}
+                </span>
+            </p>
+        </header>
+
+        <!-- Bidding Form Actions-->
+        <div class="glass-panel p-8">
+            <form method="post" class="space-y-6" novalidate>
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div>
+                        <label for="{{ field.id_for_label }}" class="sub-heading-earth-400 mb-2 block">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+
+                        {% if field.errors %}
+                            <p class="text-red-500 text-xs mt-1" role="alert">{{ field.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary btn-md w-full py-3 mt-4">
+                    Confirm Bid
+                </button>
+
+                <div class="text-center">
+                    <a href="{% url 'supply_chain:project_detail' council.slug project.slug %}"
+                       class="text-sm text-earth-400 hover:text-white">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+    </section>
+{% endblock %}

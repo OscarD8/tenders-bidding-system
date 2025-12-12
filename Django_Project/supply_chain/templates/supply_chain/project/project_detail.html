@@ -239,12 +239,11 @@
 
                                 <td class="px-4 py-4 text-right">
                                     {% if req.status == 'OPEN' %}
-                                        <button type="button"
-                                                id="btn-bid-{{ req.pk }}"
-                                                class="text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider focus:ring-2 focus:ring-bamboo-400 focus:outline-none rounded px-2 py-1"
-                                                aria-label="Bid on {{ req.title }}">
+                                        <a href="{% url 'supply_chain:place_bid' project.council.slug project.slug req.slug %}"
+                                           class="inline-block text-bamboo-400 hover:text-white font-bold text-xs uppercase tracking-wider focus:ring-2 focus:ring-bamboo-400 focus:outline-none rounded px-2 py-1 transition-colors"
+                                           aria-label="Bid on {{ req.title }}">
                                             Bid Now
-                                        </button>
+                                        </a>
                                     {% elif req.status == 'REVIEW' %}
                                         <button type="button"
                                                 id="btn-inspect-{{ req.pk }}"

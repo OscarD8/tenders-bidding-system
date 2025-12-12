@@ -1,8 +1,9 @@
+from django.contrib import messages
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
-from supply_chain.forms import ProjectFilterForm, CouncilFilterForm
-from supply_chain.models import Council, Project
+from supply_chain.forms import ProjectFilterForm, CouncilFilterForm, BidForm
+from supply_chain.models import Council, Project, Requirement
 
 
 def all_councils(request):
@@ -61,7 +62,7 @@ def all_projects(request):
 
 def project_detail(request, council_slug, project_slug):
     project = get_object_or_404(
-        Project.objects.with_financials(), # Add the annotation instruction to the queryset
+        Project.objects.with_financials(),  # Add the annotation instruction to the queryset
         council__slug=council_slug,
         slug=project_slug
     )
@@ -76,3 +77,33 @@ def council_detail(request, slug):
     )
 
     return render(request, 'supply_chain/council/council_detail.html', {'council': council})
+
+
+def place_bid(request, council_slug, project_slug, requirement_slug):
+    requirement = get_object_or_404(
+        Requirement,
+        slug=requirement_slug,
+        project__slug=project_slug,
+        project__council__slug=council_slug
+    )
+
+    if request.method == 'POST':
+        form = BidForm(request.POST) # Instantiate Form with POST data
+
+        if form.is_valid():
+            bid = form.save(commit=False) # Create a model instance but don't save to DB yet
+            bid.requirement = requirement # Add the missing ForeignKey/contextual data
+            bid.save() # Save the complete object to the DB
+            messages.success(request, f"Bid of £{bid.amount} submitted successfully!")
+            return redirect('supply_chain:project_detail', council_slug=council_slug, project_slug=project_slug)
+    else:
+        # This handles the GET request (initial page load)
+        form = BidForm()
+
+    context = {
+        'form': form,
+        'requirement': requirement,
+        'project': requirement.project,
+        'council': requirement.project.council
+    }
+    return render(request, 'supply_chain/bids/bid_form.html', context)

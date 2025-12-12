@@ -1,5 +1,6 @@
 from django import forms
-from .models import Council
+from .models import Council, Bid
+
 
 class CouncilFilterForm(forms.Form):
     # Keyword Search (e.g. "Leeds") - naming the textbook 'q'
@@ -25,6 +26,7 @@ class CouncilFilterForm(forms.Form):
     )
 
 class ProjectFilterForm(forms.Form):
+    # The form fields (q and council) are all defined explicitly as attributes directly on the ProjectFilterForm class.
     # Keyword Search Field
     q = forms.CharField(
         required=False,
@@ -49,3 +51,15 @@ class ProjectFilterForm(forms.Form):
             # Note: appearance-none is needed to hide the default browser arrow so the SVG works
         })
     )
+
+
+class BidForm(forms.ModelForm):
+    # Meta class required to link the form to the database model
+    class Meta:
+        model = Bid
+        fields = ['company_name', 'contact_email', 'amount']
+        widgets = { # these define fields that can be looped through on a template
+            'company_name': forms.TextInput(attrs={'class': 'focus-input', 'placeholder': 'Your Company Ltd'}),
+            'contact_email': forms.EmailInput(attrs={'class': 'focus-input', 'placeholder': 'tenders@company.com'}),
+            'amount': forms.NumberInput(attrs={'class': 'focus-input', 'placeholder': '0.00'}),
+        }

@@ -147,7 +147,8 @@ JAZZMIN_SETTINGS = {
     # Copyright on the footer
     "copyright": "Bamboo Tenders Ltd",
 
-    "show_ui_builder": False,
+    # Path to logo for your site, must be present in static files, used for brand on top left
+    "site_logo": "images/bt_logo.png",
 }
 
 JAZZMIN_UI_TWEAKS = {

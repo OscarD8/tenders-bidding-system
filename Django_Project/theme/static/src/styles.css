@@ -137,6 +137,19 @@
     .extended-content-wrapper {
         @apply w-full max-w-6xl mx-auto px-4 sm:px-8 pb-8 mt-12
     }
+
+    /* Your main input styling */
+      .focus-input {
+        /* Firefox Logic */
+        -moz-appearance: textfield;
+      }
+
+      /* Chrome/Safari/Edge Logic targeted specifically at this class */
+      .focus-input::-webkit-outer-spin-button,
+      .focus-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 }
 
 /* Base styles */
