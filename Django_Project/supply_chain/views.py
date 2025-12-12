@@ -94,7 +94,7 @@ def place_bid(request, council_slug, project_slug, requirement_slug):
             bid = form.save(commit=False) # Create a model instance but don't save to DB yet
             bid.requirement = requirement # Add the missing ForeignKey/contextual data
             bid.save() # Save the complete object to the DB
-            messages.success(request, f"Bid of £{bid.amount} submitted successfully!")
+            messages.success(request, f"Bid of £{bid.amount} submitted successfully!") # can see the message on the admin page
             return redirect('supply_chain:project_detail', council_slug=council_slug, project_slug=project_slug)
     else:
         # This handles the GET request (initial page load)

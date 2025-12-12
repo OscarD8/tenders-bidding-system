@@ -5,6 +5,7 @@ from autoslug import AutoSlugField
 from django.core.validators import RegexValidator
 
 
+
 class CouncilManager(models.Manager):
     def with_counts(self):
         return self.get_queryset().annotate(
@@ -72,6 +73,7 @@ class Council(models.Model):
 
     def __str__(self):
         return f'{self.name} Council'
+
 
 
 class ProjectManager(models.Manager):
@@ -144,9 +146,15 @@ class Project(models.Model):
     class Meta:
         ordering = ['-created_at']
         verbose_name_plural = "Projects"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['council', 'title'],
+                name='unique_project_title_per_council'
+            )
+        ]
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.title} ({self.council.name})'
 
     @property  # Treat this function like a variable. Don't use brackets () to call it.
     def percentage_allocated(self):  # this is like an interface
@@ -162,6 +170,7 @@ class Project(models.Model):
             allocated = self.requirements.aggregate(total=Sum('estimated_value'))['total'] or 0
 
         return (allocated / self.budget) * 100
+
 
 
 class Requirement(models.Model):
@@ -196,11 +205,18 @@ class Requirement(models.Model):
 
     class Meta:
         ordering = ['deadline']
-        verbose_name = "Work Package"
-        verbose_name_plural = "Work Packages"
+        verbose_name = "Requirement"
+        verbose_name_plural = "Requirements"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['project', 'title'],
+                name='unique_requirement_title_per_project'
+            )
+        ]
 
     def __str__(self):
-        return f"{self.cpv_code} - {self.title}"
+        return f"{self.cpv_code} - {self.title} - {self.project.title}"
+
 
 
 class Bid(models.Model):
@@ -213,4 +229,4 @@ class Bid(models.Model):
     submitted_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"£{self.amount} - {self.company_name}"
+        return f"£{self.amount} - {self.company_name} - {self.requirement.title}"

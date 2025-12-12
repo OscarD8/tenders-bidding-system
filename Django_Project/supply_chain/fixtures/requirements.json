@@ -219,8 +219,7 @@
       "slug": "phytoremediation-services",
       "description": "Planting of hyper-accumulator species to strip heavy metals from the soil.",
       "estimated_value": "300000.00",
-      "deadline": "2025-04-15",                    {% csrf_token %}
-
+      "deadline": "2025-04-15",
       "status": "CLOSED"
     }
   },
