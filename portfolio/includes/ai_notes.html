@@ -57,6 +57,125 @@
     </div>
 
 
+    <!-- Card for AI Prompt 1-12-25 -->
+
+    <div class="card">
+        <div class="card-header">
+            <p>Prompt:
+                <span class="answer_required" style="color: #f1f5f9;">
+I need a way for users to submit bids, but with no user authentication. I have the following model for a bid which must log a company_name, contact_email, and an amount.
+
+Can you please write the code for:
+
+    forms.py: A ModelForm named BidForm. If any global styling can be implemented, note this in the code.
+
+    views.py: A view function that handles the POST request, validates the form, saves the bid, and redirects to a success page.
+
+    template: The HTML to render this form. I want to manually loop through the form fields to apply specific styling.
+                    </span>
+            </p>
+            <p>Date: 1-12-25</p>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="answer_required">
+                    The form type Copilot came back with was different here. The form was a ModelForm, but the fields were not defined in the class. Instead, the fields were defined in the form's Meta class as here we are interacting with the database. The view function handled both GET and POST requests, rendering the form on GET and processing it on POST. If the form was valid, it saved the bid. Here it made up a redirect to a template that didn't exist (changed this to route back to the project). The template manually looped through the form fields, applying specific styling to each field and displaying any validation errors. I briefly looked into {% csrf_token %} and I am unsure if it is necessary here? Further adjustments were made to improve the markup of the template, and to shift away from using the pk of the requirement for the path, and to the council/project/requirement slugs (which required an extension of requirement model to have autoslugs).
+
+                    Response split out:
+
+                    <pre>
+// forms.py
+from .models import Bid
+
+class BidForm(forms.ModelForm):
+    class Meta:
+        model = Bid
+        fields = ['company_name', 'contact_email', 'amount']
+        widgets = {
+            'company_name': forms.TextInput(attrs={'class': 'focus-input', 'placeholder': 'Your Company Ltd'}),
+            'contact_email': forms.EmailInput(attrs={'class': 'focus-input', 'placeholder': 'tenders@company.com'}),
+            'amount': forms.NumberInput(attrs={'class': 'focus-input', 'placeholder': '0.00'}),
+        }
+
+
+// views.py
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .models import Requirement, Bid
+from .forms import BidForm
+
+def place_bid(request, requirement_id):
+    # 1. Get the specific tender they are bidding on
+    requirement = get_object_or_404(Requirement, pk=requirement_id)
+
+    # 2. Handle the Form Submission
+    if request.method == 'POST':
+        form = BidForm(request.POST)
+        if form.is_valid():
+            bid = form.save(commit=False)
+            bid.requirement = requirement  # Link the bid to this tender
+            bid.save()
+            messages.success(request, f"Bid of £{bid.amount} submitted successfully!")
+            return redirect('supply_chain:live_opportunities') # Send them back to the list
+    else:
+        form = BidForm()
+
+    return render(request, 'supply_chain/bid/place_bid.html', {
+        'form': form,
+        'requirement': requirement
+    })
+
+
+// urls.py
+path('bid/int:requirement_id/', views.place_bid, name='place_bid'),
+
+
+// template
+{% extends 'base.html' %}
+
+{% block content %}
+&lt;div class="container mx-auto px-4 py-12 flex justify-center"&gt;
+    &lt;div class="w-full max-w-lg"&gt;
+
+        &lt;div class="mb-6 text-center"&gt;
+            &lt;h1 class="text-3xl font-bold text-white"&gt;Submit Proposal&lt;/h1&gt;
+            &lt;p class="text-earth-300 mt-2"&gt;Bidding for: &lt;span class="text-bamboo-400"&gt;{{ requirement.title }}&lt;/span&gt;&lt;/p&gt;
+            &lt;p class="text-sm text-earth-500 font-mono mt-1"&gt;{{ requirement.cpv_code }}&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="glass-panel p-8"&gt;
+            &lt;form method="post" class="space-y-6"&gt;
+                {% csrf_token %}
+
+                {% for field in form %}
+                &lt;div&gt;
+                    &lt;label class="sub-heading-earth-400 mb-2 block"&gt;{{ field.label }}&lt;/label&gt;
+                    {{ field }}
+                &lt;/div&gt;
+                {% endfor %}
+
+                &lt;button type="submit" class="btn btn-primary w-full py-3 mt-4"&gt;
+                    Confirm Bid
+                &lt;/button&gt;
+
+                &lt;div class="text-center mt-4"&gt;
+                    &lt;a href="{% url 'supply_chain:live_opportunities' %}" class="text-sm text-earth-400 hover:text-white"&gt;Cancel&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+
+
+                    </pre>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
     <!-- Card for AI Prompt 11-12-25 -->
 
     <div class="card">
