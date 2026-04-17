@@ -1,5 +1,3 @@
-This repository contains two main folders:
-
 ## Django Project
 
 A Django assignment as an introduction to web development, where I was provided a council model, from which I branched into a sustainability theme. The project exposed me to Django's architecture and styling with Tailwind. 
